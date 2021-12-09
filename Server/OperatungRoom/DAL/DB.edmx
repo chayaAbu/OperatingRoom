@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OperatingRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="idClass" />
+          </Key>
+          <Property Name="idClass" Type="int" Nullable="false" />
+          <Property Name="className" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="deviceForSurgery">
+          <Key>
+            <PropertyRef Name="idDFS" />
+          </Key>
+          <Property Name="idDFS" Type="int" Nullable="false" />
+          <Property Name="idDevice" Type="int" Nullable="false" />
+          <Property Name="surgeryCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="idDoctor" />
+          </Key>
+          <Property Name="idDoctor" Type="int" Nullable="false" />
+          <Property Name="doctorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idClass" Type="int" Nullable="false" />
+          <Property Name="startHour" Type="datetime" Nullable="false" />
+          <Property Name="endHour" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="idRoom" />
+          </Key>
+          <Property Name="idRoom" Type="int" Nullable="false" />
+          <Property Name="isFull" Type="bit" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="idClass" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="scheduling">
+          <Key>
+            <PropertyRef Name="schedulingCode" />
+          </Key>
+          <Property Name="schedulingCode" Type="int" Nullable="false" />
+          <Property Name="schedulingDate" Type="date" Nullable="false" />
+          <Property Name="schedulingHour" Type="time" Precision="7" Nullable="false" />
+          <Property Name="idRoom" Type="int" Nullable="false" />
+          <Property Name="surgeryCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="specialDevice">
+          <Key>
+            <PropertyRef Name="IdDevice" />
+          </Key>
+          <Property Name="IdDevice" Type="int" Nullable="false" />
+          <Property Name="deviceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isAvailable" Type="bit" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="surgery">
+          <Key>
+            <PropertyRef Name="surgeryCode" />
+          </Key>
+          <Property Name="surgeryCode" Type="int" Nullable="false" />
+          <Property Name="idClass" Type="int" Nullable="false" />
+          <Property Name="priorityLevel" Type="int" Nullable="false" />
+          <Property Name="dangerLevel" Type="int" Nullable="false" />
+          <Property Name="idDoctor" Type="int" Nullable="false" />
+          <Property Name="surgeryDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="int" Nullable="false" />
+          <Property Name="changeAvailable" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_deviceForSurgery_specialDevice">
+          <End Role="specialDevice" Type="Self.specialDevice" Multiplicity="1" />
+          <End Role="deviceForSurgery" Type="Self.deviceForSurgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialDevice">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="deviceForSurgery">
+              <PropertyRef Name="idDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deviceForSurgery_surgery">
+          <End Role="surgery" Type="Self.surgery" Multiplicity="1" />
+          <End Role="deviceForSurgery" Type="Self.deviceForSurgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="surgery">
+              <PropertyRef Name="surgeryCode" />
+            </Principal>
+            <Dependent Role="deviceForSurgery">
+              <PropertyRef Name="surgeryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doctor_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_room_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="room" Type="Self.room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="room">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_scheduling_room">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="scheduling" Type="Self.scheduling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="idRoom" />
+            </Principal>
+            <Dependent Role="scheduling">
+              <PropertyRef Name="idRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_scheduling_surgery">
+          <End Role="surgery" Type="Self.surgery" Multiplicity="1" />
+          <End Role="scheduling" Type="Self.scheduling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="surgery">
+              <PropertyRef Name="surgeryCode" />
+            </Principal>
+            <Dependent Role="scheduling">
+              <PropertyRef Name="surgeryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_surgery_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="surgery" Type="Self.surgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="surgery">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_surgery_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="1" />
+          <End Role="surgery" Type="Self.surgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="idDoctor" />
+            </Principal>
+            <Dependent Role="surgery">
+              <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OperatingRoomModelStoreContainer">
+          <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deviceForSurgery" EntityType="Self.deviceForSurgery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheduling" EntityType="Self.scheduling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="specialDevice" EntityType="Self.specialDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="surgery" EntityType="Self.surgery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_deviceForSurgery_specialDevice" Association="Self.FK_deviceForSurgery_specialDevice">
+            <End Role="specialDevice" EntitySet="specialDevice" />
+            <End Role="deviceForSurgery" EntitySet="deviceForSurgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_deviceForSurgery_surgery" Association="Self.FK_deviceForSurgery_surgery">
+            <End Role="surgery" EntitySet="surgery" />
+            <End Role="deviceForSurgery" EntitySet="deviceForSurgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doctor_class" Association="Self.FK_doctor_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_class" Association="Self.FK_room_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="room" EntitySet="room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_scheduling_room" Association="Self.FK_scheduling_room">
+            <End Role="room" EntitySet="room" />
+            <End Role="scheduling" EntitySet="scheduling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_scheduling_surgery" Association="Self.FK_scheduling_surgery">
+            <End Role="surgery" EntitySet="surgery" />
+            <End Role="scheduling" EntitySet="scheduling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_surgery_class" Association="Self.FK_surgery_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="surgery" EntitySet="surgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_surgery_doctor" Association="Self.FK_surgery_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="surgery" EntitySet="surgery" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OperatingRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="idClass" />
+          </Key>
+          <Property Name="idClass" Type="Int32" Nullable="false" />
+          <Property Name="className" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_doctor_class" FromRole="class" ToRole="doctor" />
+          <NavigationProperty Name="room" Relationship="Self.FK_room_class" FromRole="class" ToRole="room" />
+          <NavigationProperty Name="surgery" Relationship="Self.FK_surgery_class" FromRole="class" ToRole="surgery" />
+        </EntityType>
+        <EntityType Name="deviceForSurgery">
+          <Key>
+            <PropertyRef Name="idDFS" />
+          </Key>
+          <Property Name="idDFS" Type="Int32" Nullable="false" />
+          <Property Name="idDevice" Type="Int32" Nullable="false" />
+          <Property Name="surgeryCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="specialDevice" Relationship="Self.FK_deviceForSurgery_specialDevice" FromRole="deviceForSurgery" ToRole="specialDevice" />
+          <NavigationProperty Name="surgery" Relationship="Self.FK_deviceForSurgery_surgery" FromRole="deviceForSurgery" ToRole="surgery" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="idDoctor" />
+          </Key>
+          <Property Name="idDoctor" Type="Int32" Nullable="false" />
+          <Property Name="doctorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idClass" Type="Int32" Nullable="false" />
+          <Property Name="startHour" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endHour" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="class" Relationship="Self.FK_doctor_class" FromRole="doctor" ToRole="class" />
+          <NavigationProperty Name="surgery" Relationship="Self.FK_surgery_doctor" FromRole="doctor" ToRole="surgery" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="idRoom" />
+          </Key>
+          <Property Name="idRoom" Type="Int32" Nullable="false" />
+          <Property Name="isFull" Type="Boolean" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idClass" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="class" Relationship="Self.FK_room_class" FromRole="room" ToRole="class" />
+          <NavigationProperty Name="scheduling" Relationship="Self.FK_scheduling_room" FromRole="room" ToRole="scheduling" />
+        </EntityType>
+        <EntityType Name="scheduling">
+          <Key>
+            <PropertyRef Name="schedulingCode" />
+          </Key>
+          <Property Name="schedulingCode" Type="Int32" Nullable="false" />
+          <Property Name="schedulingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="schedulingHour" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="idRoom" Type="Int32" Nullable="false" />
+          <Property Name="surgeryCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="room" Relationship="Self.FK_scheduling_room" FromRole="scheduling" ToRole="room" />
+          <NavigationProperty Name="surgery" Relationship="Self.FK_scheduling_surgery" FromRole="scheduling" ToRole="surgery" />
+        </EntityType>
+        <EntityType Name="specialDevice">
+          <Key>
+            <PropertyRef Name="IdDevice" />
+          </Key>
+          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <Property Name="deviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="deviceForSurgery" Relationship="Self.FK_deviceForSurgery_specialDevice" FromRole="specialDevice" ToRole="deviceForSurgery" />
+        </EntityType>
+        <EntityType Name="surgery">
+          <Key>
+            <PropertyRef Name="surgeryCode" />
+          </Key>
+          <Property Name="surgeryCode" Type="Int32" Nullable="false" />
+          <Property Name="idClass" Type="Int32" Nullable="false" />
+          <Property Name="priorityLevel" Type="Int32" Nullable="false" />
+          <Property Name="dangerLevel" Type="Int32" Nullable="false" />
+          <Property Name="idDoctor" Type="Int32" Nullable="false" />
+          <Property Name="surgeryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="class" Relationship="Self.FK_surgery_class" FromRole="surgery" ToRole="class" />
+          <NavigationProperty Name="deviceForSurgery" Relationship="Self.FK_deviceForSurgery_surgery" FromRole="surgery" ToRole="deviceForSurgery" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_surgery_doctor" FromRole="surgery" ToRole="doctor" />
+          <NavigationProperty Name="scheduling" Relationship="Self.FK_scheduling_surgery" FromRole="surgery" ToRole="scheduling" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="Int32" Nullable="false" />
+          <Property Name="changeAvailable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_doctor_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_room_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="room" Type="Self.room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="room">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_surgery_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="surgery" Type="Self.surgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="idClass" />
+            </Principal>
+            <Dependent Role="surgery">
+              <PropertyRef Name="idClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deviceForSurgery_specialDevice">
+          <End Role="specialDevice" Type="Self.specialDevice" Multiplicity="1" />
+          <End Role="deviceForSurgery" Type="Self.deviceForSurgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialDevice">
+              <PropertyRef Name="IdDevice" />
+            </Principal>
+            <Dependent Role="deviceForSurgery">
+              <PropertyRef Name="idDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_deviceForSurgery_surgery">
+          <End Role="surgery" Type="Self.surgery" Multiplicity="1" />
+          <End Role="deviceForSurgery" Type="Self.deviceForSurgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="surgery">
+              <PropertyRef Name="surgeryCode" />
+            </Principal>
+            <Dependent Role="deviceForSurgery">
+              <PropertyRef Name="surgeryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_surgery_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="1" />
+          <End Role="surgery" Type="Self.surgery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="idDoctor" />
+            </Principal>
+            <Dependent Role="surgery">
+              <PropertyRef Name="idDoctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_scheduling_room">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="scheduling" Type="Self.scheduling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="idRoom" />
+            </Principal>
+            <Dependent Role="scheduling">
+              <PropertyRef Name="idRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_scheduling_surgery">
+          <End Role="surgery" Type="Self.surgery" Multiplicity="1" />
+          <End Role="scheduling" Type="Self.scheduling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="surgery">
+              <PropertyRef Name="surgeryCode" />
+            </Principal>
+            <Dependent Role="scheduling">
+              <PropertyRef Name="surgeryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OperatingRoomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="class" EntityType="Self.class" />
+          <EntitySet Name="deviceForSurgery" EntityType="Self.deviceForSurgery" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" />
+          <EntitySet Name="room" EntityType="Self.room" />
+          <EntitySet Name="scheduling" EntityType="Self.scheduling" />
+          <EntitySet Name="specialDevice" EntityType="Self.specialDevice" />
+          <EntitySet Name="surgery" EntityType="Self.surgery" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="FK_doctor_class" Association="Self.FK_doctor_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_class" Association="Self.FK_room_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="room" EntitySet="room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_surgery_class" Association="Self.FK_surgery_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="surgery" EntitySet="surgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_deviceForSurgery_specialDevice" Association="Self.FK_deviceForSurgery_specialDevice">
+            <End Role="specialDevice" EntitySet="specialDevice" />
+            <End Role="deviceForSurgery" EntitySet="deviceForSurgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_deviceForSurgery_surgery" Association="Self.FK_deviceForSurgery_surgery">
+            <End Role="surgery" EntitySet="surgery" />
+            <End Role="deviceForSurgery" EntitySet="deviceForSurgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_surgery_doctor" Association="Self.FK_surgery_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="surgery" EntitySet="surgery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_scheduling_room" Association="Self.FK_scheduling_room">
+            <End Role="room" EntitySet="room" />
+            <End Role="scheduling" EntitySet="scheduling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_scheduling_surgery" Association="Self.FK_scheduling_surgery">
+            <End Role="surgery" EntitySet="surgery" />
+            <End Role="scheduling" EntitySet="scheduling" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OperatingRoomModelStoreContainer" CdmEntityContainer="OperatingRoomEntities">
+          <EntitySetMapping Name="class">
+            <EntityTypeMapping TypeName="OperatingRoomModel.class">
+              <MappingFragment StoreEntitySet="class">
+                <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="className" ColumnName="className" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deviceForSurgery">
+            <EntityTypeMapping TypeName="OperatingRoomModel.deviceForSurgery">
+              <MappingFragment StoreEntitySet="deviceForSurgery">
+                <ScalarProperty Name="idDFS" ColumnName="idDFS" />
+                <ScalarProperty Name="idDevice" ColumnName="idDevice" />
+                <ScalarProperty Name="surgeryCode" ColumnName="surgeryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctor">
+            <EntityTypeMapping TypeName="OperatingRoomModel.doctor">
+              <MappingFragment StoreEntitySet="doctor">
+                <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+                <ScalarProperty Name="doctorName" ColumnName="doctorName" />
+                <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="startHour" ColumnName="startHour" />
+                <ScalarProperty Name="endHour" ColumnName="endHour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="room">
+            <EntityTypeMapping TypeName="OperatingRoomModel.room">
+              <MappingFragment StoreEntitySet="room">
+                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+                <ScalarProperty Name="isFull" ColumnName="isFull" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="idClass" ColumnName="idClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheduling">
+            <EntityTypeMapping TypeName="OperatingRoomModel.scheduling">
+              <MappingFragment StoreEntitySet="scheduling">
+                <ScalarProperty Name="schedulingCode" ColumnName="schedulingCode" />
+                <ScalarProperty Name="schedulingDate" ColumnName="schedulingDate" />
+                <ScalarProperty Name="schedulingHour" ColumnName="schedulingHour" />
+                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+                <ScalarProperty Name="surgeryCode" ColumnName="surgeryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specialDevice">
+            <EntityTypeMapping TypeName="OperatingRoomModel.specialDevice">
+              <MappingFragment StoreEntitySet="specialDevice">
+                <ScalarProperty Name="IdDevice" ColumnName="IdDevice" />
+                <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+                <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="surgery">
+            <EntityTypeMapping TypeName="OperatingRoomModel.surgery">
+              <MappingFragment StoreEntitySet="surgery">
+                <ScalarProperty Name="surgeryCode" ColumnName="surgeryCode" />
+                <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="priorityLevel" ColumnName="priorityLevel" />
+                <ScalarProperty Name="dangerLevel" ColumnName="dangerLevel" />
+                <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
+                <ScalarProperty Name="surgeryDate" ColumnName="surgeryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OperatingRoomModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="OperatingRoomModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="changeAvailable" ColumnName="changeAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
