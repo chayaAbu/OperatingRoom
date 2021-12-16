@@ -86,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBConection.cs" />
     <Compile Include="deviceForSurgery.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
