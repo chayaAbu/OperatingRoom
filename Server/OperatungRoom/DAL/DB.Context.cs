@@ -12,19 +12,19 @@ namespace DAL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class OperatingRoomEntities : DbContext
     {
         public OperatingRoomEntities()
             : base("name=OperatingRoomEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<@class> @class { get; set; }
         public virtual DbSet<deviceForSurgery> deviceForSurgery { get; set; }
         public virtual DbSet<doctor> doctor { get; set; }
@@ -34,5 +34,14 @@ namespace DAL
         public virtual DbSet<surgery> surgery { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<user> user { get; set; }
+
+
+
+        public DbSet<T> GetDbSet<T>() where T : class
+        {
+            return this.Set<T>();
+
+        }
     }
 }
+
