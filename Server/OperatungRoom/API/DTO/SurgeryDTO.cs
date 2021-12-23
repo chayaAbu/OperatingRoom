@@ -30,7 +30,7 @@ namespace API.DTO
             this.surgeryDate = s.surgeryDate;
 
         }
-        public static List<SurgeryDTO> CreateSurgeryDtoListg(List<surgery> surgeryList)
+        public static List<SurgeryDTO> CreateSurgeryDtoList(List<surgery> surgeryList)
         {
             List<SurgeryDTO> dtoSurgeryList = new List<SurgeryDTO>();
             foreach (var s in surgeryList)
