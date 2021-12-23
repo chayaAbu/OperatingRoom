@@ -1,4 +1,6 @@
-﻿using System;
+﻿using API.DTO;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,12 +9,15 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
+    
     public class SurgeryController : ApiController
     {
-        // GET: api/Surgery
-        public IEnumerable<string> Get()
+        OperatingRoomEntities db = new OperatingRoomEntities();
+        // get surgery from current date
+        [Route("api/Shop/GetProductByCost/{price}")]
+        public List<SurgeryDTO> GetSurgeryFromCurrentDate()
         {
-            return new string[] { "value1", "value2" };
+            return SurgeryDTO.CreateSurgeryDtoList(db.surgery.Where(S => S.surgeryDate == DateTime.Now).ToList());
         }
 
         // GET: api/Surgery/5
