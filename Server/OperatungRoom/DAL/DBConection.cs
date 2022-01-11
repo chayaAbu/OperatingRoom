@@ -9,7 +9,7 @@ using DAL;
 
 namespace DAL
 {
-    class DBConection
+    public class DBConection
     {
         public DBConection() { }
         public List<T> GetDbSet<T>() where T : class
