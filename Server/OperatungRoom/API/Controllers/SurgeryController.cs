@@ -18,7 +18,7 @@ namespace API.Controllers
         [Route("api/Surgery/GetSurgeryFromCurrentDate")]
         public List<SurgeryDTO> GetSurgeryFromCurrentDate()
         {
-            List<SurgeryDTO> s = BL.SurgeryManager.GetSurgeryFromCurrentDate();
+            List<SurgeryDTO> s = BL.UserManager.GetSurgeryFromCurrentDate();
             return s;
         }
 

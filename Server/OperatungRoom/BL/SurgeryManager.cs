@@ -11,12 +11,12 @@ namespace BL
 {
 
 
-    public class SurgeryManager
+    public class UserManager
     {
         static DBConection db = new DBConection();
         public static List<SurgeryDTO> GetSurgeryFromCurrentDate()
         {
-            List<surgery> surgeriesFromTable = db.GetDbSet<surgery>().Where(S => S.surgeryDate == DateTime.Now).ToList();
+            List<surgery> surgeriesFromTable = db.GetDbSet<surgery>().Where(S => S.surgeryDate == DateTime.Today).ToList();
             List<SurgeryDTO> CreateSurgeryDtoList = SurgeryDTO.CreateSurgeryDtoList(surgeriesFromTable);
             return CreateSurgeryDtoList;
 
