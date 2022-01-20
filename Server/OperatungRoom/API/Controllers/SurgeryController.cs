@@ -18,14 +18,20 @@ namespace API.Controllers
         [Route("api/Surgery/GetSurgeryFromCurrentDate")]
         public List<SurgeryDTO> GetSurgeryFromCurrentDate()
         {
-            List<SurgeryDTO> s = BL.UserManager.GetSurgeryFromCurrentDate();
+            List<SurgeryDTO> s = BL.SurgeryManager.GetSurgeryFromCurrentDate();
             return s;
         }
 
-        // GET: api/Surgery/5
-        public string Get(int id)
+        // add surgery to table
+
+        [Route("api/Surgery/SurgeryToTable")]
+        [HttpPost]
+        public string SurgeryToTable(SurgeryDTO newSurgery)
         {
-            return "value";
+            surgery s = newSurgery.SurgeryToTable();
+            db.surgery.Add(s);
+            db.SaveChanges();
+            return "succes";
         }
 
         // POST: api/Surgery

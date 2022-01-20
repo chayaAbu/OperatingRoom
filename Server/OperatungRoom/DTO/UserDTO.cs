@@ -37,5 +37,14 @@ namespace DTO
             }
             return dtoUserList;
         }
+        public user UserToTable()
+        {
+            user u = new user();
+            u.idUser =idUser;
+            u.userName =userName;
+            u.password =password;
+            u.changeAvailable =changeAvailable;
+            return u;
+        }
     }
 }

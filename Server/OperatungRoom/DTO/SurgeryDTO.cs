@@ -40,6 +40,17 @@ namespace API.DTO
             }
             return dtoSurgeryList;
         }
+        public surgery SurgeryToTable()
+        {
+            surgery s = new surgery();
+            s.surgeryCode =surgeryCode;
+            s.idClass = idClass;
+            s.priorityLevel = priorityLevel;
+            s.dangerLevel = dangerLevel;
+            s.idDoctor = idDoctor;
+            s.surgeryDate = surgeryDate;
+            return s;
+        }
 
     }
     

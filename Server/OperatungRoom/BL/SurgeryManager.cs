@@ -11,7 +11,7 @@ namespace BL
 {
 
 
-    public class UserManager
+    public class SurgeryManager
     {
         static DBConection db = new DBConection();
         public static List<SurgeryDTO> GetSurgeryFromCurrentDate()
@@ -21,5 +21,15 @@ namespace BL
             return CreateSurgeryDtoList;
 
         }
+        public static SurgeryDTO AddNewSurgery(SurgeryDTO AddSurgery)
+        {
+        surgery newSurgery = AddSurgery.SurgeryToTable();
+        db.Execute<surgery>(newSurgery, DBConection.ExecuteActions.Insert);
+        AddSurgery.surgeryCode = newSurgery.surgeryCode;
+        return AddSurgery;
+
+
+        }
     }
+    
 }

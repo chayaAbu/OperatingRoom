@@ -14,17 +14,23 @@ namespace API.Controllers
         OperatingRoomEntities db = new OperatingRoomEntities();
         // login users
         [Route("api/User/LoginUser")]
-        public UserDTO LoginUser()
+        [HttpPost]
+        public UserDTO LoginUser(string name,int password)
         {
-            UserDTO  u = BL.UserManager.LoginUser();
+            UserDTO u = BL.UserManager.LoginUser(name,password);
            return u;
         }
 
 
-        // GET: api/User/5
-        public string Get(int id)
+        // register user
+        [Route("api/User/RegisterUser")]
+        [HttpPost]
+        public string RegisterUser(UserDTO newUser)
         {
-            return "value";
+            user u = newUser.UserToTable();
+            db.user.Add(u);
+            db.SaveChanges();
+            return "succes";
         }
 
         // POST: api/User

@@ -10,15 +10,10 @@ namespace BL.Models
     {
         public string userName { get; set; }
         public int password { get; set; }
-
-        public UserDetails()
+        public UserDetails(string name,int pass)
         {
-                
-        }
-        public UserDetails(UserDetails ud)
-        {
-            this.userName = ud.userName;
-            this.password = ud.password;
+            this.userName =name;
+            this.password =pass;
         }
 
         
