@@ -1,4 +1,4 @@
-﻿using API.DTO;
+﻿using DTO;
 using System;
 
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace BL
     {
       int[][] surgeryMatrix;
         
-        public int CalculateScore(SurgeryDTO surgery)
+        public int CalculateScore(SurgeryDTO surgery,)
         {
             return 0;
         }
