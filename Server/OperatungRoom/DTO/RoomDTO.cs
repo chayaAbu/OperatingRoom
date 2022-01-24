@@ -37,7 +37,7 @@ namespace DTO
             }
             return dtoRoomList;
         }
-        public room UserToTable()
+        public room RoomToTable()
         {
             room r = new room();
             r.idRoom = idRoom;
