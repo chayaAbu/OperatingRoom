@@ -21,6 +21,13 @@ namespace BL
             return CreateSurgeryDtoList;
 
         }
+        public static List<SurgeryDTO> GetSurgeryFromSpecificDate(DateTime specificDate)
+        {
+            List<surgery> surgeriesFromTable = db.GetDbSet<surgery>().Where(S => S.surgeryDate == specificDate).ToList();
+            List<SurgeryDTO> CreateSurgeryDtoList = SurgeryDTO.CreateSurgeryDtoList(surgeriesFromTable);
+            return CreateSurgeryDtoList;
+
+        }
         public static SurgeryDTO AddNewSurgery(SurgeryDTO AddSurgery)
         {
         surgery newSurgery = AddSurgery.SurgeryToTable();

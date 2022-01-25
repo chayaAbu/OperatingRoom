@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e540f0c040b4d02afc102712a852f31" Name="Diagram1">
-        <EntityTypeShape EntityType="OperatingRoomModel.class" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+      <Diagram DiagramId="2ddc4904952b49699ce1fc60062813fd" Name="Diagram1">
+        <EntityTypeShape EntityType="OperatingRoomModel.classes" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="OperatingRoomModel.deviceForSurgery" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OperatingRoomModel.doctor" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="OperatingRoomModel.room" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using API.DTO;
+
 
 namespace API.Controllers
 {
@@ -19,6 +19,14 @@ namespace API.Controllers
         public List<SurgeryDTO> GetSurgeryFromCurrentDate()
         {
             List<SurgeryDTO> s = BL.SurgeryManager.GetSurgeryFromCurrentDate();
+            return s;
+        }
+
+        // get surgery from specific date
+        [Route("api/Surgery/GetSurgeryFromSpecificDate")]
+        public List<SurgeryDTO> GetSurgeryFromSpecificDate(DateTime specificDate)
+        {
+            List<SurgeryDTO> s = BL.SurgeryManager.GetSurgeryFromSpecificDate(specificDate);
             return s;
         }
 

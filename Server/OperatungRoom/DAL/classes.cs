@@ -12,10 +12,10 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class @class
+    public partial class classes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public @class()
+        public classes()
         {
             this.doctor = new HashSet<doctor>();
             this.room = new HashSet<room>();

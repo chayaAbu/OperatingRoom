@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="OperatingRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="class">
+        <EntityType Name="classes">
           <Key>
             <PropertyRef Name="idClass" />
           </Key>
@@ -73,7 +73,7 @@
           <Key>
             <PropertyRef Name="idUser" />
           </Key>
-          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="int" Nullable="false" />
           <Property Name="changeAvailable" Type="bit" Nullable="false" />
@@ -103,10 +103,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_doctor_class">
-          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
           <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="class">
+            <Principal Role="classes">
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="doctor">
@@ -115,10 +115,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_room_class">
-          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
           <End Role="room" Type="Self.room" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="class">
+            <Principal Role="classes">
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="room">
@@ -151,10 +151,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_surgery_class">
-          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
           <End Role="surgery" Type="Self.surgery" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="class">
+            <Principal Role="classes">
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="surgery">
@@ -175,7 +175,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OperatingRoomModelStoreContainer">
-          <EntitySet Name="class" EntityType="Self.class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="classes" EntityType="Self.classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deviceForSurgery" EntityType="Self.deviceForSurgery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
@@ -192,11 +192,11 @@
             <End Role="deviceForSurgery" EntitySet="deviceForSurgery" />
           </AssociationSet>
           <AssociationSet Name="FK_doctor_class" Association="Self.FK_doctor_class">
-            <End Role="class" EntitySet="class" />
+            <End Role="classes" EntitySet="classes" />
             <End Role="doctor" EntitySet="doctor" />
           </AssociationSet>
           <AssociationSet Name="FK_room_class" Association="Self.FK_room_class">
-            <End Role="class" EntitySet="class" />
+            <End Role="classes" EntitySet="classes" />
             <End Role="room" EntitySet="room" />
           </AssociationSet>
           <AssociationSet Name="FK_scheduling_room" Association="Self.FK_scheduling_room">
@@ -208,7 +208,7 @@
             <End Role="scheduling" EntitySet="scheduling" />
           </AssociationSet>
           <AssociationSet Name="FK_surgery_class" Association="Self.FK_surgery_class">
-            <End Role="class" EntitySet="class" />
+            <End Role="classes" EntitySet="classes" />
             <End Role="surgery" EntitySet="surgery" />
           </AssociationSet>
           <AssociationSet Name="FK_surgery_doctor" Association="Self.FK_surgery_doctor">
@@ -221,15 +221,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OperatingRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="class">
+        <EntityType Name="classes">
           <Key>
             <PropertyRef Name="idClass" />
           </Key>
           <Property Name="idClass" Type="Int32" Nullable="false" />
           <Property Name="className" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="doctor" Relationship="Self.FK_doctor_class" FromRole="class" ToRole="doctor" />
-          <NavigationProperty Name="room" Relationship="Self.FK_room_class" FromRole="class" ToRole="room" />
-          <NavigationProperty Name="surgery" Relationship="Self.FK_surgery_class" FromRole="class" ToRole="surgery" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_doctor_class" FromRole="classes" ToRole="doctor" />
+          <NavigationProperty Name="room" Relationship="Self.FK_room_class" FromRole="classes" ToRole="room" />
+          <NavigationProperty Name="surgery" Relationship="Self.FK_surgery_class" FromRole="classes" ToRole="surgery" />
         </EntityType>
         <EntityType Name="deviceForSurgery">
           <Key>
@@ -250,7 +250,7 @@
           <Property Name="idClass" Type="Int32" Nullable="false" />
           <Property Name="startHour" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="endHour" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="class" Relationship="Self.FK_doctor_class" FromRole="doctor" ToRole="class" />
+          <NavigationProperty Name="classes" Relationship="Self.FK_doctor_class" FromRole="doctor" ToRole="classes" />
           <NavigationProperty Name="surgery" Relationship="Self.FK_surgery_doctor" FromRole="doctor" ToRole="surgery" />
         </EntityType>
         <EntityType Name="room">
@@ -261,7 +261,7 @@
           <Property Name="isFull" Type="Boolean" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idClass" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="class" Relationship="Self.FK_room_class" FromRole="room" ToRole="class" />
+          <NavigationProperty Name="classes" Relationship="Self.FK_room_class" FromRole="room" ToRole="classes" />
           <NavigationProperty Name="scheduling" Relationship="Self.FK_scheduling_room" FromRole="room" ToRole="scheduling" />
         </EntityType>
         <EntityType Name="scheduling">
@@ -296,7 +296,7 @@
           <Property Name="dangerLevel" Type="Int32" Nullable="false" />
           <Property Name="idDoctor" Type="Int32" Nullable="false" />
           <Property Name="surgeryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="class" Relationship="Self.FK_surgery_class" FromRole="surgery" ToRole="class" />
+          <NavigationProperty Name="classes" Relationship="Self.FK_surgery_class" FromRole="surgery" ToRole="classes" />
           <NavigationProperty Name="deviceForSurgery" Relationship="Self.FK_deviceForSurgery_surgery" FromRole="surgery" ToRole="deviceForSurgery" />
           <NavigationProperty Name="doctor" Relationship="Self.FK_surgery_doctor" FromRole="surgery" ToRole="doctor" />
           <NavigationProperty Name="scheduling" Relationship="Self.FK_scheduling_surgery" FromRole="surgery" ToRole="scheduling" />
@@ -305,16 +305,16 @@
           <Key>
             <PropertyRef Name="idUser" />
           </Key>
-          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="Int32" Nullable="false" />
           <Property Name="changeAvailable" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_doctor_class">
-          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
           <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="class">
+            <Principal Role="classes">
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="doctor">
@@ -323,10 +323,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_room_class">
-          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
           <End Role="room" Type="Self.room" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="class">
+            <Principal Role="classes">
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="room">
@@ -335,10 +335,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_surgery_class">
-          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
           <End Role="surgery" Type="Self.surgery" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="class">
+            <Principal Role="classes">
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="surgery">
@@ -407,7 +407,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="OperatingRoomEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="class" EntityType="Self.class" />
+          <EntitySet Name="classes" EntityType="Self.classes" />
           <EntitySet Name="deviceForSurgery" EntityType="Self.deviceForSurgery" />
           <EntitySet Name="doctor" EntityType="Self.doctor" />
           <EntitySet Name="room" EntityType="Self.room" />
@@ -416,15 +416,15 @@
           <EntitySet Name="surgery" EntityType="Self.surgery" />
           <EntitySet Name="user" EntityType="Self.user" />
           <AssociationSet Name="FK_doctor_class" Association="Self.FK_doctor_class">
-            <End Role="class" EntitySet="class" />
+            <End Role="classes" EntitySet="classes" />
             <End Role="doctor" EntitySet="doctor" />
           </AssociationSet>
           <AssociationSet Name="FK_room_class" Association="Self.FK_room_class">
-            <End Role="class" EntitySet="class" />
+            <End Role="classes" EntitySet="classes" />
             <End Role="room" EntitySet="room" />
           </AssociationSet>
           <AssociationSet Name="FK_surgery_class" Association="Self.FK_surgery_class">
-            <End Role="class" EntitySet="class" />
+            <End Role="classes" EntitySet="classes" />
             <End Role="surgery" EntitySet="surgery" />
           </AssociationSet>
           <AssociationSet Name="FK_deviceForSurgery_specialDevice" Association="Self.FK_deviceForSurgery_specialDevice">
@@ -454,9 +454,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OperatingRoomModelStoreContainer" CdmEntityContainer="OperatingRoomEntities">
-          <EntitySetMapping Name="class">
-            <EntityTypeMapping TypeName="OperatingRoomModel.class">
-              <MappingFragment StoreEntitySet="class">
+          <EntitySetMapping Name="classes">
+            <EntityTypeMapping TypeName="OperatingRoomModel.classes">
+              <MappingFragment StoreEntitySet="classes">
                 <ScalarProperty Name="idClass" ColumnName="idClass" />
                 <ScalarProperty Name="className" ColumnName="className" />
               </MappingFragment>
