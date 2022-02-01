@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Surgery } from 'src/app/model/Surgery';
+import { DbService } from 'src/app/service/db.service';
 
 @Component({
   selector: 'app-surgery',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./surgery.component.css']
 })
 export class SurgeryComponent implements OnInit {
-
-  constructor() { }
+ surgery:Surgery[]=[];
+  constructor(private db:DbService) { }
 
   ngOnInit(): void {
+    this.db.getSurgeryFromCurrentDate().subscribe(res =>{
+      console.log(res)
+this.surgery=res;
+    })
+  }
+
+  shoeSurgeryFromCurrentDate(){
+    this.db.getSurgeryFromCurrentDate().subscribe(res =>{
+      this.surgery=res;
+    })
   }
 
 }
