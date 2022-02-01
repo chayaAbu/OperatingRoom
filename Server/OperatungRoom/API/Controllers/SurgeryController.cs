@@ -10,7 +10,7 @@ using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
-    [EnableCors(origins: "", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SurgeryController : ApiController
     {
 

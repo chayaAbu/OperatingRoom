@@ -9,7 +9,11 @@ export class DbService {
 
   constructor(private http:HttpClient) {  }
     getSurgeryFromCurrentDate(){
-      return this.http.get<Surgery[]>('api/Surgery/GetSurgeryFromCurrentDate');
+      return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromCurrentDate');
+    }
+
+    getSurgeryFromSpecificDate(today:Date){
+      return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
     }
  
 }

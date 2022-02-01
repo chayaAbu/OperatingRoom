@@ -12,14 +12,17 @@ export class SurgeryComponent implements OnInit {
   constructor(private db:DbService) { }
 
   ngOnInit(): void {
-    this.db.getSurgeryFromCurrentDate().subscribe(res =>{
-      console.log(res)
-this.surgery=res;
-    })
+
   }
 
   shoeSurgeryFromCurrentDate(){
     this.db.getSurgeryFromCurrentDate().subscribe(res =>{
+      this.surgery=res;
+    })
+  }
+
+  shoeSurgeryFromSpecifictDate(today:Date){
+    this.db.getSurgeryFromSpecificDate(today).subscribe(res =>{
       this.surgery=res;
     })
   }
