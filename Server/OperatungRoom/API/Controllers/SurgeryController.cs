@@ -30,6 +30,14 @@ namespace API.Controllers
             return s;
         }
 
+        // get all surgery
+        [Route("api/Surgery/GetSurgeryFromSpecificDate")]
+        public List<SurgeryDTO> GetAllSurgery()
+        {
+            List<SurgeryDTO> s = BL.SurgeryManager.GetAllSurgery();
+            return s;
+        }
+
         // add surgery to table
 
         [Route("api/Surgery/SurgeryToTable")]

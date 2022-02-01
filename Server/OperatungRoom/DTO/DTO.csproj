@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassDTO.cs" />
+    <Compile Include="DeviceForSurgeryDTO.cs" />
     <Compile Include="DoctorDTO.cs" />
     <Compile Include="RoomDTO.cs" />
+    <Compile Include="SpecialDeviceDTO.cs" />
     <Compile Include="UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurgeryDTO.cs" />

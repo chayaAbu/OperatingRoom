@@ -28,6 +28,13 @@ namespace BL
             return CreateSurgeryDtoList;
 
         }
+        public static List<SurgeryDTO> GetAllSurgery()
+        {
+            List<surgery> surgeriesFromTable = db.GetDbSet<surgery>().ToList();
+            List<SurgeryDTO> CreateSurgeryDtoList = SurgeryDTO.CreateSurgeryDtoList(surgeriesFromTable);
+            return CreateSurgeryDtoList;
+
+        }
         public static SurgeryDTO AddNewSurgery(SurgeryDTO AddSurgery)
         {
         surgery newSurgery = AddSurgery.SurgeryToTable();

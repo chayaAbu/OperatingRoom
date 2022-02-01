@@ -31,5 +31,21 @@ namespace BL
 
 
         }
+        public static UserDTO UpdateUser(UserDTO UpdateUser)
+        {
+            user execUser = UpdateUser.UserToTable();
+            db.Execute<user>(execUser, DBConection.ExecuteActions.Update);
+            return UpdateUser;
+
+
+        }
+        public static UserDTO DeleteUser(UserDTO DeleteUser)
+        {
+            user execUser = DeleteUser.UserToTable();
+            db.Execute<user>(execUser, DBConection.ExecuteActions.Delete);
+            return DeleteUser;
+
+
+        }
     }
 }

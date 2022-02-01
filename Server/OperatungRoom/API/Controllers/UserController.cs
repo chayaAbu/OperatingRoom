@@ -33,9 +33,15 @@ namespace API.Controllers
             return "succes";
         }
 
-        // POST: api/User
-        public void Post([FromBody]string value)
+        // update user
+        [Route("api/User/UpdateUser")]
+        [HttpPost]
+        public string UpdateUser(UserDTO updateUser)
         {
+            user u = updateUser.UserToTable();
+            //db.user.Update(u);
+            db.SaveChanges();
+            return "succes";
         }
 
         // PUT: api/User/5
