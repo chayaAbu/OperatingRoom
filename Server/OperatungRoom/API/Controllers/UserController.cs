@@ -27,10 +27,9 @@ namespace API.Controllers
         [HttpPost]
         public string RegisterUser(UserDTO newUser)
         {
-            user u = newUser.UserToTable();
-            db.user.Add(u);
-            db.SaveChanges();
-            return "succes";
+            UserDTO u = BL.UserManager.RegisterUser(newUser);
+          
+            return "succes"+""+u.userName;
         }
 
         // update user
@@ -38,9 +37,8 @@ namespace API.Controllers
         [HttpPost]
         public string UpdateUser(UserDTO updateUser)
         {
-            user u = updateUser.UserToTable();
-            //db.user.Update(u);
-            db.SaveChanges();
+            UserDTO u = BL.UserManager.UpdateUser(updateUser);
+          
             return "succes";
         }
 

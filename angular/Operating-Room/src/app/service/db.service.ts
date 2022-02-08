@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Register } from '../model/Register';
 import { Surgery } from '../model/Surgery';
 
 @Injectable({
@@ -14,6 +15,11 @@ export class DbService {
 
     getSurgeryFromSpecificDate(today:Date){
       return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
+    }
+
+    registerNewUser(register:Register){
+      return this.http.post<Register>("http://localhost:63703/api/User/RegisterUser",register)
+
     }
  
 }
