@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Login } from '../model/Login';
 import { Register } from '../model/Register';
 import { Surgery } from '../model/Surgery';
 
@@ -17,9 +19,12 @@ export class DbService {
       return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
     }
 
-    registerNewUser(register:Register){
+    registerNewUser(register:Register):Observable<Register>{
       return this.http.post<Register>("http://localhost:63703/api/User/RegisterUser",register)
 
+    }
+    loginUser(login:Login):Observable<Login>{
+      return this.http.post<Login>("http://localhost:63703/api/User/LoginUser",login)
     }
  
 }

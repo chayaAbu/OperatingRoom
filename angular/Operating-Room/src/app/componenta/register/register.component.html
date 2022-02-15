@@ -1,13 +1,13 @@
 <form [formGroup]="registerUserForm">
     <label for="tz">תעודת זהות</label>
-    <input class="form-control" type="text" id="tz" placeholder="">
+    <input formControlName="tz" class="form-control" type="text" id="tz" placeholder="">
     <label for="name">שם פרטי ומשפחה</label>
-    <input class="form-control" type="text" id="name" placeholder="chayaAbu">
+    <input formControlName="name" class="form-control" type="text" id="name" placeholder="chayaAbu">
     <label for="pass">סיסמא</label>
-    <input class="form-control" type="password" id="pass" placeholder="">
+    <input formControlName="pass" class="form-control" type="password" id="pass" placeholder="">
     <label for="nochange">אחות</label>
-    <input class="form-control" type="checkbox" id="nochange" >
+    <input formControlName="nochange" class="form-control" type="checkbox" id="nochange" >
     <label for="change">אחות ראשית</label>
-    <input class="form-control" type="checkbox" id="change" >
+    <input formControlName="change" class="form-control" type="checkbox" id="change" >
     <input   class="btn btn-primary" type="submit" value="הרשם" (click)="doRegister()">
     </form>
