@@ -306,13 +306,22 @@
 
 <div class="content" role="main">
 
-<div id="menu">
-      
-      <a [routerLink]="['regis']" routerLinkActive="router-link-active">Register</a>
-      <a [routerLink]="['surg']" routerLinkActive="router-link-active">Surgery</a>
-        
-      <a [routerLink]="['log']" routerLinkActive="router-link-active">Login</a>
-    </div>
+
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['regis']" routerLinkActive="router-link-active">Register</a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['surg']" routerLinkActive="router-link-active">Surgery</a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['log']" routerLinkActive="router-link-active">Login</a>
+
+    
+    </ul>
     
     <router-outlet></router-outlet>
 

@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
   doLogin() {
     console.log(this.loginUserForm);
     const login: Login = {
-      userName: this.loginUserForm.name.value,
-      password: this.loginUserForm.pass.value
+      userName: this.loginUserForm.controls.name.value,
+      password: this.loginUserForm.controls.pass.value
     }
 
     console.log(login);
