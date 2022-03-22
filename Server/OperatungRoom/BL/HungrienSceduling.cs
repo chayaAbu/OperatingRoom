@@ -11,25 +11,33 @@ namespace BL
    public class HungrienSceduling
     {
        
-      int[][] surgeryMatrix;
+      int[,] surgeryMatrix;
         int countSurgery;
         int countRoom;
-        int i = 0;
+       double priorityScore;
+        double maxPS = 0;
+        int surgeryHighScore = 0;
         
         
         public int CalculateScore(List<surgery> listOfSurgery, List<room> listOfRoom)
         {
             countSurgery = listOfSurgery.Count;
             countRoom = listOfRoom.Count;
-            //surgeryMatrix=[countSurgery][countRoom];
-            //התאמה של מכשירים בחדר 1 
-           //איך מחשבים רמת התאמה
+            surgeryMatrix=new int [countSurgery, countRoom];
+        
             foreach(var ls in listOfSurgery)
             {
-                while (i < countSurgery)
+              foreach(var lr in listOfRoom)
                 {
-                    //Random randNumber=new Random(1-4);
-                    //return randNumber;
+                    priorityScore = (ls.dangerLevel*0.85) + (ls.priorityLevel*0.15);
+                    if (priorityScore > maxPS)
+                    {
+                        maxPS = priorityScore;
+                        surgeryHighScore = ls.surgeryCode;
+                        
+                    }
+                        
+
                 }
                 
             }
