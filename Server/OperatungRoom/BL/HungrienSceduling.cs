@@ -1,6 +1,7 @@
 ﻿using DAL;
 using DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,44 +11,64 @@ namespace BL
 {
    public class HungrienSceduling
     {
-       
-      int[,] surgeryMatrix;
-        int countSurgery;
-        int countRoom;
+        static DBConection db = new DBConection();
+
+        int[,] surgeryMatrix;
        double priorityScore;
-        double maxPS = 0;
-        int surgeryHighScore = 0;
+      
         
         
-        public int CalculateScore(List<surgery> listOfSurgery, List<room> listOfRoom)
+        public int CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom)
         {
-            countSurgery = listOfSurgery.Count;
-            countRoom = listOfRoom.Count;
-            surgeryMatrix=new int [countSurgery, countRoom];
-        
-            foreach(var ls in listOfSurgery)
+          surgeryMatrix=new int [listOfSurgery.Count, listOfRoom.Count];
+            Dictionary<double, SurgeryDTO> surgeryWithPriority =CalculatePriority(listOfSurgery);
+            for(int i=0; i<surgeryWithPriority.Count(); i++)
             {
-              foreach(var lr in listOfRoom)
+                for(int j=0; j < listOfRoom.Count();j++)
                 {
-                    priorityScore = (ls.dangerLevel*0.85) + (ls.priorityLevel*0.15);
-                    if (priorityScore > maxPS)
-                    {
-                        maxPS = priorityScore;
-                        surgeryHighScore = ls.surgeryCode;
-                        
-                    }
-                        
-
+                  //surgeryMatrix[i,j]=surgeryWithPriority.ContainsKey+MatchRoom(surgeryWithPriority[i].Value,listOfRoom[j])+MatchDevice()
                 }
-                
             }
-
-
 
             return 0;
         }
+        public Dictionary<double,SurgeryDTO> CalculatePriority(List<SurgeryDTO> listOfSurgery)
+        {
+            Dictionary<double,SurgeryDTO> priorityList=new Dictionary<double,SurgeryDTO>();
+            foreach (var ls in listOfSurgery)
+            {
+                priorityScore = (ls.dangerLevel * 0.85) + (ls.priorityLevel * 0.15);
+                priorityList.Add(priorityScore, ls);
+            }
+            priorityList.OrderBy(p => p.Key);
+         
+            return priorityList;
+        }
 
+        public double MatchRoom(SurgeryDTO S, RoomDTO R)
+        {
+            if (S.idClass == R.idClass)
+                return 0.2;
+            return 0;
+        }
 
+        public double MatchDevice(List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S,SurgeryDTO surg)
+        {
+            double sumMatchDavice = 0;
+            List<DeviceForSurgeryDTO> surgeryDevices = D.Where(sd => sd.surgeryCode == surg.surgeryCode).ToList();
+            foreach(var x in surgeryDevices)
+            {
+                foreach(var y in S)
+                {
+                    if (x.idDevice == y.IdDevice && y.isAvailable == false)
+                    {
+                        y.date = surg.surgeryDate;
+                        sumMatchDavice += 2;
+                    }
+                }
+            }
+            return sumMatchDavice;
+        }
     
     }
 }

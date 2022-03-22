@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class SpecialDeviceDTO
+    public class SpecialDeviceDTO
     {
         public int IdDevice { get; set; }
         public string deviceName { get; set; }
