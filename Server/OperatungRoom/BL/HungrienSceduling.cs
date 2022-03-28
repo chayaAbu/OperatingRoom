@@ -18,7 +18,7 @@ namespace BL
       
         
         
-        public int CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom)
+        public int CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S )
         {
           surgeryMatrix=new int [listOfSurgery.Count, listOfRoom.Count];
             IDictionary<double, SurgeryDTO> surgeryWithPriority =CalculatePriority(listOfSurgery);
@@ -26,7 +26,7 @@ namespace BL
             {
                 for(int j=0; j < listOfRoom.Count();j++)
                 {
-                    Grade(item, listOfRoom[j]);
+                    Grade(item, listOfRoom[j],D,S);
                 }
             }
 
@@ -63,6 +63,7 @@ namespace BL
                     if (x.idDevice == y.IdDevice && y.isAvailable == false)
                     {
                         y.date = surg.surgeryDate;
+                        y.isAvailable = true;
                         sumMatchDavice += 2;
                     }
                 }
@@ -70,14 +71,11 @@ namespace BL
             return sumMatchDavice;
         }
 
-        public double Grade(KeyValuePair<double, SurgeryDTO >surgery, RoomDTO Room)
+        public double Grade(KeyValuePair<double, SurgeryDTO >surgery, RoomDTO Room, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
         {
             double grade;
-
-
-
-            grade = surgery.Key + MatchRoom(surgery.Value, Room)+MatchDevice();
-           
+            grade = surgery.Key + MatchRoom(surgery.Value, Room)+MatchDevice(D,S,surgery.Value);
+            return grade;
         }
     
     }

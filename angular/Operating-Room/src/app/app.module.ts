@@ -8,13 +8,15 @@ import { SurgeryComponent } from './componenta/surgery/surgery.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './componenta/register/register.component';
 import { LoginComponent } from './componenta/login/login.component';
+import { RoomComponent } from './componenta/componenta/room/room.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SurgeryComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
