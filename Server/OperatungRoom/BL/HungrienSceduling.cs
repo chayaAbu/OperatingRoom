@@ -26,7 +26,7 @@ namespace BL
             {
                 for(int j=0; j < listOfRoom.Count();j++)
                 {
-                  //  Grade(item, listOfRoom[j]);
+                    Grade(item, listOfRoom[j]);
                 }
             }
 
@@ -70,7 +70,7 @@ namespace BL
             return sumMatchDavice;
         }
 
-       /* public double Grade(KeyValuePair<double, SurgeryDTO >surgery, RoomDTO Room)
+        public double Grade(KeyValuePair<double, SurgeryDTO >surgery, RoomDTO Room)
         {
             double grade;
 
@@ -78,7 +78,7 @@ namespace BL
 
             grade = surgery.Key + MatchRoom(surgery.Value, Room)+MatchDevice();
            
-        }*/
+        }
     
     }
 }
