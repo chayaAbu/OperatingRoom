@@ -21,20 +21,20 @@ namespace BL
         public int CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom)
         {
           surgeryMatrix=new int [listOfSurgery.Count, listOfRoom.Count];
-            Dictionary<double, SurgeryDTO> surgeryWithPriority =CalculatePriority(listOfSurgery);
-            for(int i=0; i<surgeryWithPriority.Count(); i++)
+            IDictionary<double, SurgeryDTO> surgeryWithPriority =CalculatePriority(listOfSurgery);
+            foreach (var item in surgeryWithPriority)
             {
                 for(int j=0; j < listOfRoom.Count();j++)
                 {
-                  //surgeryMatrix[i,j]=surgeryWithPriority.ContainsKey+MatchRoom(surgeryWithPriority[i].Value,listOfRoom[j])+MatchDevice()
+                  //  Grade(item, listOfRoom[j]);
                 }
             }
 
             return 0;
         }
-        public Dictionary<double,SurgeryDTO> CalculatePriority(List<SurgeryDTO> listOfSurgery)
+        public IDictionary<double,SurgeryDTO> CalculatePriority(List<SurgeryDTO> listOfSurgery)
         {
-            Dictionary<double,SurgeryDTO> priorityList=new Dictionary<double,SurgeryDTO>();
+            IDictionary<double,SurgeryDTO> priorityList=new Dictionary<double,SurgeryDTO>();
             foreach (var ls in listOfSurgery)
             {
                 priorityScore = (ls.dangerLevel * 0.85) + (ls.priorityLevel * 0.15);
@@ -69,6 +69,16 @@ namespace BL
             }
             return sumMatchDavice;
         }
+
+       /* public double Grade(KeyValuePair<double, SurgeryDTO >surgery, RoomDTO Room)
+        {
+            double grade;
+
+
+
+            grade = surgery.Key + MatchRoom(surgery.Value, Room)+MatchDevice();
+           
+        }*/
     
     }
 }
