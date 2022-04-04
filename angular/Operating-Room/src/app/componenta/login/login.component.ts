@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
         alert("שגיאת שרת")
       else
         alert("כניסה למערכת")
-    })
+    }
+   
+    )
   }
 
 }

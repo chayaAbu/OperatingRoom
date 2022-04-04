@@ -12,9 +12,9 @@ namespace BL
     public class UserManager
     {
         static DBConection db = new DBConection();
-        public static UserDTO LoginUser(string name,int password)
+        public static UserDTO LoginUser(UserDTO checkUser)
         {
-            user userFromTable = db.GetDbSet<user>().FirstOrDefault(U => U.userName==name &&U.password==password);
+            user userFromTable = db.GetDbSet<user>().FirstOrDefault(U => U.userName== checkUser.userName && U.password== checkUser.password);
             if (userFromTable == null)
                 return null;
             else

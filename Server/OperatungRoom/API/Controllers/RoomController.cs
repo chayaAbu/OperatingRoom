@@ -1,18 +1,24 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RoomController : ApiController
     {
-        // GET: api/Room
-        public IEnumerable<string> Get()
+        // clear room
+        [Route("api/Room/GetClearRoom")]
+        [HttpPost]
+        public List<RoomDTO> GetClearRoom(int numClass)
         {
-            return new string[] { "value1", "value2" };
+            List<RoomDTO> r = BL.RoomManager.GetClearRoom(numClass);
+            return r;
         }
 
         // GET: api/Room/5

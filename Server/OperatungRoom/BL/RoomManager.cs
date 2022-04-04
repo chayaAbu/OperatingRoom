@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class RoomManager
+    public class RoomManager
     {
         static DBConection db = new DBConection();
         public static List<RoomDTO> GetClearRoom (int numClass)

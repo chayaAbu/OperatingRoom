@@ -18,9 +18,9 @@ namespace API.Controllers
         // login users
         [Route("api/User/LoginUser")]
         [HttpPost]
-        public UserDTO LoginUser(string name,int password)
+        public UserDTO LoginUser(UserDTO check)
         {
-            UserDTO u = BL.UserManager.LoginUser(name,password);
+            UserDTO u = BL.UserManager.LoginUser(check);
            return u;
         }
 

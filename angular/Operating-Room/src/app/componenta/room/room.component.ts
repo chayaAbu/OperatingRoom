@@ -14,5 +14,9 @@ room:Room[]=[];
 
   ngOnInit(): void {
   }
-
+ showClearRoom(numClass:number){
+  this.db.getClearRoom(numClass).subscribe(res =>{
+    this.room=res;
+ })
+}
 }
