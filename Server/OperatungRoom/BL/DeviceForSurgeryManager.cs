@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace BL
     {
      static DBConection db = new DBConection();
 
-        public void setDevice() { }
-        int num;
+        public void requestDevice(DeviceForSurgeryDTO setNewRequestForDevice ) {
+            deviceForSurgery newRequesr
+        }
+        
         
         
 
