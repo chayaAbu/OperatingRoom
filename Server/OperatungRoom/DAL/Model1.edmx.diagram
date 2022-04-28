@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="487b3bbfcf4249cbb96c01f09fa334f7" Name="Diagram1">
-        <EntityTypeShape EntityType="OperatingRoomModel.classes" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.deviceForSurgery" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.doctor" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.room" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.scheduling" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.specialDevice" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.surgery" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OperatingRoomModel.user" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="OperatingRoomModel.FK_doctor_class" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_room_class" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_surgery_class" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_deviceForSurgery_specialDevice" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_deviceForSurgery_surgery" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_surgery_doctor" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_scheduling_room" ManuallyRouted="false" />
-        <AssociationConnector Association="OperatingRoomModel.FK_scheduling_surgery" ManuallyRouted="false" />
+      <Diagram DiagramId="0324599fae694f1289c3640b4136d112" Name="Diagram1">
+        <EntityTypeShape EntityType="OpreatingRoomModel.class" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.deviceForSurgery" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.doctor" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.room" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.scheduling" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.specialDevice" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.surgery" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.user" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_doctor_class" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_room_class" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_surgery_class" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_deviceForSurgery_specialDevice" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_deviceForSurgery_surgery" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_surgery_doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_scheduling_room" ManuallyRouted="false" />
+        <AssociationConnector Association="OpreatingRoomModel.FK_scheduling_surgery" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

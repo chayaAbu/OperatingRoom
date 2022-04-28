@@ -14,7 +14,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-        OperatingRoomEntities db = new OperatingRoomEntities();
+        OpreatingRoomEntities db = new OpreatingRoomEntities();
         // login users
         [Route("api/User/LoginUser")]
         [HttpPost]

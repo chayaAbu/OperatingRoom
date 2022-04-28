@@ -9,13 +9,15 @@ import { DbService } from 'src/app/service/db.service';
 })
 export class RoomComponent implements OnInit {
   
+  selectedOption!: string;
 room:Room[]=[];
   constructor(private db:DbService) { }
 
   ngOnInit(): void {
   }
- showClearRoom(numClass:number){
-  this.db.getClearRoom(numClass).subscribe(res =>{
+ showClearRoom(){
+ console.log(this.selectedOption)
+  this.db.getClearRoom(Number.parseInt( this.selectedOption)).subscribe(res =>{
     this.room=res;
  })
 }
