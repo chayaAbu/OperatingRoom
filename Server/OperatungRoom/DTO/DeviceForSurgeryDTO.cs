@@ -35,7 +35,7 @@ namespace DTO
             }
             return dtoDeviceForSurgeryList;
         }
-        public deviceForSurgery SurgeryToTable()
+        public deviceForSurgery DeviceToTable()
         {
             deviceForSurgery dfs = new deviceForSurgery();
             dfs.idDFS = idDFS;

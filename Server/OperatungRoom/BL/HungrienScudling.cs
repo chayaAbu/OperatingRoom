@@ -9,11 +9,13 @@ namespace BL
 {
     class HungrienScudling
     {
-       public  double FillMatrix(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
+        public double [,] FillMatrix(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
         {
-            double [][] GradeMatrix =PreHungrien.CalculateScore(listOfSurgery, listOfRoom, D, S);
-            return 0;
+            PreHungrien preMat = new PreHungrien();
+            double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
+            return  gradeMat;
         }
+
         
     }
 }

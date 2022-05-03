@@ -52,8 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceForSurgeryManager.cs" />
-    <Compile Include="HungrienSceduling.cs" />
+    <Compile Include="HungrienScudling.cs" />
     <Compile Include="Models\UserDetails.cs" />
+    <Compile Include="PreHungrien.cs" />
     <Compile Include="RoomManager.cs" />
     <Compile Include="SurgeryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
