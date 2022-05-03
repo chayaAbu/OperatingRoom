@@ -9,28 +9,32 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-   public class HungrienSceduling
+   public class PreHungrien
     {
         static DBConection db = new DBConection();
 
-        int[,] surgeryMatrix;
+      double [,] surgeryMatrix;
        double priorityScore;
       
         
         
-        public int CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S )
+        public double [,] CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S )
         {
-          surgeryMatrix=new int [listOfSurgery.Count, listOfRoom.Count];
+          surgeryMatrix=new double [listOfSurgery.Count, listOfRoom.Count];
             IDictionary<double, SurgeryDTO> surgeryWithPriority =CalculatePriority(listOfSurgery);
             foreach (var item in surgeryWithPriority)
             {
+                int i = 0;
                 for(int j=0; j < listOfRoom.Count();j++)
                 {
-                    Grade(item, listOfRoom[j],D,S);
+                    double squereGrade=Grade(item, listOfRoom[j], D, S);
+                    surgeryMatrix[i,j] = squereGrade;
+                    i++;
+
                 }
             }
 
-            return 0;
+            return surgeryMatrix;
         }
         public IDictionary<double,SurgeryDTO> CalculatePriority(List<SurgeryDTO> listOfSurgery)
         {
