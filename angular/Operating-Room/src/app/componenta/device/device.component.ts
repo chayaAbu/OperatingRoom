@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Device } from 'src/app/model/Device';
+import { DbService } from 'src/app/service/db.service';
 
 @Component({
   selector: 'app-device',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./device.component.css']
 })
 export class DeviceComponent implements OnInit {
-
-  constructor() { }
+  selectedOption!: string;
+ device:Device | undefined;
+  constructor(private db: DbService) {
+    
+   }
 
   ngOnInit(): void {
   }

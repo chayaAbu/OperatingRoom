@@ -10,6 +10,7 @@ import { RegisterComponent } from './componenta/register/register.component';
 import { LoginComponent } from './componenta/login/login.component';
 import { RoomComponent } from './componenta/room/room.component';
 import { DeviceComponent } from './componenta/device/device.component';
+import { HoomComponent } from './componenta/hoom/hoom.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DeviceComponent } from './componenta/device/device.component';
     RegisterComponent,
     LoginComponent,
     RoomComponent,
-    DeviceComponent
+    DeviceComponent,
+    HoomComponent
   ],
   imports: [
     BrowserModule,
