@@ -79,7 +79,7 @@ namespace BL
         {
             double grade;
             grade = surgery.Key + MatchRoom(surgery.Value, Room)+MatchDevice(D,S,surgery.Value);
-            return grade;
+            return int.MaxValue -  grade;
         }
     
     }
