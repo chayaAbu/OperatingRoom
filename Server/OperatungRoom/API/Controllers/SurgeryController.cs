@@ -32,7 +32,7 @@ namespace API.Controllers
         }
 
         // get all surgery
-        [Route("api/Surgery/GetSurgeryFromSpecificDate")]
+        [Route("api/Surgery/GetAllSurgery")]
         public List<SurgeryDTO> GetAllSurgery()
         {
             List<SurgeryDTO> s = BL.SurgeryManager.GetAllSurgery();
