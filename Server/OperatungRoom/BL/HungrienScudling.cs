@@ -58,9 +58,9 @@ namespace BL
                     }
                 }
             }
-
-             //Location -   מבנה שמכיל מיקום  במטריצה - כלומר שיבוץ של חדר וניתוח
-             //path - מערך של מיקומים
+            HungrienScudling.ClearCovers(rowsCovered, colsCovered, w, h);
+            //Location -   מבנה שמכיל מיקום  במטריצה - כלומר שיבוץ של חדר וניתוח
+            //path - מערך של מיקומים
             var path = new Location[w * h];
             //משתנה שמכיל את השיבוץ התחלתי
             var pathStart = default(Location);  //הפונקציה default מאתחלת ערכי ברירת מחדל  
@@ -99,260 +99,348 @@ namespace BL
                 }
             }
 
-            HungrienScudling.ClearCovers(rowsCovered, colsCovered, w, h);
+            var agentsTasks = new int[h];
 
-
-
-
-            return gradeMat;
-        }
-
-        private static void ClearCovers(bool[] rowsCovered, bool[] colsCovered, int w, int h)
-        {
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
-
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            for (var i = 0; i < h; i++)
-            {
-                rowsCovered[i] = false;
-            }
-
-            for (var j = 0; j < w; j++)
-            {
-                colsCovered[j] = false;
-            }
-        }
- 
-        //מחזירה -1 אם השיבוץ הסתיים ו-2 אם לא - מסמל שלא כל הניתוחים משובצים
-        private static int RunStep1(byte[,] masks, bool[] colsCovered, int w, int h)
-        {
-            if (masks == null)
-                throw new ArgumentNullException(nameof(masks));
-
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-            //מסמן באיזה עמודות יש תאים שסומנו
             for (var i = 0; i < h; i++)
             {
                 for (var j = 0; j < w; j++)
                 {
                     if (masks[i, j] == 1)
-                        colsCovered[j] = true;
+                    {
+                        agentsTasks[i] = j;
+                        break;
+                    }
                 }
             }
 
-            //סופר כמה עמודות סומנו סה''כ
-            var colsCoveredCount = 0;
+            return agentsTasks;
+        }
 
+    }
+
+    private static void ClearCovers(bool[] rowsCovered, bool[] colsCovered, int w, int h)
+    {
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        for (var i = 0; i < h; i++)
+        {
+            rowsCovered[i] = false;
+        }
+
+        for (var j = 0; j < w; j++)
+        {
+            colsCovered[j] = false;
+        }
+    }
+
+    //מחזירה -1 אם השיבוץ הסתיים ו-2 אם לא - מסמל שלא כל הניתוחים משובצים
+    private static int RunStep1(byte[,] masks, bool[] colsCovered, int w, int h)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+        //מסמן באיזה עמודות יש תאים שסומנו
+        for (var i = 0; i < h; i++)
+        {
             for (var j = 0; j < w; j++)
             {
-                if (colsCovered[j])
-                    colsCoveredCount++;
-            }
-
-            // אם כל העמודות נבחרו - אם כל דבר שרצינו לשבץ מצא משבצת
-            if (colsCoveredCount == h)
-                return -1;
-
-            return 2;
-        }
-
-        // הפונקציה????
-        //מחזירה:
-        //4 - אם אין תא מאופס במטריצת הציונים - אם אין עוד שום ניתוח שמתאים לשום חדר
-        //3 - אם מצאנו שורה שבא רק אין עוד תא מאופס בשורה - אם מצאנו חדר שבו אין עוד ניתוח מתאים
-        private static int RunStep2(int[,] gradeMat, byte[,] masks, bool[] rowsCovered, bool[] colsCovered, int w, int h, ref Location pathStart)
-        {
-            if (gradeMat == null)
-                throw new ArgumentNullException(nameof(costs));
-
-            if (masks == null)
-                throw new ArgumentNullException(nameof(masks));
-
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
-
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            while (true)
-            {
-                //מחפשת ניתוח ראשון שמשובץ באיזהו חדר
-                var loc = HungrienScudling.FindZero(gradeMat, rowsCovered, colsCovered, w, h);
-                if (loc.row == -1) //אם אין במטריצה שום ניתוח שמתאים לאיזשהוא חדר
-                    return 4; //יש לעבור לצעד 4
-
-                //משנה את התא במסיכה שהיה 1 להיות 2
-                //שיבוץ החדר והניתוח נבחרו
-                masks[loc.row, loc.column] = 2;
-
-                var starCol = HungarianAlgorithm.FindStarInRow(masks, w, loc.row);
-                //אם אכן יש עוד תא שערכו 1
-                if (starCol != -1)  
-                {
-                    //מבחינת השורה הוא לא מעניין - כימצאנו תא  ?????????????????????????
-                    //אץ החדר סידרנו וסימנו - כי מצאנו ניתוח שמשתבץ בו
-                    rowsCovered[loc.row] = true;
-                    //אבל בעמודות אני אסמן שהעמודה לא נבדקה - כי אולי זה התא היחיד בעמודה     ???????????????
-                    //אבל לגבי הניתוח האחר שמצאנו שמתאים לחדר הזה - לא נסמן אותו - כי החדר הזה תפוס
-                    colsCovered[starCol] = false;
-                }
-                //אם אכן אין עוד תא שערכו 1 - כלומר אין עוד אופציות בחדר הנוכחי
-
-                else
-                {
-                    pathStart = loc; //חייב להיות שנתחיל מהמיקום הזה  - התא הראשון שנמצא
-                    return 3;
-                }
+                if (masks[i, j] == 1)
+                    colsCovered[j] = true;
             }
         }
-        private static int RunStep3(byte[,] masks, bool[] rowsCovered, bool[] colsCovered, int w, int h, Location[] path, Location pathStart)
+
+        //סופר כמה עמודות סומנו סה''כ
+        var colsCoveredCount = 0;
+
+        for (var j = 0; j < w; j++)
         {
-            if (masks == null)
-                throw new ArgumentNullException(nameof(masks));
-
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
-
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            var pathIndex = 0;
-            path[0] = pathStart;
-
-            while (true)
-            {
-                var row = HungarianAlgorithm.FindStarInColumn(masks, h, path[pathIndex].column);
-                if (row == -1)
-                    break;
-
-                pathIndex++;
-                path[pathIndex] = new Location(row, path[pathIndex - 1].column);
-
-                var col = HungarianAlgorithm.FindPrimeInRow(masks, w, path[pathIndex].row);
-
-                pathIndex++;
-                path[pathIndex] = new Location(path[pathIndex - 1].row, col);
-            }
-
-            HungarianAlgorithm.ConvertPath(masks, path, pathIndex + 1);
-            HungarianAlgorithm.ClearCovers(rowsCovered, colsCovered, w, h);
-            HungarianAlgorithm.ClearPrimes(masks, w, h);
-
-            return 1;
+            if (colsCovered[j])
+                colsCoveredCount++;
         }
 
-        private static int RunStep4(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
-        {
-            if (costs == null)
-                throw new ArgumentNullException(nameof(gradeMat));
-
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
-
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            var minValue = HungrienScudling.FindMinimum(gradeMat, rowsCovered, colsCovered, w, h);
-
-            for (var i = 0; i < h; i++)
-            {
-                for (var j = 0; j < w; j++)
-                {
-                    if (rowsCovered[i])
-                        gradeMat[i, j] += minValue;
-                    if (!colsCovered[j])
-                        gradeMat[i, j] -= minValue;
-                }
-            }
-            return 2;
-        }
-
-        //מוצא את המינימום מבין כל התאים שנשארו שלא נבחרו לשיבוץ????????????????????????
-        private static int FindMinimum(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
-        {
-            if (gradeMat == null)
-                throw new ArgumentNullException(nameof(gradeMat));
-
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
-
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            var minValue = int.MaxValue;
-
-            for (var i = 0; i < h; i++)
-            {
-                for (var j = 0; j < w; j++)
-                {
-                    if (!rowsCovered[i] && !colsCovered[j])
-                        minValue = Math.Min(minValue, gradeMat[i, j]);
-                }
-            }
-
-            return minValue;
-        }
-
-        //מקבלת מסיכה ושורה שבה הפונקציה ??? מצאה תא שערכו 1 ושינתה אות ל-2
-        //הפונקציה בודקת האם באותה שורה יש עוד תא שערכו 1
-        // מחזירה:  את העמודה שבא נמצא תא נוסף או -1 במקרה שאין תא נוסף בשורה
-        private static int FindStarInRow(byte[,] masks, int w, int row)
-        {
-            if (masks == null)
-                throw new ArgumentNullException(nameof(masks));
-
-            for (var j = 0; j < w; j++)
-            {
-                if (masks[row, j] == 1)
-                    return j;
-            }
-
+        // אם כל העמודות נבחרו - אם כל דבר שרצינו לשבץ מצא משבצת
+        if (colsCoveredCount == h)
             return -1;
-        }
 
+        return 2;
+    }
 
-        //מחפשת את המיקום של התא הראשון במטריצת הציונים שבו יש אפס - אם לא קיים תא מחזיר מיקום -1-1
-        private static Location FindZero(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+    // הפונקציה????
+    //מחזירה:
+    //4 - אם אין תא מאופס במטריצת הציונים - אם אין עוד שום ניתוח שמתאים לשום חדר
+    //3 - אם מצאנו שורה שבא רק אין עוד תא מאופס בשורה - אם מצאנו חדר שבו אין עוד ניתוח מתאים
+    private static int RunStep2(int[,] gradeMat, byte[,] masks, bool[] rowsCovered, bool[] colsCovered, int w, int h, ref Location pathStart)
+    {
+        if (gradeMat == null)
+            throw new ArgumentNullException(nameof(costs));
+
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        while (true)
         {
-            if (costs == null)
-                throw new ArgumentNullException(nameof(costs));
+            //מחפשת ניתוח ראשון שמשובץ באיזהו חדר
+            var loc = HungrienScudling.FindZero(gradeMat, rowsCovered, colsCovered, w, h);
+            if (loc.row == -1) //אם אין במטריצה שום ניתוח שמתאים לאיזשהוא חדר
+                return 4; //יש לעבור לצעד 4
 
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
+            //משנה את התא במסיכה שהיה 1 להיות 2
+            //שיבוץ החדר והניתוח נבחרו
+            masks[loc.row, loc.column] = 2;
 
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            for (var i = 0; i < h; i++)
+            var starCol = HungarianAlgorithm.FindStarInRow(masks, w, loc.row);
+            //אם אכן יש עוד תא שערכו 1
+            if (starCol != -1)
             {
-                for (var j = 0; j < w; j++)
-                {
-                    if (gradeMat[i, j] == 0 && !rowsCovered[i] && !colsCovered[j])
-                        return new Location(i, j);
-                }
+                //מבחינת השורה הוא לא מעניין - כימצאנו תא  ?????????????????????????
+                //אץ החדר סידרנו וסימנו - כי מצאנו ניתוח שמשתבץ בו
+                rowsCovered[loc.row] = true;
+                //אבל בעמודות אני אסמן שהעמודה לא נבדקה - כי אולי זה התא היחיד בעמודה     ???????????????
+                //אבל לגבי הניתוח האחר שמצאנו שמתאים לחדר הזה - לא נסמן אותו - כי החדר הזה תפוס
+                colsCovered[starCol] = false;
             }
+            //אם אכן אין עוד תא שערכו 1 - כלומר אין עוד אופציות בחדר הנוכחי
 
-            return new Location(-1, -1);
-        }
-
-
-
-
-        //מבנה שמכיל בצוכו משתנים לשורה ועמודה וכך מייצג מיקום במטריצה
-        private struct Location
-        {
-            internal readonly int row;
-            internal readonly int column;
-
-            internal Location(int row, int col)
+            else
             {
-                this.row = row;
-                this.column = col;
+                pathStart = loc; //חייב להיות שנתחיל מהמיקום הזה  - התא הראשון שנמצא
+                return 3;
             }
         }
     }
+    private static int RunStep3(byte[,] masks, bool[] rowsCovered, bool[] colsCovered, int w, int h, Location[] path, Location pathStart)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        var pathIndex = 0;
+        path[0] = pathStart;
+
+        while (true)
+        {
+            var row = HungrienScudling.FindStarInColumn(masks, h, path[pathIndex].column);
+            if (row == -1)
+                break;
+
+            pathIndex++;
+            path[pathIndex] = new Location(row, path[pathIndex - 1].column);
+
+            var col = HungrienScudling.FindPrimeInRow(masks, w, path[pathIndex].row);
+
+            pathIndex++;
+            path[pathIndex] = new Location(path[pathIndex - 1].row, col);
+        }
+
+        HungrienScudling.ConvertPath(masks, path, pathIndex + 1);
+        HungrienScudling.ClearCovers(rowsCovered, colsCovered, w, h);
+        HungrienScudling.ClearPrimes(masks, w, h);
+
+        return 1;
+    }
+
+    private static int RunStep4(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+    {
+        if (costs == null)
+            throw new ArgumentNullException(nameof(gradeMat));
+
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        var minValue = HungrienScudling.FindMinimum(gradeMat, rowsCovered, colsCovered, w, h);
+
+        for (var i = 0; i < h; i++)
+        {
+            for (var j = 0; j < w; j++)
+            {
+                if (rowsCovered[i])
+                    gradeMat[i, j] += minValue;
+                if (!colsCovered[j])
+                    gradeMat[i, j] -= minValue;
+            }
+        }
+        return 2;
+    }
+
+    //מוצא את המינימום מבין כל התאים שנשארו שלא נבחרו לשיבוץ????????????????????????
+    private static int FindMinimum(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+    {
+        if (gradeMat == null)
+            throw new ArgumentNullException(nameof(gradeMat));
+
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        var minValue = int.MaxValue;
+
+        for (var i = 0; i < h; i++)
+        {
+            for (var j = 0; j < w; j++)
+            {
+                if (!rowsCovered[i] && !colsCovered[j])
+                    minValue = Math.Min(minValue, gradeMat[i, j]);
+            }
+        }
+
+        return minValue;
+    }
+
+    //מקבלת מסיכה ושורה שבה הפונקציה ??? מצאה תא שערכו 1 ושינתה אות ל-2
+    //הפונקציה בודקת האם באותה שורה יש עוד תא שערכו 1
+    // מחזירה:  את העמודה שבא נמצא תא נוסף או -1 במקרה שאין תא נוסף בשורה
+    private static int FindStarInRow(byte[,] masks, int w, int row)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        for (var j = 0; j < w; j++)
+        {
+            if (masks[row, j] == 1)
+                return j;
+        }
+
+        return -1;
+    }
+    private static int FindStarInColumn(byte[,] masks, int h, int col)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        for (var i = 0; i < h; i++)
+        {
+            if (masks[i, col] == 1)
+                return i;
+        }
+
+        return -1;
+    }
+    private static int FindPrimeInRow(byte[,] masks, int w, int row)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        for (var j = 0; j < w; j++)
+        {
+            if (masks[row, j] == 2)
+                return j;
+        }
+
+        return -1;
+    }
+
+
+    //מחפשת את המיקום של התא הראשון במטריצת הציונים שבו יש אפס - אם לא קיים תא מחזיר מיקום -1-1
+    private static Location FindZero(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+    {
+        if (costs == null)
+            throw new ArgumentNullException(nameof(costs));
+
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        for (var i = 0; i < h; i++)
+        {
+            for (var j = 0; j < w; j++)
+            {
+                if (gradeMat[i, j] == 0 && !rowsCovered[i] && !colsCovered[j])
+                    return new Location(i, j);
+            }
+        }
+
+        return new Location(-1, -1);
+    }
+
+    private static void ConvertPath(byte[,] masks, Location[] path, int pathLength)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        if (path == null)
+            throw new ArgumentNullException(nameof(path));
+
+        for (var i = 0; i < pathLength; i++)
+        {
+            if (masks[path[i].row, path[i].column] == 1)
+            {
+                masks[path[i].row, path[i].column] = 0;
+            }
+            else if (masks[path[i].row, path[i].column] == 2)
+            {
+                masks[path[i].row, path[i].column] = 1;
+            }
+        }
+    }
+
+    private static void ClearPrimes(byte[,] masks, int w, int h)
+    {
+        if (masks == null)
+            throw new ArgumentNullException(nameof(masks));
+
+        for (var i = 0; i < h; i++)
+        {
+            for (var j = 0; j < w; j++)
+            {
+                if (masks[i, j] == 2)
+                    masks[i, j] = 0;
+            }
+        }
+    }
+
+    private static void ClearCovers(bool[] rowsCovered, bool[] colsCovered, int w, int h)
+    {
+        if (rowsCovered == null)
+            throw new ArgumentNullException(nameof(rowsCovered));
+
+        if (colsCovered == null)
+            throw new ArgumentNullException(nameof(colsCovered));
+
+        for (var i = 0; i < h; i++)
+        {
+            rowsCovered[i] = false;
+        }
+
+        for (var j = 0; j < w; j++)
+        {
+            colsCovered[j] = false;
+        }
+    }
+    //מבנה שמכיל בצוכו משתנים לשורה ועמודה וכך מייצג מיקום במטריצה
+    private struct Location
+    {
+        internal readonly int row;
+        internal readonly int column;
+
+        internal Location(int row, int col)
+        {
+            this.row = row;
+            this.column = col;
+        }
+    }
 }
+
