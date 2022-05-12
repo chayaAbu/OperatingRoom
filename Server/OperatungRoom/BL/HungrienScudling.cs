@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class HungrienScudling
+  public  class HungrienScudling
     {
-        public double[,] FillMatrix(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
+        public double[] FillMatrix(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
         {
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
@@ -25,7 +25,7 @@ namespace BL
             //מעבר זה על המטריצה מבטיח שבכל שורה יש לפחות תא אחד שהוא אפס
             for (var i = 0; i < h; i++)
             {
-                var min = int.MaxValue;
+                var min = double.MaxValue;
 
                 for (var j = 0; j < w; j++)
                 {
@@ -87,7 +87,7 @@ namespace BL
                         break;
 
                     case 2:
-                        step = HungrienScudling.RunStep2(costs, masks, rowsCovered, colsCovered, w, h, ref pathStart);
+                        step = HungrienScudling.RunStep2(gradeMat, masks, rowsCovered, colsCovered, w, h, ref pathStart);
                         break;
 
                     case 3:
@@ -95,12 +95,12 @@ namespace BL
                         break;
 
                     case 4:
-                        step = HungrienScudling.RunStep4(costs, rowsCovered, colsCovered, w, h);
+                        step = HungrienScudling.RunStep4(gradeMat, rowsCovered, colsCovered, w, h);
                         break;
                 }
             }
 
-            var agentsTasks = new int[h];
+            var agentsTasks = new double[h];
 
             for (var i = 0; i < h; i++)
             {
@@ -176,7 +176,7 @@ namespace BL
         //מחזירה:
         //4 - אם אין תא מאופס במטריצת הציונים - אם אין עוד שום ניתוח שמתאים לשום חדר
         //3 - אם מצאנו שורה שבא רק אין עוד תא מאופס בשורה - אם מצאנו חדר שבו אין עוד ניתוח מתאים
-        private static int RunStep2(int[,] gradeMat, byte[,] masks, bool[] rowsCovered, bool[] colsCovered, int w, int h, ref Location pathStart)
+        private static int RunStep2(double[,] gradeMat, byte[,] masks, bool[] rowsCovered, bool[] colsCovered, int w, int h, ref Location pathStart)
         {
             if (gradeMat == null)
                 throw new ArgumentNullException(nameof(gradeMat));
@@ -259,9 +259,9 @@ namespace BL
             return 1;
         }
 
-        private static int RunStep4(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+        private static int RunStep4(double[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
         {
-            if (costs == null)
+            if (gradeMat == null)
                 throw new ArgumentNullException(nameof(gradeMat));
 
             if (rowsCovered == null)
@@ -286,7 +286,7 @@ namespace BL
         }
 
         //מוצא את המינימום מבין כל התאים שנשארו שלא נבחרו לשיבוץ????????????????????????
-        private static int FindMinimum(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+        private static double FindMinimum(double[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
         {
             if (gradeMat == null)
                 throw new ArgumentNullException(nameof(gradeMat));
@@ -297,7 +297,7 @@ namespace BL
             if (colsCovered == null)
                 throw new ArgumentNullException(nameof(colsCovered));
 
-            var minValue = int.MaxValue;
+            var minValue = double.MaxValue;
 
             for (var i = 0; i < h; i++)
             {
@@ -311,9 +311,15 @@ namespace BL
             return minValue;
         }
 
-        //מקבלת מסיכה ושורה שבה הפונקציה ??? מצאה תא שערכו 1 ושינתה אות ל-2
-        //הפונקציה בודקת האם באותה שורה יש עוד תא שערכו 1
-        // מחזירה:  את העמודה שבא נמצא תא נוסף או -1 במקרה שאין תא נוסף בשורה
+     
+        /// <summary>
+        /// מקבלת מסיכה ושורה שבה הפונקציה ??? מצאה תא שערכו 1 ושינתה אות ל2-
+        /// הפונקציה בודקת האם באותה שורה יש עוד תא שערכו 1
+        /// </summary>
+        /// <param name="masks"></param>
+        /// <param name="w"></param>
+        /// <param name="row"></param>
+        /// <returns>את העמודה שבא נמצא תא נוסף או -1 במקרה שאין תא נוסף בשורה</returns>
         private static int FindStarInRow(byte[,] masks, int w, int row)
         {
             if (masks == null)
@@ -357,9 +363,9 @@ namespace BL
 
 
         //מחפשת את המיקום של התא הראשון במטריצת הציונים שבו יש אפס - אם לא קיים תא מחזיר מיקום -1-1
-        private static Location FindZero(int[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
+        private static Location FindZero(double[,] gradeMat, bool[] rowsCovered, bool[] colsCovered, int w, int h)
         {
-            if (costs == null)
+            if (gradeMat == null)
                 throw new ArgumentNullException(nameof(gradeMat));
 
             if (rowsCovered == null)
@@ -417,24 +423,7 @@ namespace BL
             }
         }
 
-        private static void ClearCovers(bool[] rowsCovered, bool[] colsCovered, int w, int h)
-        {
-            if (rowsCovered == null)
-                throw new ArgumentNullException(nameof(rowsCovered));
 
-            if (colsCovered == null)
-                throw new ArgumentNullException(nameof(colsCovered));
-
-            for (var i = 0; i < h; i++)
-            {
-                rowsCovered[i] = false;
-            }
-
-            for (var j = 0; j < w; j++)
-            {
-                colsCovered[j] = false;
-            }
-        }
         //מבנה שמכיל בצוכו משתנים לשורה ועמודה וכך מייצג מיקום במטריצה
         private struct Location
         {
