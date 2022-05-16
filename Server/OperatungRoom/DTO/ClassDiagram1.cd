@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DTO.RoomDTO">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAACACQAAAAA=</HashCode>
+      <FileName>RoomDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTO.ClassesDTO">
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAggAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ClassDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTO.DeviceForSurgeryDTO">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAQACAAAAAAAAAAAAAAAAAQAAAAAAAAAAg=</HashCode>
+      <FileName>DeviceForSurgeryDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTO.DoctorDTO">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIgBAAAAAAQAAAAAAAAAAgAAAgAAEAAAAAAAAA=</HashCode>
+      <FileName>DoctorDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTO.SpecialDeviceDTO">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAACIAAAAABAAAAAAgAAAAQAAAAA=</HashCode>
+      <FileName>SpecialDeviceDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTO.SurgeryDTO">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAggAABACAQAAAAAAAAAAAAAAAAAAAAAgAAAIA=</HashCode>
+      <FileName>SurgeryDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DTO.UserDTO">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQgBAAAAAAAAAAAAAAAAAAAAAgFAAAA=</HashCode>
+      <FileName>UserDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

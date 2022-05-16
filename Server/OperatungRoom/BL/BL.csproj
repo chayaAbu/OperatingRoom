@@ -51,17 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassManager.cs" />
     <Compile Include="DeviceForSurgeryManager.cs" />
+    <Compile Include="DoctorManager.cs" />
     <Compile Include="HungrienScudling.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="PreHungrien.cs" />
     <Compile Include="RoomManager.cs" />
+    <Compile Include="SchedulingManager.cs" />
+    <Compile Include="SpecialDeviceManager.cs" />
     <Compile Include="SurgeryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

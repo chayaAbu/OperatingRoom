@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BL.ClassManager" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ClassManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.DeviceForSurgeryManager">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DeviceForSurgeryManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.DoctorManager" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DoctorManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.HungrienScudling">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="BL.HungrienScudling.Location" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>HungrienScudling.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAgEAgAAIEBAAAIgEAAAQAgAAQA=</HashCode>
+      <FileName>HungrienScudling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.PreHungrien">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAIAAAAAQBAAIAAAAAAAgAAAAAAABAAAAAAEAAAA=</HashCode>
+      <FileName>PreHungrien.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.RoomManager">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RoomManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.SchedulingManager" Collapsed="true">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SchedulingManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.SpecialDeviceManager" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpecialDeviceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.SurgeryManager">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABQAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>SurgeryManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BL.UserManager">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAQAAAEAAAAAAAAAQAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>UserManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
