@@ -1,4 +1,15 @@
-<label for="class"> Choose a class </label>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link>
+    <title>Document</title>
+</head>
+<body>
+    <label for="class"> Choose a class </label>
 <select name="class" id="class" [(ngModel)]="selectedOption"  (change)="showClearRoom()">
 <option value="11">orthopedics</option>
 <option value="12">neurology</option>
@@ -6,4 +17,6 @@
 <option value="14">oncology</option >
 
 </select>
-
+<input type="button" value="add surgery"  >
+</body>
+</html>
