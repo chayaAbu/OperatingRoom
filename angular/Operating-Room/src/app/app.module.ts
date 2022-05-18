@@ -12,6 +12,8 @@ import { RoomComponent } from './componenta/room/room.component';
 import { DeviceComponent } from './componenta/device/device.component';
 import { HoomComponent } from './componenta/hoom/hoom.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { HoomComponent } from './componenta/hoom/hoom.component';
     RoomComponent,
     DeviceComponent,
     HoomComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -28,8 +31,12 @@ import { HoomComponent } from './componenta/hoom/hoom.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
+
 export class AppModule { }
