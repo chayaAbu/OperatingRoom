@@ -1,4 +1,4 @@
-<form [formGroup]="registerUserForm">
+<!-- <form [formGroup]="registerUserForm">
     <label for="tz">תעודת זהות</label>
     <input formControlName="tz" class="form-control" type="text" id="tz" placeholder="">
     <label for="name">שם פרטי ומשפחה</label>
@@ -10,4 +10,40 @@
     <label for="change">אחות ראשית</label>
     <input formControlName="change" class="form-control" type="checkbox" id="change" >
     <input   class="btn btn-primary" type="submit" value="הרשם" (click)="doRegister()">
-    </form>
+    </form> -->
+    <!-- Default form register -->
+<form [formGroup]="registerUserForm" class="text-center border border-light p-5">
+    <p class="h4 mb-4">Register</p>
+    <div class="form-row mb-4">
+      <div class="col">
+        <!-- First name -->
+        <input type="text" id="tz" class="form-control" placeholder="id">
+      </div>
+      <div class="col">
+        <!-- Last name -->
+        <input type="text" id="name" class="form-control" placeholder="chayaAbu">
+      </div>
+    </div>
+    
+    <!-- Password -->
+    <input type="password" id="pass" class="form-control" placeholder="Password">
+  
+    <!-- Phone number -->
+    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number">
+      <!-- Newsletter -->
+  <div class="row">
+    <div class="col-md-6 mx-auto d-flex justify-content-center">
+      <mdb-checkbox [default]="true">Head Nurse</mdb-checkbox>
+    </div>
+    <div class="col-md-6 mx-auto d-flex justify-content-center">
+        <mdb-checkbox [default]="true"> Nurse</mdb-checkbox>
+      </div>
+  </div>
+
+ 
+    <!-- Sign up button -->
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+
+
+  </form>
+  <!-- Default form register -->
