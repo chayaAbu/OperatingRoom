@@ -29,9 +29,11 @@ namespace BL
                 {
                     double squereGrade=Grade(item, listOfRoom[j], D, S);
                     surgeryMatrix[i,j] = squereGrade;
-                    i++;
+                  
 
-                }
+                }  i++;
+
+
             }
 
             return surgeryMatrix;
