@@ -1,24 +1,36 @@
-﻿using System;
+﻿using DAL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DeviceForSurgeryController : ApiController
     {
-        // GET: api/DeviceForSurgery
-        public IEnumerable<string> Get()
+        OpreatingRoomEntities db = new OpreatingRoomEntities();
+        // get all device request
+        [Route("api/DeviceForSurgery/GetAllRequest")]
+        public List<DeviceForSurgeryDTO> GetAllRequest()
         {
-            return new string[] { "value1", "value2" };
+            List<DeviceForSurgeryDTO> d = BL.DeviceForSurgeryManager.GetAllRequest();
+            return d;
         }
 
-        // GET: api/DeviceForSurgery/5
-        public string Get(int id)
+        // add request
+        [Route("api/DeviceForSurgery/DeviceForSurgeryToTable")]
+        [HttpPost]
+        public string DeviceForSurgeryToTable(DeviceForSurgeryDTO newdeviceForSurgery)
         {
-            return "value";
+            deviceForSurgery d = newdeviceForSurgery.DeviceToTable();
+            db.deviceForSurgery.Add(d);
+            db.SaveChanges();
+            return "succes";
         }
 
         // POST: api/DeviceForSurgery

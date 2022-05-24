@@ -14,17 +14,18 @@ namespace API.Controllers
     {
         // clear room
         [Route("api/Room/GetClearRoom")]
-        [HttpPost]
-        public List<RoomDTO> GetClearRoom(int numClass)
+        public List<RoomDTO> GetClearRoom()
         {
-            List<RoomDTO> r = BL.RoomManager.GetClearRoom(numClass);
+            List<RoomDTO> r = BL.RoomManager.GetClearRoom();
             return r;
         }
 
-        // GET: api/Room/5
-        public string Get(int id)
+        // Emargency case
+        [Route("api/Room/GetAllRoom")]
+        public List<RoomDTO> GetAllRoom()
         {
-            return "value";
+            List<RoomDTO> r = BL.RoomManager.GetAllRoom();
+            return r;
         }
 
         // POST: api/Room

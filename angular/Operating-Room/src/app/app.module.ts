@@ -28,6 +28,7 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SchedulingComponent } from './componenta/scheduling/scheduling.component';
 
 
 
@@ -39,7 +40,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     LoginComponent,
     RoomComponent,
     DeviceComponent,
-    HoomComponent
+    HoomComponent,
+    SchedulingComponent
   
   ],
   imports: [

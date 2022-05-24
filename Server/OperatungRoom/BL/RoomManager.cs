@@ -11,9 +11,16 @@ namespace BL
     public class RoomManager
     {
         static DBConection db = new DBConection();
-        public static List<RoomDTO> GetClearRoom (int numClass)
+        public static List<RoomDTO> GetClearRoom()
         {
-            List<room> roomsFromTable = db.GetDbSet<room>().Where(R => R.isFull == false&&R.idClass==numClass).ToList();
+            List<room> roomsFromTable = db.GetDbSet<room>().Where(R => R.isFull == false).ToList();
+            List<RoomDTO> CreateRoomDtoList = RoomDTO.CreateRoomDtoList(roomsFromTable);
+            return CreateRoomDtoList;
+
+        }
+        public static List<RoomDTO> GetAllRoom()
+        {
+            List<room> roomsFromTable = db.GetDbSet<room>().Where(R => R.date !=DateTime.Today).ToList();
             List<RoomDTO> CreateRoomDtoList = RoomDTO.CreateRoomDtoList(roomsFromTable);
             return CreateRoomDtoList;
 

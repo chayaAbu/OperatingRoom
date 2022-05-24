@@ -13,6 +13,8 @@ namespace DTO
         public string deviceName { get; set; }
         public bool isAvailable { get; set; }
         public System.DateTime date { get; set; }
+        public Nullable<int> amount { get; set; }
+
 
         public SpecialDeviceDTO()
         {
@@ -26,6 +28,7 @@ namespace DTO
             this.deviceName = sd.deviceName;
             this.isAvailable = sd.isAvailable;
             this.date = sd.date;
+            this.amount = sd.amount;
         }
 
         public static List<SpecialDeviceDTO> CreateSpecialDeviceDtoList(List<specialDevice> specialDeviceList)
@@ -45,6 +48,7 @@ namespace DTO
             sd.deviceName = deviceName;
             sd.isAvailable = isAvailable;
             sd.date = date;
+            sd.amount = amount;
             return sd;
         }
     }

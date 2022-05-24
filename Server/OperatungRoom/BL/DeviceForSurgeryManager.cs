@@ -8,17 +8,24 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class DeviceForSurgeryManager
+    public class DeviceForSurgeryManager
     {
-     static DBConection db = new DBConection();
+        static DBConection db = new DBConection();
 
-        public void requestDevice(DeviceForSurgeryDTO setNewRequestForDevice ) {
-            deviceForSurgery newRequest=setNewRequestForDevice.DeviceToTable();
+        public DeviceForSurgeryDTO AddDeviceRequest(DeviceForSurgeryDTO setNewRequestForDevice)
+        {
+            deviceForSurgery newRequest = setNewRequestForDevice.DeviceToTable();
             db.Execute<deviceForSurgery>(newRequest, DBConection.ExecuteActions.Insert);
+            return setNewRequestForDevice;
         }
-        
-        
-        
+
+        public static List<DeviceForSurgeryDTO> GetAllRequest()
+        {
+            List<deviceForSurgery> deviceFromTable = db.GetDbSet<deviceForSurgery>().ToList();
+            List<DeviceForSurgeryDTO> CreateDeviceForSurgeryDtoList = DeviceForSurgeryDTO.CreateDeviceForSurgeryDtoList(deviceFromTable);
+            return CreateDeviceForSurgeryDtoList;
+
+        }
 
     }
 }

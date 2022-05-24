@@ -15,8 +15,10 @@ namespace DAL
     public partial class deviceForSurgery
     {
         public int idDFS { get; set; }
-        public int idDevice { get; set; }
+        public string deviceName { get; set; }
         public int surgeryCode { get; set; }
+        public Nullable<int> amount { get; set; }
+        public Nullable<int> idDevice { get; set; }
     
         public virtual specialDevice specialDevice { get; set; }
         public virtual surgery surgery { get; set; }

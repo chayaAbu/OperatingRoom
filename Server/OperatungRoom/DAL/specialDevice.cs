@@ -24,6 +24,7 @@ namespace DAL
         public string deviceName { get; set; }
         public bool isAvailable { get; set; }
         public System.DateTime date { get; set; }
+        public Nullable<int> amount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deviceForSurgery> deviceForSurgery { get; set; }

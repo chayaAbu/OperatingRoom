@@ -28,7 +28,7 @@ namespace DAL
         public int idDoctor { get; set; }
         public System.DateTime surgeryDate { get; set; }
     
-        public virtual @class @class { get; set; }
+        public virtual classes classes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deviceForSurgery> deviceForSurgery { get; set; }
         public virtual doctor doctor { get; set; }

@@ -26,7 +26,7 @@ namespace DAL
         public System.DateTime startHour { get; set; }
         public System.DateTime endHour { get; set; }
     
-        public virtual @class @class { get; set; }
+        public virtual classes classes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<surgery> surgery { get; set; }
     }

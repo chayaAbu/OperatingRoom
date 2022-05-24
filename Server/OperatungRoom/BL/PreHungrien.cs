@@ -64,10 +64,11 @@ namespace BL
             {
                 foreach(var y in S)
                 {
-                    if (x.idDevice == y.IdDevice && y.isAvailable == false)
+                    if ((x.deviceName == y.deviceName) &&( y.isAvailable == false) && (y.amount>x.amount))
                     {
                         y.date = surg.surgeryDate;
                         y.isAvailable = true;
+                        y.amount -= x.amount;
                         sumMatchDavice += 2;
                     }
                 }
