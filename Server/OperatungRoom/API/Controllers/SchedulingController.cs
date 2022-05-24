@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,9 +11,9 @@ namespace API.Controllers
     public class SchedulingController : ApiController
     {
         // GET: api/Scheduling
-        public IEnumerable<string> Get()
+        public double[] GetSchedulng()
         {
-            return new string[] { "value1", "value2" };
+            return HungrienScudling.FillMatrix();
         }
 
         // GET: api/Scheduling/5

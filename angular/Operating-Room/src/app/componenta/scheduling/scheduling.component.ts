@@ -13,4 +13,9 @@ export class SchedulingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sched(){
+    
+  }
+
+
 }

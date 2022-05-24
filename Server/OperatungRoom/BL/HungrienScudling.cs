@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,15 @@ namespace BL
 {
   public  class HungrienScudling
     {
-        public double[] FillMatrix(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
+        static OpreatingRoomEntities db = new OpreatingRoomEntities();
+
+        public static double[] FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
         {
+            List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSurgeryFromCurrentDate();
+            List<RoomDTO> listOfRoom = RoomManager.GetClearRoom();
+            List<DeviceForSurgeryDTO> D = DeviceForSurgeryManager.GetAllRequest();
+            List<SpecialDeviceDTO> S = SpecialDeviceDTO.CreateSpecialDeviceDtoList(  db.GetDbSet<specialDevice>().ToList());//?????לא אמור להיות פה
+
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
 
