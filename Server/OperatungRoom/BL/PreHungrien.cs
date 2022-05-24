@@ -20,19 +20,21 @@ namespace BL
         
         public double [,] CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S )
         {
+            int i = 0;
+
           surgeryMatrix=new double [listOfSurgery.Count, listOfRoom.Count];
             IDictionary<double, SurgeryDTO> surgeryWithPriority =CalculatePriority(listOfSurgery);
             foreach (var item in surgeryWithPriority)
             {
-                int i = 0;
+               
                 for(int j=0; j < listOfRoom.Count();j++)
                 {
                     double squereGrade=Grade(item, listOfRoom[j], D, S);
                     surgeryMatrix[i,j] = squereGrade;
                   
 
-                }  i++;
-
+                }
+                i++;
 
             }
 

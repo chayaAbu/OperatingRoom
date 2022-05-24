@@ -29,6 +29,7 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SchedulingComponent } from './componenta/scheduling/scheduling.component';
+import { NavComponent } from './componenta/nav/nav.component';
 
 
 
@@ -41,7 +42,8 @@ import { SchedulingComponent } from './componenta/scheduling/scheduling.componen
     RoomComponent,
     DeviceComponent,
     HoomComponent,
-    SchedulingComponent
+    SchedulingComponent,
+    NavComponent
   
   ],
   imports: [

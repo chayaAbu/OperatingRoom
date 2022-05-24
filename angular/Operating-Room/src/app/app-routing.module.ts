@@ -4,6 +4,7 @@ import { HoomComponent } from './componenta/hoom/hoom.component';
 import { LoginComponent } from './componenta/login/login.component';
 import { RegisterComponent } from './componenta/register/register.component';
 import { RoomComponent } from './componenta/room/room.component';
+import { SchedulingComponent } from './componenta/scheduling/scheduling.component';
 import { SurgeryComponent } from './componenta/surgery/surgery.component';
 
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'surg',component:SurgeryComponent},
   {path:'log',component:LoginComponent},
   {path:'room',component:RoomComponent},
-  {path:'hoom',component:HoomComponent}
+  {path:'hoom',component:HoomComponent},
+  {path:'scheduling',component:SchedulingComponent}
 ];
 
 @NgModule({

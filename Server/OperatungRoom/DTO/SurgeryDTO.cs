@@ -31,7 +31,7 @@ namespace DTO
 
         }
         public static List<SurgeryDTO> CreateSurgeryDtoList(List<surgery> surgeryList)
-        {
+         {
             List<SurgeryDTO> dtoSurgeryList = new List<SurgeryDTO>();
             foreach (var s in surgeryList)
             {
