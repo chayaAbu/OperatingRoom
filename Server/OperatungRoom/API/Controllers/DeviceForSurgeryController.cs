@@ -23,9 +23,9 @@ namespace API.Controllers
         }
 
         // add request
-        [Route("api/DeviceForSurgery/DeviceForSurgeryToTable")]
+        [Route("api/DeviceForSurgery/AddRequest")]
         [HttpPost]
-        public string DeviceForSurgeryToTable(DeviceForSurgeryDTO newdeviceForSurgery)
+        public string AddRequest (DeviceForSurgeryDTO newdeviceForSurgery)
         {
             deviceForSurgery d = newdeviceForSurgery.DeviceToTable();
             db.deviceForSurgery.Add(d);

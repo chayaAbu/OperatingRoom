@@ -1,26 +1,37 @@
-﻿using System;
+﻿using DAL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SpecialDeviceController : ApiController
     {
-        // GET: api/SpecialDevice
-        public IEnumerable<string> Get()
+        OpreatingRoomEntities db = new OpreatingRoomEntities();
+        // get all  special device
+        [Route("api/SpecialDevice/GetClearRoom")]
+        public List<SpecialDeviceDTO> GetAllSpecialDevice()
         {
-            return new string[] { "value1", "value2" };
+            List<SpecialDeviceDTO> s = BL.SpecialDeviceManager.GetAllSpecialDevice();
+            return s;
         }
 
-        // GET: api/SpecialDevice/5
-        public string Get(int id)
+        // add device
+        [Route("api/SpecialDevice/AddRequest")]
+        [HttpPost]
+        public string AddSpecialDevice(SpecialDeviceDTO newSpecialDevice)
         {
-            return "value";
+            specialDevice s = newSpecialDevice.SpecialDeviceToTable();
+            db.specialDevice.Add(s);
+            db.SaveChanges();
+            return "succes";
         }
-
         // POST: api/SpecialDevice
         public void Post([FromBody]string value)
         {

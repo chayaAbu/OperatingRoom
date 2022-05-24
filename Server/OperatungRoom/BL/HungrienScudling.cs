@@ -17,7 +17,7 @@ namespace BL
             List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSurgeryFromCurrentDate();
             List<RoomDTO> listOfRoom = RoomManager.GetClearRoom();
             List<DeviceForSurgeryDTO> D = DeviceForSurgeryManager.GetAllRequest();
-            List<SpecialDeviceDTO> S = SpecialDeviceDTO.CreateSpecialDeviceDtoList(  db.GetDbSet<specialDevice>().ToList());//?????לא אמור להיות פה
+            List<SpecialDeviceDTO> S = SpecialDeviceManager.GetAllSpecialDevice();
 
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);

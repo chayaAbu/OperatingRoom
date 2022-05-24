@@ -20,5 +20,12 @@ namespace BL
 
 
         }
+        public static List<SpecialDeviceDTO> GetAllSpecialDevice()
+        {
+            List<specialDevice> SpecialDeviceFromTable = db.GetDbSet<specialDevice>().ToList();
+            List<SpecialDeviceDTO> CreateSpecialDeviceDtoList = SpecialDeviceDTO.CreateSpecialDeviceDtoList(SpecialDeviceFromTable);
+            return CreateSpecialDeviceDtoList;
+
+        }
     }
 }
