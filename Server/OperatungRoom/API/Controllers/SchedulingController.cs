@@ -11,7 +11,7 @@ namespace API.Controllers
     public class SchedulingController : ApiController
     {
         // GET: api/Scheduling
-        public double[] GetSchedulng()
+        public int[] GetSchedulng()
         {
             return HungrienScudling.FillMatrix();
         }

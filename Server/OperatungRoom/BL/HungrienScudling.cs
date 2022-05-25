@@ -12,7 +12,7 @@ namespace BL
     {
         static OpreatingRoomEntities db = new OpreatingRoomEntities();
 
-        public static double[] FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
+        public static int[] FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
         {
             List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSurgeryFromCurrentDate();
             List<RoomDTO> listOfRoom = RoomManager.GetClearRoom();
@@ -108,7 +108,7 @@ namespace BL
                 }
             }
 
-            var agentsTasks = new double[h];
+            var agentsTasks = new int[h];
 
             for (var i = 0; i < h; i++)
             {

@@ -1,0 +1,29 @@
+.img{
+    width: 78px;
+    vertical-align: middle;
+    position: relative;
+    top: -69px;
+    border-radius: 50%;
+    height: 68px;
+    left: 1579px;
+}
+p{
+    margin-top: 0;
+    position: absolute;
+    margin-bottom: 1rem;
+    letter-spacing: 27px;
+    top: 233px;
+    font-size: 100px;
+    /* margin: 1%; */
+    left: 1180px;
+}
+.img1{
+    height: 738px;
+    width: 100%;
+    opacity: 0.4;
+    vertical-align: middle;
+}
+h2{
+    text-align: center;
+    margin-top: 4%;
+}
