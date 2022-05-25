@@ -18,7 +18,7 @@ namespace BL
       
         
         
-        public double [,] CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S )
+        public (double [,],( IDictionary<double, SurgeryDTO>)) CalculateScore(List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO>S )
         {
             int i = 0;
 
@@ -38,7 +38,7 @@ namespace BL
 
             }
 
-            return surgeryMatrix;
+            return (surgeryMatrix,surgeryWithPriority);
         }
         public IDictionary<double,SurgeryDTO> CalculatePriority(List<SurgeryDTO> listOfSurgery)
         {

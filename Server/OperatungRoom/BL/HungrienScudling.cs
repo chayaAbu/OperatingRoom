@@ -12,7 +12,7 @@ namespace BL
     {
         static OpreatingRoomEntities db = new OpreatingRoomEntities();
 
-        public static int[] FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
+        public static IDictionary<SurgeryDTO, RoomDTO> FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
         {
             List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSurgeryFromCurrentDate();
             List<RoomDTO> listOfRoom = RoomManager.GetClearRoom();
@@ -21,6 +21,8 @@ namespace BL
 
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
+          
+
 
 
             if (gradeMat == null)
@@ -108,18 +110,21 @@ namespace BL
                 }
             }
 
-            var agentsTasks = new int[h];
-
+            IDictionary<SurgeryDTO, RoomDTO> agentsTasks = new Dictionary<SurgeryDTO, RoomDTO>();
+          
+            
             for (var i = 0; i < h; i++)
             {
                 for (var j = 0; j < w; j++)
                 {
                     if (masks[i, j] == 1)
                     {
-                        agentsTasks[i] = j;
+                        first = priorityList.Values;
+                        agentsTasks.Add(,listOfRoom[j]);
                         break;
                     }
                 }
+               
             }
 
             return agentsTasks;
