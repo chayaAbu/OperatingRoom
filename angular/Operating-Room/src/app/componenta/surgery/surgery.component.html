@@ -1,4 +1,4 @@
 
 <input type="button" value="Today's surgeries" (click)="shoeSurgeryFromCurrentDate()">
-<p *ngFor="let s of surgery">{{s}}</p>
+<p *ngFor="let s of surgery">{{s.surgeryCode}}+{{s.surgeryDate}}</p>
 <input type="button" value="add surgery"  >

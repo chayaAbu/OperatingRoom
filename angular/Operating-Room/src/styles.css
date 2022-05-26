@@ -4,3 +4,9 @@
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
  
 @import '~mdb-angular-ui-kit/assets/scss/mdb.scss'; */
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+.cal-events {
+    display: none !important;
+}
