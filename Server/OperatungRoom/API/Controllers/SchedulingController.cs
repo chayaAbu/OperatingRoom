@@ -1,4 +1,5 @@
 ﻿using BL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace API.Controllers
     public class SchedulingController : ApiController
     {
         // GET: api/Scheduling
-        public int[] GetSchedulng()
+        public IDictionary<SurgeryDTO, RoomDTO> GetSchedulng()
         {
             return HungrienScudling.FillMatrix();
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-  public  class HungrienScudling
+    public class HungrienScudling
     {
         static OpreatingRoomEntities db = new OpreatingRoomEntities();
 
@@ -21,7 +21,7 @@ namespace BL
 
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
-          
+            IDictionary<double, SurgeryDTO> SortedSurgery = preMat.CalculatePriority(listOfSurgery);
 
 
 
@@ -111,20 +111,24 @@ namespace BL
             }
 
             IDictionary<SurgeryDTO, RoomDTO> agentsTasks = new Dictionary<SurgeryDTO, RoomDTO>();
-          
-            
+
+
             for (var i = 0; i < h; i++)
             {
                 for (var j = 0; j < w; j++)
                 {
                     if (masks[i, j] == 1)
                     {
-                        first = priorityList.Values;
-                        agentsTasks.Add(,listOfRoom[j]);
-                        break;
+
+
+                        agentsTasks.Add(SortedSurgery.Values.First(), listOfRoom[j]);
+                        listOfRoom[j].isFull = true;
+                        listOfRoom[j].date = SortedSurgery.Values.First().surgeryDate;
+                        SortedSurgery.Remove(SortedSurgery.First());
+
                     }
                 }
-               
+
             }
 
             return agentsTasks;
@@ -139,12 +143,12 @@ namespace BL
 
             if (colsCovered == null)
                 throw new ArgumentNullException(nameof(colsCovered));
-//מרוקן את סימוני השורות
+            //מרוקן את סימוני השורות
             for (var i = 0; i < h; i++)
             {
                 rowsCovered[i] = false;
             }
-//מרוקן את סימוני העמודות
+            //מרוקן את סימוני העמודות
             for (var j = 0; j < w; j++)
             {
                 colsCovered[j] = false;
@@ -324,7 +328,7 @@ namespace BL
             return minValue;
         }
 
-     
+
         /// <summary>
         /// מקבלת מסיכה ושורה שבה הפונקציה ??? מצאה תא שערכו 1 ושינתה אות ל2-
         /// הפונקציה בודקת האם באותה שורה יש עוד תא שערכו 1
