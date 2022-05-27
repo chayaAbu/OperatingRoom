@@ -42,7 +42,6 @@ namespace BL
         AddSurgery.surgeryCode = newSurgery.surgeryCode;
         return AddSurgery;
 
-
         }
     }
     

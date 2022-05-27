@@ -43,7 +43,7 @@ namespace API.Controllers
 
         [Route("api/Surgery/SurgeryToTable")]
         [HttpPost]
-        public string SurgeryToTable(SurgeryDTO newSurgery)
+        public string AddSurgery(SurgeryDTO newSurgery)
         {
             surgery s = newSurgery.SurgeryToTable();
             db.surgery.Add(s);
