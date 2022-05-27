@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Surgery } from 'src/app/model/Surgery';
 import { DbService } from 'src/app/service/db.service';
 
@@ -12,7 +13,9 @@ export class SurgeryComponent implements OnInit {
   constructor(private db:DbService) { }
 
   ngOnInit(): void {
-
+this.addSurgeryForm=new FormGroup(
+  
+)
   }
 
   shoeSurgeryFromCurrentDate(){
