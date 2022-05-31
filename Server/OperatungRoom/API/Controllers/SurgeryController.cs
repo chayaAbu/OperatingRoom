@@ -41,14 +41,12 @@ namespace API.Controllers
 
         // add surgery to table
 
-        [Route("api/Surgery/SurgeryToTable")]
+        [Route("api/Surgery/AddSurgery")]
         [HttpPost]
         public string AddSurgery(SurgeryDTO newSurgery)
         {
-            surgery s = newSurgery.SurgeryToTable();
-            db.surgery.Add(s);
-            db.SaveChanges();
-            return "succes";
+            SurgeryDTO s = BL.SurgeryManager.AddNewSurgery(newSurgery);
+            return "succes" + "" + s.surgeryDate;
         }
 
         // POST: api/Surgery

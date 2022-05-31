@@ -1,39 +1,49 @@
 <div>
-<input type="button" value="Today's surgeries" (click)="shoeSurgeryFromCurrentDate()">
-<p *ngFor="let s of surgery">{{s.surgeryCode}}+{{s.surgeryDate}}</p>
-<input type="button" value="add surgery"  >
+    <input type="button" value="Today's surgeries" (click)="shoeSurgeryFromCurrentDate()">
+    <p *ngFor="let s of surgery">{{s.surgeryCode}}+{{s.surgeryDate}}</p>
 </div>
-<form [formGroup]="addSurgeryForm" class="text-center border border-light p-5">
-    <p class="h4 mb-4">Add surgery</p>
-    <div class="form-row mb-4"> 
-       <div class="col"> 
-        <!-- First name -->
-         <input type="text" id="tz" class="form-control" placeholder="date">
-      </div>
-      <div class="col"> 
-        <!-- Last name -->
-          <input type="text" id="name" class="form-control" placeholder="class">
-      </div>
-    </div> 
-    
-    <!-- Password -->
-    <input type="password" id="pass" class="form-control" placeholder="prioriy">
-  
-    <!-- Phone number -->
-    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="danger">
-      <!-- Newsletter -->
-  <!-- <div class="row">
-    <div class="col-md-6 mx-auto d-flex justify-content-center">
-      <mdb-checkbox [default]="true">Head Nurse</mdb-checkbox>
-    </div>
-    <div class="col-md-6 mx-auto d-flex justify-content-center">
-        <mdb-checkbox [default]="true"> Nurse</mdb-checkbox>
-      </div>
-  </div> -->
+<div class="col-md-6 mx-auto d-flex justify-content-center">
+    <form [formGroup]="addSurgeryForm" class="text-center border border-light p-5 ">
+        <p class="h4 mb-4">Add surgery</p>
+        <div class="form-row mb-4">
+            <div class="col mb-3">
 
+                <input type="date" id="date" class="form-control" placeholder="">
+            </div>
+            <div class="col mb-3 ">
+                <!-- Last name -->
+                <mat-form-field appearance="fill">
+                    <!-- <mat-label>Choose an class</mat-label> -->
+                    <select matNativeControl [disabled]="disableSelect.value" class="form-control" id="class">
+                        <option value="">Choose an class 🔽</option>
+                        <option value="11">orthopedics</option>
+                        <option value="12">neurology</option>
+                        <option value="13">cardiology</option>
+                        <option value="14">oncology</option>
+                    </select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col mb-3 form-control">
+            <label>prioriy</label>
+            <mdb-range [min]="0" [max]="10">
+                <!-- Password -->
+                <input type="range" id="priority" class="form-control" placeholder="">
+            </mdb-range>
+        </div>
+        <div class="col mb-3 form-control">
+            <label>danger</label>
+            <mdb-range [min]="0" [max]="10">
+                
+                <input type="range" id="danger" class="form-control" placeholder="">
+            </mdb-range>
+        </div>
  
-    <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">add</button>
 
 
-  </form>
+        <!-- Sign up button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit">add</button>
+
+
+    </form>
+</div>

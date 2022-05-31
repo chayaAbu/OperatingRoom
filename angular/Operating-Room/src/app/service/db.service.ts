@@ -16,7 +16,9 @@ export class DbService {
     getSurgeryFromCurrentDate(){
       return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromCurrentDate');
     }
-
+addNewSergery(surgery:Surgery){
+  return this.http.post<Surgery>('http://localhost:63703/api/Surgery/AddSurgery',surgery);
+}
     getSurgeryFromSpecificDate(today:Date){
       return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
     }
