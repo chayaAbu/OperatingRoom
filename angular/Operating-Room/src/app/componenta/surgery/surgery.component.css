@@ -9,3 +9,22 @@
 .border {
     border: 3px solid #021861 !important;
 }
+.p-5 {
+    padding: 4rem !important;
+    margin-left:100px;
+    margin-top: 0em;
+}
+.example-card {
+    max-width: 400px;
+    max-height: 1000000000rem;
+    border: 3px solid #021861 ;
+
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .p-5[_ngcontent-fhm-c80] {
+    padding: 4rem !important;
+}

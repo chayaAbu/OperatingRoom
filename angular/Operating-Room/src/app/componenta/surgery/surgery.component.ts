@@ -28,7 +28,7 @@ export class SurgeryComponent implements OnInit {
     console.log(this.addSurgeryForm);
     const surgery: Surgery = {
       surgeryDate: this.addSurgeryForm.controls.date.value,
-      idClass: this.addSurgeryForm.controls.disableSelect.value,
+      idClass: this.disableSelect.value,
       priorityLevel: this.addSurgeryForm.controls.priority.value,
       dangerLevel: this.addSurgeryForm.controls.danger.value,
       idDoctor: 0,

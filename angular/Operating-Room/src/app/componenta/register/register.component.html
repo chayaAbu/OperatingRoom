@@ -28,21 +28,23 @@
     <!-- Password -->
     <input type="password" id="pass" class="form-control" placeholder="Password">
   
-    <!-- Phone number -->
-    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number">
-      <!-- Newsletter -->
+ 
   <div class="row">
-    <div class="col-md-6 mx-auto d-flex justify-content-center">
-      <!-- <mdb-checkbox [default]="true">Head Nurse</mdb-checkbox> -->
+    <div >
+      <label>Head nurse</label>
+      <input type="radio" id="change" class="form-control" >
     </div>
-    <div class="col-md-6 mx-auto d-flex justify-content-center">
-        <!-- <mdb-checkbox [default]="true"> Nurse</mdb-checkbox> -->
+    <div >
+      
+      <label> nurse</label>
+      <input type="radio" id="noChange" class="form-control" placeholder="nurse">
+      
       </div>
   </div>
 
  
     <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+    <input   class="my-4" type="button" value="sign in" (click)="doRegister()">
 
 
   </form>
