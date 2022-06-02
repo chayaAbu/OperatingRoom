@@ -11,16 +11,20 @@ namespace API.Controllers
 {
     public class SchedulingController : ApiController
     {
+
         // GET: api/Scheduling
         public IDictionary<SurgeryDTO, RoomDTO> GetSchedulng()
         {
             return HungrienScudling.FillMatrix();
         }
 
-        // GET: api/Scheduling/5
-        public string Get(int id)
+        // add to scheduling table
+        [Route("api/Scheduling/AddSched")]
+        [HttpPost]
+        public SchedulingDTO AddSched(SchedulingDTO sched)
         {
-            return "value";
+            SchedulingDTO s = BL.SchedulingManager.AddScheduling(sched);
+            return s;
         }
 
         // POST: api/Scheduling

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class SchedulingDTO
+   public class SchedulingDTO
     {
         public int schedulingCode { get; set; }
         public System.DateTime schedulingDate { get; set; }
@@ -28,7 +28,7 @@ namespace DTO
             this.surgeryCode = s.surgeryCode;
             this.idRoom = s.idRoom;
         }
-
+        
         public static List<SchedulingDTO> CreateSchedulingDtoList(List<scheduling> schedulingList)
         {
             List<SchedulingDTO> dtoSchedulindList = new List<SchedulingDTO>();

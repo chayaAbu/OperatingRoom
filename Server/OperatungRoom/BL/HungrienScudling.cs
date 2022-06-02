@@ -125,7 +125,7 @@ namespace BL
                         listOfRoom[j].isFull = true;
                         listOfRoom[j].date = SortedSurgery.Values.First().surgeryDate;
                         SortedSurgery.Remove(SortedSurgery.First());
-
+                      
                     }
                 }
 
