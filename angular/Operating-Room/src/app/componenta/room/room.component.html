@@ -1,22 +1,43 @@
+<!-- <div>
+    <form [formGroup]="addRoomForm" class="text-center border border-light p-5 ">
+        <p class="h4 mb-4">Add room</p>
+        <div class="form-row mb-4">
+          
+            <div class="col mb-3 ">
+                <!-- Last name -->
+                <mat-form-field appearance="fill">
+                    <!-- <mat-label>Choose an class</mat-label> -->
+                    <select matNativeControl [disabled]="disableSelect.value" class="form-control" id="class">
+                        <option value="">Choose an class 🔽</option>
+                        <option value="11">orthopedics</option>
+                        <option value="12">neurology</option>
+                        <option value="13">cardiology</option>
+                        <option value="14">oncology</option>
+                    </select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col mb-3 form-control">
+            <label>prioriy</label>
+            <mdb-range [min]="0" [max]="10">
+                <!-- Password -->
+                <input type="range" id="priority" class="form-control" placeholder="">
+            </mdb-range>
+        </div>
+        <div class="col mb-3 form-control">
+            <label>danger</label>
+            <mdb-range [min]="0" [max]="10">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link>
-    <title>Document</title>
-</head>
-<body>
-    <label for="class"> Choose a class </label>
-<select name="class" id="class" [(ngModel)]="selectedOption"  (change)="showClearRoom()">
-<option value="11">orthopedics</option>
-<option value="12">neurology</option>
-<option value="13">cardiology</option>
-<option value="14">oncology</option >
+                <input type="range" id="danger" class="form-control" placeholder="">
+            </mdb-range>
+        </div>
 
-</select>
-<input type="button" value="add room"  >
-</body>
-</html>
+
+
+        <!-- Sign up button -->
+        
+        <button type="button"  (click)="addSurgery()" class="btn btn-outline-dark">Add</button>
+
+
+    </form>
+</div> -->

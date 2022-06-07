@@ -11,43 +11,41 @@
     <input formControlName="change" class="form-control" type="checkbox" id="change" >
     <input   class="btn btn-primary" type="submit" value="הרשם" (click)="doRegister()">
     </form> -->
-    <!-- Default form register -->
+<!-- Default form register -->
 <form [formGroup]="registerUserForm" class="text-center border border-light p-5 ">
-    <p class="h4 mb-4">Register</p>
-    <div class="form-row mb-4"> 
-       <div class="col"> 
-        <!-- First name -->
-         <input type="text" id="tz" class="form-control" placeholder="id">
-      </div>
-      <div class="col"> 
-        <!-- Last name -->
-          <input type="text" id="name" class="form-control" placeholder="chayaAbu">
-      </div>
-    </div> 
-    
-    <!-- Password -->
-    <input type="password" id="pass" class="form-control" placeholder="Password">
-  
- 
-  <div class="row">
-    <div >
-      <label>Head nurse</label>
-      <input type="radio" id="change" class="form-control" >
+  <p class="h4 mb-4">Register</p>
+  <div class="form-row mb-4">
+    <div class="col">
+      <!-- First name -->
+      <input type="text" id="tz" class="form-control" placeholder="id">
     </div>
-    <div >
-      
-      <label> nurse</label>
-      <input type="radio" id="noChange" class="form-control" placeholder="nurse">
-      
+    <div class="col">
+      <!-- Last name -->
+      <input type="text" id="name" class="form-control" placeholder="chayaAbu">
+    </div>
+    <div>
+      <!-- Password -->
+      <input type="password" id="pass" class="form-control" placeholder="Password">
+    </div>
+   
+    
+    <div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="change" >
+        <label class="form-check-label" for="inlineRadio1">Head nurse</label>
       </div>
-  </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="noChange" >
+        <label class="form-check-label" for="inlineRadio2">Nurse</label>
+      </div>
+    </div>
 
- 
+
+
     <!-- Sign up button -->
-    <input   class="my-4" type="button" value="sign in" (click)="doRegister()">
 
 
-  </form>
-  <!-- Default form register -->
-  
-
+    <button type="button" (click)="doRegister()" class="btn btn-outline-dark">Register</button>
+  </div>
+</form>
+<!-- Default form register -->

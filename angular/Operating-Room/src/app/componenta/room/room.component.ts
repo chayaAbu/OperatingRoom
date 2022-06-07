@@ -8,7 +8,7 @@ import { DbService } from 'src/app/service/db.service';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
-  
+  addRoomForm: any;
   selectedOption!: string;
 room:Room[]=[];
   constructor(private db:DbService) { }

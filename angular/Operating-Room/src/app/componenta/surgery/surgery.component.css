@@ -12,7 +12,12 @@
 .p-5 {
     padding: 4rem !important;
     margin-left:100px;
-    margin-top: 0em;
+    margin-top: 1em;
+}
+.p-6 {
+  padding: 6rem !important;
+  margin-left:100px;
+  margin-top: 1em;
 }
 .example-card {
     max-width: 400px;
@@ -27,4 +32,7 @@
   }
   .p-5[_ngcontent-fhm-c80] {
     padding: 4rem !important;
+}
+h4, .h4 {
+  font-size: calc(1.275rem + 0.3vw);
 }

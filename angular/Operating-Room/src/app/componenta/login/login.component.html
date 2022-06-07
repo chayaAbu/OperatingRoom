@@ -9,17 +9,20 @@
 
 <!-- Default form login -->
 <form [formGroup]="loginUserForm" class="text-center border border-light p-5">
-    <p class="h4 mb-4">Login</p>
-    <!-- Email -->
-    <input  formControlName="name" type="text" id="name" class="form-control mb-4" placeholder="chayaAbu">
-    <!-- Password -->
+  <p class="h4 mb-4">Login</p>
+  <!-- Email -->
+  <div>
+    <input formControlName="name" type="text" id="name" class="form-control mb-4" placeholder="chayaAbu">
+  </div>
+  <!-- Password -->
+  <div>
     <input formControlName="pass" type="password" id="pass" class="form-control mb-4" placeholder="Password">
+  </div>
+  <!-- Sign in button -->
+  <button  type="button" (click)="doLogin()" class="btn btn-outline-dark">Log in</button>
+  <!-- Register -->
 
-    <!-- Sign in button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="doLogin()">Sign in</button>
-    <!-- Register -->
-  
-    <!-- Social login -->
+  <!-- Social login -->
 
-  </form>
-  <!-- Default form login -->
+</form>
+<!-- Default form login -->
