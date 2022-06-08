@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/model/Login';
 import { DbService } from 'src/app/service/db.service';
+import { LoginUserService } from 'src/app/service/login-user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import { DbService } from 'src/app/service/db.service';
 })
 export class LoginComponent implements OnInit {
   loginUserForm: any;
-  constructor(private db: DbService) { }
+  constructor(private db: DbService, private loginService: LoginUserService ,private router:Router) { }
 
 
   ngOnInit(): void {
@@ -36,15 +38,20 @@ export class LoginComponent implements OnInit {
 
     console.log(login);
     this.db.loginUser(login).subscribe(res => {
+
+      this.loginService.isLogin = res;
       console.log(res)
 
       if (res == null)
         alert("שגיאת שרת")
       else
         alert("כניסה למערכת")
+        this.router.navigate(['hoom'])
     }
-   
+
     )
   }
+
+  
 
 }

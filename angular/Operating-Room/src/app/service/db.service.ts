@@ -11,29 +11,34 @@ import { Surgery } from '../model/Surgery';
 })
 export class DbService {
 
-  constructor(private http:HttpClient) {  }
+  constructor(private http: HttpClient) { }
   //SURGERY
-    getSurgeryFromCurrentDate(){
-      return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromCurrentDate');
-    }
-addNewSergery(surgery:Surgery){
-  return this.http.post<Surgery>('http://localhost:63703/api/Surgery/AddSurgery',surgery);
-}
-    getSurgeryFromSpecificDate(today:Date){
-      return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
-    }
-    //ROOM
-    getClearRoom(numClass:number){
-      return this.http.post<Room[]>("http://localhost:63703/api/Room/GetClearRoom",numClass)
-    }
+  getSurgeryFromCurrentDate() {
+    return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromCurrentDate');
+  }
+  addNewSergery(surgery: Surgery) {
+    return this.http.post<Surgery>('http://localhost:63703/api/Surgery/AddSurgery', surgery);
+  }
+  getSurgeryFromSpecificDate(today: Date) {
+    return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
+  }
+  //ROOM
+  getClearRoom(numClass: number) {
+    return this.http.post<Room[]>("http://localhost:63703/api/Room/GetClearRoom", numClass)
+  }
+  addNewRoom(room:Room) {
+    return this.http.post<Room>('http://localhost:63703/api/Room/AddRoom', room);
+  }
+  
+  
   //REGISTER
-    registerNewUser(register:Register):Observable<Register>{
-      return this.http.post<Register>("http://localhost:63703/api/User/RegisterUser",register)
+  registerNewUser(register: Register): Observable<Login> {
+    return this.http.post<Login>("http://localhost:63703/api/User/RegisterUser", register)
 
-    }
-    //LOGIN
-    loginUser(login:Login):Observable<Login>{
-      return this.http.post<Login>("http://localhost:63703/api/User/LoginUser",login)
-    }
- 
+  }
+  //LOGIN
+  loginUser(login: Login): Observable<Login> {
+    return this.http.post<Login>("http://localhost:63703/api/User/LoginUser", login)
+  }
+
 }

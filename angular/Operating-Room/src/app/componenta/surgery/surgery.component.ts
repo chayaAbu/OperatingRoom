@@ -16,22 +16,22 @@ export class SurgeryComponent implements OnInit {
 
   ngOnInit(): void {
     this.addSurgeryForm = new FormGroup({
-      date:new FormControl(''),
-      priority:new FormControl(''),
-      danger:new FormControl(''),
-     
+      date: new FormControl(''),
+      priority: new FormControl(''),
+      danger: new FormControl(''),
+      class: this.disableSelect
     }
     )
   }
 
-  addSurgery(){
+  addSurgery() {
     console.log(this.addSurgeryForm);
     const surgery: Surgery = {
       surgeryDate: this.addSurgeryForm.controls.date.value,
       idClass: this.disableSelect.value,
       priorityLevel: this.addSurgeryForm.controls.priority.value,
       dangerLevel: this.addSurgeryForm.controls.danger.value,
-      idDoctor: 0,
+      idDoctor: 213256685,
       surgeryCode: 0
 
     }
@@ -45,7 +45,12 @@ export class SurgeryComponent implements OnInit {
         alert("נוסף בהצלחה")
     })
   }
+  setDanger(v: string) {
+    console.log('j');
+    
+    console.log(v);
 
+  }
   shoeSurgeryFromCurrentDate() {
     this.db.getSurgeryFromCurrentDate().subscribe(res => {
       this.surgery = res;

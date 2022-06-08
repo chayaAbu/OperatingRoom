@@ -34,14 +34,14 @@
         <div class="form-row mb-4">
             <div class="col mb-3">
 
-                <input type="date" id="date" class="form-control" placeholder="">
+                <input formControlName="date" type="date" id="date" class="form-control" placeholder="">
             </div>
             <div class="col mb-3 ">
                 <!-- Last name -->
                 <mat-form-field appearance="fill">
                     <!-- <mat-label>Choose an class</mat-label> -->
-                    <select matNativeControl [disabled]="disableSelect.value" class="form-control" id="class">
-                        <option value="">Choose an class 🔽</option>
+                    <select matNativeControl [disabled]="disableSelect.value" class="form-control" id="class" formControlName="class" >
+                        <option value="">Choose an class 🔽</option >
                         <option value="11">orthopedics</option>
                         <option value="12">neurology</option>
                         <option value="13">cardiology</option>
@@ -52,16 +52,16 @@
         </div>
         <div class="col mb-3 form-control">
             <label>prioriy</label>
-            <mdb-range [min]="0" [max]="10">
+            <mdb-range [min]="0" [max]="10" formControlName="priority">
                 <!-- Password -->
-                <input type="range" id="priority" class="form-control" placeholder="">
+                <input type="range" id="priority" class="form-control" placeholder="" >
             </mdb-range>
         </div>
         <div class="col mb-3 form-control">
             <label>danger</label>
-            <mdb-range [min]="0" [max]="10">
+            <mdb-range [min]="0" [max]="10" formControlName="danger" >
 
-                <input type="range" id="danger" class="form-control" placeholder="">
+                <input type="range" id="danger" class="form-control" placeholder=""  >
             </mdb-range>
         </div>
 

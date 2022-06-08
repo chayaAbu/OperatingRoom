@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Login } from 'src/app/model/Login';
+import { LoginUserService } from 'src/app/service/login-user.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private loginService:LoginUserService) {
+    this.myUser=loginService.isLogin
+    console.log("nav");
+    
+    console.log(this.myUser!=undefined);
+   }
+  myUser:Login|undefined;
   ngOnInit(): void {
   }
 

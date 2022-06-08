@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { HoomComponent } from './componenta/hoom/hoom.component';
 import { LoginComponent } from './componenta/login/login.component';
 import { RegisterComponent } from './componenta/register/register.component';

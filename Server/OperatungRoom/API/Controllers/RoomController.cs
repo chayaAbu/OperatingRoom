@@ -28,9 +28,13 @@ namespace API.Controllers
             return r;
         }
 
-        // POST: api/Room
-        public void Post([FromBody]string value)
+        // add room
+        [Route("api/Room/AddRoom")]
+        [HttpPost]
+        public string AddRoom(RoomDTO newRoom)
         {
+            RoomDTO r = BL.RoomManager.AddNewRoom(newRoom);
+            return "succes" + "" + r.idRoom;
         }
 
         // PUT: api/Room/5

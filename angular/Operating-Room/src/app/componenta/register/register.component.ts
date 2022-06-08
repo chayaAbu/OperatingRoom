@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Register } from 'src/app/model/Register';
 import { DbService } from 'src/app/service/db.service';
+import { LoginUserService } from 'src/app/service/login-user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { DbService } from 'src/app/service/db.service';
 })
 export class RegisterComponent implements OnInit {
   registerUserForm: any;
-  constructor(private db: DbService) { }
+  constructor(private db: DbService, private loginService:LoginUserService) { }
 
   ngOnInit(): void {
     this.registerUserForm = new FormGroup(
@@ -38,6 +39,8 @@ export class RegisterComponent implements OnInit {
     }
     console.log(register);
     this.db.registerNewUser(register).subscribe(res => {
+      this.loginService.isLogin = res;
+
       console.log(res)
 
       if (res == null)

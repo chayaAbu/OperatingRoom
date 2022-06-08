@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginUserService } from 'src/app/service/login-user.service';
 
 @Component({
   selector: 'app-hoom',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HoomComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService:LoginUserService) { }
 
   ngOnInit(): void {
+
   }
 
 }

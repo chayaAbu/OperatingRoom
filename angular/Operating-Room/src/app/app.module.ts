@@ -32,6 +32,8 @@ import { SchedulingComponent } from './componenta/scheduling/scheduling.componen
 import { NavComponent } from './componenta/nav/nav.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DbService } from './service/db.service';
+import { LoginUserService } from './service/login-user.service';
 
 
 
@@ -78,7 +80,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     })
  
   ],
-  providers: [],
+  providers: [DbService,LoginUserService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ]
 })
