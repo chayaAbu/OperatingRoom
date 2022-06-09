@@ -47,9 +47,11 @@ namespace DAL
                         break;
                 }
                 db.SaveChanges();
-
+                
             }
+
+        }
         }
 
     }
-}
+

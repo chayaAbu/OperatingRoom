@@ -36,7 +36,7 @@
           <Key>
             <PropertyRef Name="idRoom" />
           </Key>
-          <Property Name="idRoom" Type="int" Nullable="false" />
+          <Property Name="idRoom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="isFull" Type="bit" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
           <Property Name="idClass" Type="int" Nullable="false" />
@@ -65,7 +65,7 @@
           <Key>
             <PropertyRef Name="surgeryCode" />
           </Key>
-          <Property Name="surgeryCode" Type="int" Nullable="false" />
+          <Property Name="surgeryCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idClass" Type="int" Nullable="false" />
           <Property Name="priorityLevel" Type="int" Nullable="false" />
           <Property Name="dangerLevel" Type="int" Nullable="false" />
@@ -262,7 +262,7 @@
           <Key>
             <PropertyRef Name="idRoom" />
           </Key>
-          <Property Name="idRoom" Type="Int32" Nullable="false" />
+          <Property Name="idRoom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="isFull" Type="Boolean" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idClass" Type="Int32" Nullable="false" />
@@ -296,7 +296,7 @@
           <Key>
             <PropertyRef Name="surgeryCode" />
           </Key>
-          <Property Name="surgeryCode" Type="Int32" Nullable="false" />
+          <Property Name="surgeryCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idClass" Type="Int32" Nullable="false" />
           <Property Name="priorityLevel" Type="Int32" Nullable="false" />
           <Property Name="dangerLevel" Type="Int32" Nullable="false" />

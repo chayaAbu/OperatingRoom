@@ -32,7 +32,7 @@ export class SurgeryComponent implements OnInit {
       priorityLevel: this.addSurgeryForm.controls.priority.value,
       dangerLevel: this.addSurgeryForm.controls.danger.value,
       idDoctor: 213256685,
-      surgeryCode: 0
+      surgeryCode: 18
 
     }
     console.log(surgery);

@@ -23,8 +23,8 @@ export class DbService {
     return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromSpecificDate');
   }
   //ROOM
-  getClearRoom(numClass: number) {
-    return this.http.post<Room[]>("http://localhost:63703/api/Room/GetClearRoom", numClass)
+  getClearRoom() {
+    return this.http.get<Room[]>("http://localhost:63703/api/Room/GetClearRoom")
   }
   addNewRoom(room:Room) {
     return this.http.post<Room>('http://localhost:63703/api/Room/AddRoom', room);

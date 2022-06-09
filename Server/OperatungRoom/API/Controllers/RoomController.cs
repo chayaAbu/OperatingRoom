@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using DAL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RoomController : ApiController
     {
+        OpreatingRoomEntities db = new OpreatingRoomEntities();
         // clear room
         [Route("api/Room/GetClearRoom")]
         public List<RoomDTO> GetClearRoom()

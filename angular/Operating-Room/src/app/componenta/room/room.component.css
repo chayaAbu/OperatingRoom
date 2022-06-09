@@ -11,7 +11,7 @@
 }
 .p-5 {
     padding: 4rem !important;
-    margin-left:-1500px;
+    margin-left:100px;
     margin-top: 1em;
 }
 
@@ -31,4 +31,17 @@
 }
 h4, .h4 {
   font-size: calc(1.275rem + 0.3vw);
+}
+.p-6 {
+  padding: 4rem !important;
+  margin-left:100px;
+  margin-top: 1em;
+}
+.room-item {
+  width: 70%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
 }

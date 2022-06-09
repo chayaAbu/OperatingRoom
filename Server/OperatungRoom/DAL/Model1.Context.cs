@@ -33,11 +33,10 @@ namespace DAL
         public virtual DbSet<specialDevice> specialDevice { get; set; }
         public virtual DbSet<surgery> surgery { get; set; }
         public virtual DbSet<user> user { get; set; }
-
         public DbSet<T> GetDbSet<T>() where T : class
         {
             return this.Set<T>();
 
         }
     }
-}
+    }

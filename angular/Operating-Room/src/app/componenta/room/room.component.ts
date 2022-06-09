@@ -10,47 +10,47 @@ import { DbService } from 'src/app/service/db.service';
 })
 export class RoomComponent implements OnInit {
   addRoomForm: any;
- 
-room:Room[]=[];
-disableSelect = new FormControl();
-  constructor(private db:DbService) { }
+
+  room: Room[] = [];
+  disableSelect = new FormControl();
+  constructor(private db: DbService) { }
 
   ngOnInit(): void {
     this.addRoomForm = new FormGroup({
-      date:new FormControl(''),
-      class:this.disableSelect
-      
-     
+      date: new FormControl(''),
+      class: this.disableSelect
+
+
     }
     )
 
   }
-//  showClearRoom(){
-//  console.log(this.selectedOption)
-//   this.db.getClearRoom(Number.parseInt( this.selectedOption)).subscribe(res =>{
-//     this.room=res;
-//  })
-// }
-
-addRoom(){
-  console.log(this.addRoomForm);
-  const room: Room = {
-    date: this.addRoomForm.controls.date.value,
-    idClass: this.disableSelect.value,
-    isFull:false,
-    idRoom:15
-   
-    
-
+  showClearRoom() {
+    console.log(this.disableSelect)
+    this.db.getClearRoom().subscribe(res => {
+      this.room = res;
+    })
   }
-  console.log(room);
-  this.db.addNewRoom(room).subscribe(res => {
-    console.log(res)
 
-    if (res == null)
-      alert("שגיאת שרת")
-    else
-      alert("נוסף בהצלחה")
-  })
-}
+  addRoom() {
+    console.log(this.addRoomForm);
+    const room: Room = {
+      date: this.addRoomForm.controls.date.value,
+      idClass: this.disableSelect.value,
+      isFull: false,
+      idRoom:0
+
+
+
+    }
+    console.log(room);
+    this.db.addNewRoom(room).subscribe(res => {
+      console.log(res)
+
+      if (res == null)
+        alert("שגיאת שרת")
+      else
+        alert("נוסף בהצלחה")
+    })
+  }
 }
