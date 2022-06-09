@@ -33,8 +33,8 @@ export class DbService {
   
   
   //REGISTER
-  registerNewUser(register: Register): Observable<Login> {
-    return this.http.post<Login>("http://localhost:63703/api/User/RegisterUser", register)
+  registerNewUser(register: Register): Observable<Register> {
+    return this.http.post<Register>("http://localhost:63703/api/User/RegisterUser", register)
 
   }
   //LOGIN
@@ -43,7 +43,9 @@ export class DbService {
   }
   //DEVICE
   addNewDevice( device:Device){
-    return this.http.post<Login>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
+    return this.http.post<Device>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
   }
-
+  addNewRequestDevice(device:Device){
+    return this.http.post<Device>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
+  }
 }

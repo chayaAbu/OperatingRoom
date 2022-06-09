@@ -1,61 +1,77 @@
-<label for="class"> Choose a device </label>
-<select name="class" id="class" [(ngModel)]="selectedOption"  >
-<option value="1000">Acme heart</option>
-<option value="1001">Defibrillator</option>
-<option value="1002">Ultrasound</option>
-
-
-
-</select>
-<div  class="col-md-6 mx-auto d-flex justify-content-center">
+<div class="col-md-6 mx-auto d-flex justify-content-center">
     <!-- add device -->
-   <form [formGroup]="addDeviceForm" class="text-center border border-light p-5 ">
-       <p class="h4 mb-4">Add Device</p>
-       <div class="form-row mb-4">
-         
-       
-           <div class="col mb-3">
+    <form [formGroup]="addDeviceForm" class="text-center border border-light p-5 ">
+        <p class="h4 mb-4">Add Device</p>
+        <div class="form-row mb-4">
 
-               <input formControlName="name" type="text" id="name" class="form-control" placeholder="name">
-           </div>
-           <div class="col mb-3">
+
+            <div class="col mb-3">
+
+                <input formControlName="name" type="text" id="name" class="form-control" placeholder="name">
+            </div>
+            <div class="col mb-3">
+
+                <input formControlName="amount" type="number" id="amount" class="form-control" placeholder="amount">
+            </div>
+        </div>
+
+
+
+
+        <!-- Sign up button -->
+
+        <button type="button" (click)="addDevice()" class="btn btn-outline-dark">Add</button>
+
+
+    </form>
+
+    <form [formGroup]="addRwquestDeviceForm" class="text-center border border-light p-5 ">
+        <p class="h4 mb-4">Add Request</p>
+        <div class="form-row mb-4">
+
+
+            <mat-form-field appearance="fill">
+
+                <label>Choose an device 🔽</label>
+                <select matNativeControl required [disabled]="disableSelect.value" class="form-control" id="class"
+                    formControlName="class">
+                    <option value="Acme heart">Acme heart</option>
+                    <option value="Defibrillator">Defibrillator</option>
+                    <option value="Ultrasound">Ultrasound</option>
+                </select>
+            </mat-form-field>
+
+        </div>
+        <div class="col mb-3">
 
             <input formControlName="amount" type="number" id="amount" class="form-control" placeholder="amount">
         </div>
-       </div>
-       
 
+        <!-- <div class="col mb-6 ">
+            <mat-card-content>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <label>Choose an surgery 🔽</label>
+                        <select matNativeControl required [disabled]="disableSelect.value" class="form-control"
+                            id="class" formControlName="class">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let s of surgery">{{s.surgeryCode}}</mat-option>
+                        </select>
+                    </mat-form-field> 
+                     <div>
 
+        <button type="button" (click)="shoeSurgeryFromCurrentDate()" class="btn btn-outline-dark">🔄</button>
 
-       <!-- Sign up button -->
-       
-       <button type="button"  (click)="addDevice()" class="btn btn-outline-dark">Add</button>
-
-
-   </form>
-
-   <form [formGroup]="addRwquestDeviceForm" class="text-center border border-light p-5 ">
-    <p class="h4 mb-4">Add Device</p>
-    <div class="form-row mb-4">
-      
-    
-        <div class="col mb-3">
-
-            <input formControlName="name" type="text" id="name" class="form-control" placeholder="name">
-        </div>
-        <div class="col mb-3">
-
-         <input formControlName="amount" type="number" id="amount" class="form-control" placeholder="amount">
-     </div>
     </div>
-    
+                </div>
+            </mat-card-content>
+        </div> -->
+
+        <!-- Sign up button -->
+
+        <button type="button" (click)="addrequest()" class="btn btn-outline-dark">Add</button>
 
 
+    </form>
 
-    <!-- Sign up button -->
-    
-    <button type="button"  (click)="addDevice()" class="btn btn-outline-dark">Add</button>
-
-
-</form>
 </div>

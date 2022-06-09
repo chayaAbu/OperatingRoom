@@ -3,5 +3,6 @@ export interface Device {
   deviceName: string;
   isAvailable: Boolean;
   date: string;
-  amount: number
+  amount: number;
+  surgeryCode:number;
 }
