@@ -13,9 +13,10 @@ namespace API.Controllers
     {
 
         // GET: api/Scheduling
+        [Route("api/Scheduling/GetSchedulng")]
         public IDictionary<SurgeryDTO, RoomDTO> GetSchedulng()
         {
-            return HungrienScudling.FillMatrix();
+           return  HungrienScudling.FillMatrix();
         }
 
         // add to scheduling table

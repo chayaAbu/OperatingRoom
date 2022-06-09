@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Device } from '../model/Device';
 import { Login } from '../model/Login';
 import { Register } from '../model/Register';
 import { Room } from '../model/Room';
@@ -39,6 +40,10 @@ export class DbService {
   //LOGIN
   loginUser(login: Login): Observable<Login> {
     return this.http.post<Login>("http://localhost:63703/api/User/LoginUser", login)
+  }
+  //DEVICE
+  addNewDevice( device:Device){
+    return this.http.post<Login>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
   }
 
 }

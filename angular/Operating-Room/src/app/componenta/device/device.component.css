@@ -1,0 +1,47 @@
+#menu{
+    display: flex;
+    align-content: space-between
+
+
+
+ 
+}
+.border {
+    border: 3px solid #021861 !important;
+}
+.p-5 {
+    padding: 4rem !important;
+    margin-left:100px;
+    margin-top: 1em;
+}
+
+.example-card {
+    max-width: 400px;
+    max-height: 1000000000rem;
+    border: 3px solid #021861 ;
+
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .p-5[_ngcontent-fhm-c80] {
+    padding: 4rem !important;
+}
+h4, .h4 {
+  font-size: calc(1.275rem + 0.3vw);
+}
+.p-6 {
+  padding: 4rem !important;
+  margin-left:100px;
+  margin-top: 1em;
+}
+.room-item {
+  width: 70%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}

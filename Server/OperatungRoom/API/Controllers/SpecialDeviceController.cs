@@ -23,14 +23,12 @@ namespace API.Controllers
         }
 
         // add device
-        [Route("api/SpecialDevice/AddRequest")]
+        [Route("api/SpecialDevice/AddSpecialDevice")]
         [HttpPost]
         public string AddSpecialDevice(SpecialDeviceDTO newSpecialDevice)
         {
-            specialDevice s = newSpecialDevice.SpecialDeviceToTable();
-            db.specialDevice.Add(s);
-            db.SaveChanges();
-            return "succes";
+            SpecialDeviceDTO s = BL.SpecialDeviceManager.AddNewDevice(newSpecialDevice);
+            return "succes"+s.deviceName;
         }
         // POST: api/SpecialDevice
         public void Post([FromBody]string value)

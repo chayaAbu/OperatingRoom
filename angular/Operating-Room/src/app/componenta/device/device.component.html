@@ -9,7 +9,7 @@
 </select>
 <div  class="col-md-6 mx-auto d-flex justify-content-center">
     <!-- add device -->
-   <form [formGroup]="addRoomForm" class="text-center border border-light p-5 ">
+   <form [formGroup]="addDeviceForm" class="text-center border border-light p-5 ">
        <p class="h4 mb-4">Add Device</p>
        <div class="form-row mb-4">
          
@@ -29,8 +29,33 @@
 
        <!-- Sign up button -->
        
-       <button type="button"  (click)="addDebvice()" class="btn btn-outline-dark">Add</button>
+       <button type="button"  (click)="addDevice()" class="btn btn-outline-dark">Add</button>
 
 
    </form>
+
+   <form [formGroup]="addRwquestDeviceForm" class="text-center border border-light p-5 ">
+    <p class="h4 mb-4">Add Device</p>
+    <div class="form-row mb-4">
+      
+    
+        <div class="col mb-3">
+
+            <input formControlName="name" type="text" id="name" class="form-control" placeholder="name">
+        </div>
+        <div class="col mb-3">
+
+         <input formControlName="amount" type="number" id="amount" class="form-control" placeholder="amount">
+     </div>
+    </div>
+    
+
+
+
+    <!-- Sign up button -->
+    
+    <button type="button"  (click)="addDevice()" class="btn btn-outline-dark">Add</button>
+
+
+</form>
 </div>

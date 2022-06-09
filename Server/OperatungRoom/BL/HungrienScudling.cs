@@ -130,7 +130,15 @@ namespace BL
                 }
 
             }
+          
+            for (int i = 0; i < agentsTasks.Count; i++)
+            {
+                SchedulingDTO schedulingDTO = new SchedulingDTO();
+                schedulingDTO.idRoom = agentsTasks.Values.ToArray()[i].idRoom;
+                schedulingDTO.surgeryCode = agentsTasks.Keys.ToArray()[i].surgeryCode;
+                SchedulingManager.AddScheduling(schedulingDTO);
 
+            }
             return agentsTasks;
         }
 

@@ -1,4 +1,7 @@
-export  interface Device{
-  idDevice:number;
- surgeryCode:number
+export interface Device {
+  idDevice: number;
+  deviceName: string;
+  isAvailable: Boolean;
+  date: string;
+  amount: number
 }
