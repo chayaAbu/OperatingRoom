@@ -16,6 +16,7 @@ export class DeviceComponent implements OnInit {
   addRwquestDeviceForm: any;
   device: Device[] = [];
   surgery:Surgery[] = [];
+  sCode:any=history.state.data;
 
   constructor(private db: DbService) {
 
@@ -24,6 +25,11 @@ export class DeviceComponent implements OnInit {
   ngOnInit(): void {
     this.addDeviceForm = new FormGroup({
       name: new FormControl(''),
+      amount: new FormControl(''),
+    
+    })
+    this.addRwquestDeviceForm = new FormGroup({
+      name: this.disableSelect,
       amount: new FormControl(''),
       sCode: new FormControl('')
     })
@@ -61,7 +67,7 @@ export class DeviceComponent implements OnInit {
       deviceName: this.disableSelect.value,
       date: '2022-05-26',
       amount: this.addRwquestDeviceForm.controls.amount.value,
-      surgeryCode: this.addRwquestDeviceForm.controls.sCode.value
+      surgeryCode: this.sCode
 
 
     }

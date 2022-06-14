@@ -46,7 +46,7 @@ namespace API.Controllers
         public string AddSurgery(SurgeryDTO newSurgery)
         {
             SurgeryDTO s = BL.SurgeryManager.AddNewSurgery(newSurgery);
-            return "succes" + "" + s.surgeryDate;
+            return "succes" + "" + s.surgeryDate+""+s.surgeryCode;
         }
 
         // POST: api/Surgery

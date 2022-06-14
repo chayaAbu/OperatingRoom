@@ -46,6 +46,6 @@ export class DbService {
     return this.http.post<Device>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
   }
   addNewRequestDevice(device:Device){
-    return this.http.post<Device>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
+    return this.http.post<Device>("http://localhost:63703/api/DeviceForSurgery/AddRequest", device)
   }
 }

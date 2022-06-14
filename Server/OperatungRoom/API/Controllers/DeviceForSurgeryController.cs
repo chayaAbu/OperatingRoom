@@ -25,12 +25,10 @@ namespace API.Controllers
         // add request
         [Route("api/DeviceForSurgery/AddRequest")]
         [HttpPost]
-        public string AddRequest (DeviceForSurgeryDTO newdeviceForSurgery)
+        public string AddRequest(DeviceForSurgeryDTO newdeviceForSurgery)
         {
-            deviceForSurgery d = newdeviceForSurgery.DeviceToTable();
-            db.deviceForSurgery.Add(d);
-            db.SaveChanges();
-            return "succes";
+            DeviceForSurgeryDTO d = BL.DeviceForSurgeryManager.AddDeviceRequest(newdeviceForSurgery);
+            return "succes" + "" + d.deviceName;
         }
 
         // POST: api/DeviceForSurgery

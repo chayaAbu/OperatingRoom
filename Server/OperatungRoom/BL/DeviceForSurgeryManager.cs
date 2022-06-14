@@ -12,7 +12,7 @@ namespace BL
     {
         static DBConection db = new DBConection();
 
-        public DeviceForSurgeryDTO AddDeviceRequest(DeviceForSurgeryDTO setNewRequestForDevice)
+        public static DeviceForSurgeryDTO AddDeviceRequest(DeviceForSurgeryDTO setNewRequestForDevice)
         {
             deviceForSurgery newRequest = setNewRequestForDevice.DeviceToTable();
             db.Execute<deviceForSurgery>(newRequest, DBConection.ExecuteActions.Insert);

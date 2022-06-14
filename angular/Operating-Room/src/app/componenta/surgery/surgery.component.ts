@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Surgery } from 'src/app/model/Surgery';
 import { DbService } from 'src/app/service/db.service';
 
@@ -12,7 +13,7 @@ export class SurgeryComponent implements OnInit {
   surgery: Surgery[] = [];
   addSurgeryForm: any;
   disableSelect = new FormControl(false);
-  constructor(private db: DbService) { }
+  constructor(private db: DbService ,private route:Router) { }
 
   ngOnInit(): void {
     this.addSurgeryForm = new FormGroup({
@@ -43,7 +44,9 @@ export class SurgeryComponent implements OnInit {
         alert("שגיאת שרת")
       else
         alert("נוסף בהצלחה")
+        this.moveToRequest(res.surgeryCode);
     })
+
   }
   setDanger(v: string) {
     console.log('j');
@@ -62,5 +65,7 @@ export class SurgeryComponent implements OnInit {
       this.surgery = res;
     })
   }
-
+  moveToRequest(sCode:Number){
+   this.route.navigate(['device'],{state:{sCode}})
+  }
 }
