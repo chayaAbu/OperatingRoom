@@ -15,8 +15,7 @@ export class DeviceComponent implements OnInit {
   addDeviceForm: any;
   addRwquestDeviceForm: any;
   device: Device[] = [];
-  surgery:Surgery[] = [];
-  sCode:any=history.state.data;
+  sCode: any = history.state.data;
 
   constructor(private db: DbService) {
 
@@ -26,7 +25,7 @@ export class DeviceComponent implements OnInit {
     this.addDeviceForm = new FormGroup({
       name: new FormControl(''),
       amount: new FormControl(''),
-    
+
     })
     this.addRwquestDeviceForm = new FormGroup({
       name: this.disableSelect,
@@ -63,8 +62,8 @@ export class DeviceComponent implements OnInit {
     console.log(this.addRwquestDeviceForm);
     const device: Device = {
       idDevice: 0,
-      isAvailable: false,
       deviceName: this.disableSelect.value,
+      isAvailable: false,
       date: '2022-05-26',
       amount: this.addRwquestDeviceForm.controls.amount.value,
       surgeryCode: this.sCode
