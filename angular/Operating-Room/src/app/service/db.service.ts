@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, scheduled } from 'rxjs';
 import { Device } from '../model/Device';
 import { Login } from '../model/Login';
 import { Register } from '../model/Register';
 import { Room } from '../model/Room';
+import { Scheduling } from '../model/Scheduling';
 import { Surgery } from '../model/Surgery';
 
 @Injectable({
@@ -51,5 +52,11 @@ export class DbService {
   }
   addNewRequestDevice(device: Device) {
     return this.http.post<Device>("http://localhost:63703/api/DeviceForSurgery/AddRequest", device)
+  }
+
+  //SCHEDULING
+
+  doSched(){
+    return this.http.get<Scheduling[]>("http://localhost:63703/api/Scheduling/GetSchedulng");
   }
 }

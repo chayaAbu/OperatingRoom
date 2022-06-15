@@ -1,5 +1,6 @@
 <!-- <button (click)="sched()">do scheduling</button> -->
-<div>
+<!-- <div>
+
 <div class="row text-center">
 
     <div class="col-md-4">
@@ -49,4 +50,41 @@
     </mwl-calendar-day-view>
 
 </div>
-</div>
+</div> -->
+
+<div class="col-md-6 mx-auto d-flex justify-content-center">
+
+    <mat-card class="text-center border border-light p-6 ">
+        <p class="h4 mb-4">Todays sched</p>
+        <div class="col mb-3 ">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+
+
+
+            </mat-card-header>
+        </div>
+        <div class="col mb-6 ">
+            <mat-card-content>
+
+
+                <div class="class-item" *ngFor="let s of schedu">
+                    <div>
+                        <span>surgery code: {{s.surgeryCode}}</span>
+                    </div>
+                    <span>surgery date:
+                        <br>{{s.idRoom}}</span>
+                </div>
+
+
+                <div>
+
+                    <button type="button" (click)="sched()"
+                        class="btn btn-outline-dark">Watch</button>
+
+                </div>
+
+            </mat-card-content>
+        </div>
+
+    </mat-card>

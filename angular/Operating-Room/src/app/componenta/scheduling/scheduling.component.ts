@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { startOfDay } from 'date-fns';
+import { Scheduling } from 'src/app/model/Scheduling';
 import { DbService } from 'src/app/service/db.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { DbService } from 'src/app/service/db.service';
   styleUrls: ['./scheduling.component.css']
 })
 export class SchedulingComponent implements OnInit {
+  schedu: Scheduling[] = [];
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
@@ -27,14 +29,16 @@ export class SchedulingComponent implements OnInit {
       title: 'Second event',
     }
   ]
-  constructor(private db:DbService) { }
+  constructor(private db: DbService) { }
 
   ngOnInit(): void {
   }
 
 
-  sched(){
-    
+  sched() {
+    this.db.doSched().subscribe(res => {
+      this.schedu = res;
+    })
   }
 
 
