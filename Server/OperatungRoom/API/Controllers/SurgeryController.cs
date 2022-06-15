@@ -43,10 +43,10 @@ namespace API.Controllers
 
         [Route("api/Surgery/AddSurgery")]
         [HttpPost]
-        public string AddSurgery(SurgeryDTO newSurgery)
+        public SurgeryDTO AddSurgery(SurgeryDTO newSurgery)
         {
             SurgeryDTO s = BL.SurgeryManager.AddNewSurgery(newSurgery);
-            return "succes" + "" + s.surgeryDate+""+s.surgeryCode;
+            return s;
         }
 
         // POST: api/Surgery

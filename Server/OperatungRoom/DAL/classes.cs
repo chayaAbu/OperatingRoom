@@ -18,7 +18,6 @@ namespace DAL
         public classes()
         {
             this.doctor = new HashSet<doctor>();
-            this.room = new HashSet<room>();
             this.surgery = new HashSet<surgery>();
         }
     
@@ -27,8 +26,6 @@ namespace DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<doctor> doctor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<room> room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<surgery> surgery { get; set; }
     }

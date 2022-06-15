@@ -9,14 +9,14 @@
           <Key>
             <PropertyRef Name="idClass" />
           </Key>
-          <Property Name="idClass" Type="int" Nullable="false" />
+          <Property Name="idClass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="className" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="deviceForSurgery">
           <Key>
             <PropertyRef Name="idDFS" />
           </Key>
-          <Property Name="idDFS" Type="int" Nullable="false" />
+          <Property Name="idDFS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="deviceName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="surgeryCode" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" />
@@ -45,7 +45,7 @@
           <Key>
             <PropertyRef Name="schedulingCode" />
           </Key>
-          <Property Name="schedulingCode" Type="int" Nullable="false" />
+          <Property Name="schedulingCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="schedulingDate" Type="date" Nullable="false" />
           <Property Name="schedulingHour" Type="time" Precision="7" Nullable="false" />
           <Property Name="idRoom" Type="int" Nullable="false" />
@@ -55,7 +55,7 @@
           <Key>
             <PropertyRef Name="IdDevice" />
           </Key>
-          <Property Name="IdDevice" Type="int" Nullable="false" />
+          <Property Name="IdDevice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="deviceName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="isAvailable" Type="bit" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
@@ -113,18 +113,6 @@
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="doctor">
-              <PropertyRef Name="idClass" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_room_class">
-          <End Role="classes" Type="Self.classes" Multiplicity="1" />
-          <End Role="room" Type="Self.room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="classes">
-              <PropertyRef Name="idClass" />
-            </Principal>
-            <Dependent Role="room">
               <PropertyRef Name="idClass" />
             </Dependent>
           </ReferentialConstraint>
@@ -198,10 +186,6 @@
             <End Role="classes" EntitySet="classes" />
             <End Role="doctor" EntitySet="doctor" />
           </AssociationSet>
-          <AssociationSet Name="FK_room_class" Association="Self.FK_room_class">
-            <End Role="classes" EntitySet="classes" />
-            <End Role="room" EntitySet="room" />
-          </AssociationSet>
           <AssociationSet Name="FK_scheduling_room" Association="Self.FK_scheduling_room">
             <End Role="room" EntitySet="room" />
             <End Role="scheduling" EntitySet="scheduling" />
@@ -228,17 +212,16 @@
           <Key>
             <PropertyRef Name="idClass" />
           </Key>
-          <Property Name="idClass" Type="Int32" Nullable="false" />
+          <Property Name="idClass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="className" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="doctor" Relationship="Self.FK_doctor_class" FromRole="classes" ToRole="doctor" />
-          <NavigationProperty Name="room" Relationship="Self.FK_room_class" FromRole="classes" ToRole="room" />
           <NavigationProperty Name="surgery" Relationship="Self.FK_surgery_class" FromRole="classes" ToRole="surgery" />
         </EntityType>
         <EntityType Name="deviceForSurgery">
           <Key>
             <PropertyRef Name="idDFS" />
           </Key>
-          <Property Name="idDFS" Type="Int32" Nullable="false" />
+          <Property Name="idDFS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="deviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="surgeryCode" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Int32" />
@@ -266,14 +249,13 @@
           <Property Name="isFull" Type="Boolean" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idClass" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="classes" Relationship="Self.FK_room_class" FromRole="room" ToRole="classes" />
           <NavigationProperty Name="scheduling" Relationship="Self.FK_scheduling_room" FromRole="room" ToRole="scheduling" />
         </EntityType>
         <EntityType Name="scheduling">
           <Key>
             <PropertyRef Name="schedulingCode" />
           </Key>
-          <Property Name="schedulingCode" Type="Int32" Nullable="false" />
+          <Property Name="schedulingCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="schedulingDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="schedulingHour" Type="Time" Nullable="false" Precision="7" />
           <Property Name="idRoom" Type="Int32" Nullable="false" />
@@ -285,7 +267,7 @@
           <Key>
             <PropertyRef Name="IdDevice" />
           </Key>
-          <Property Name="IdDevice" Type="Int32" Nullable="false" />
+          <Property Name="IdDevice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="deviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isAvailable" Type="Boolean" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
@@ -324,18 +306,6 @@
               <PropertyRef Name="idClass" />
             </Principal>
             <Dependent Role="doctor">
-              <PropertyRef Name="idClass" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_room_class">
-          <End Role="classes" Type="Self.classes" Multiplicity="1" />
-          <End Role="room" Type="Self.room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="classes">
-              <PropertyRef Name="idClass" />
-            </Principal>
-            <Dependent Role="room">
               <PropertyRef Name="idClass" />
             </Dependent>
           </ReferentialConstraint>
@@ -424,10 +394,6 @@
           <AssociationSet Name="FK_doctor_class" Association="Self.FK_doctor_class">
             <End Role="classes" EntitySet="classes" />
             <End Role="doctor" EntitySet="doctor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_room_class" Association="Self.FK_room_class">
-            <End Role="classes" EntitySet="classes" />
-            <End Role="room" EntitySet="room" />
           </AssociationSet>
           <AssociationSet Name="FK_surgery_class" Association="Self.FK_surgery_class">
             <End Role="classes" EntitySet="classes" />

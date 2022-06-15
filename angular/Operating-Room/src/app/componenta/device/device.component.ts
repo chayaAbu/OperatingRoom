@@ -15,10 +15,10 @@ export class DeviceComponent implements OnInit {
   addDeviceForm: any;
   addRwquestDeviceForm: any;
   device: Device[] = [];
-  sCode: any = history.state.data;
+  sCode?: number;
 
   constructor(private db: DbService) {
-
+    this.sCode = db.surgeryKod;
   }
 
   ngOnInit(): void {
@@ -61,12 +61,12 @@ export class DeviceComponent implements OnInit {
   addrequest() {
     console.log(this.addRwquestDeviceForm);
     const device: Device = {
-      idDevice: 0,
+      idDevice: 1000,
       deviceName: this.disableSelect.value,
       isAvailable: false,
       date: '2022-05-26',
       amount: this.addRwquestDeviceForm.controls.amount.value,
-      surgeryCode: this.sCode
+      surgeryCode: this.sCode!
 
 
     }

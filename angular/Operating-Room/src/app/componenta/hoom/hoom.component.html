@@ -1,6 +1,14 @@
 <div style="height: 20px; width: 15px;">
     <img class="img" src="assets/logo.png" alt="תמונה">
+
 </div>
-<img class="img1" src="assets\photo.png" alt="תמונה">
-   
-    <footer><h2>כל הזכויות שמורות לחיה אבוחצירא&copy;</h2></footer>
+
+<div>
+    <h1 *ngIf="userName!=null" class="fs-1 text-center">Hello {{userName}}!</h1>
+    <img class="img1" src="assets\photo.png" alt="תמונה">
+</div>
+
+
+<footer>
+    <h2>כל הזכויות שמורות לחיה אבוחצירא&copy;</h2>
+</footer>

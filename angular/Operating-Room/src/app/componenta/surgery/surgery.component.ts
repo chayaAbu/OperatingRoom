@@ -39,6 +39,7 @@ export class SurgeryComponent implements OnInit {
     console.log(surgery);
     this.db.addNewSergery(surgery).subscribe(res => {
       console.log(res)
+      this.db.surgeryKod=res.surgeryCode;
 
       if (res == null)
         alert("שגיאת שרת")

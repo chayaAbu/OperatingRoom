@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     console.log(login);
     this.db.loginUser(login).subscribe(res => {
 
-      this.loginService.isLogin = res;
+     this.db.logUserName=res.userName;
       console.log(res)
 
       if (res == null)
@@ -47,9 +47,9 @@ export class LoginComponent implements OnInit {
       else
         alert("כניסה למערכת")
         this.router.navigate(['hoom'])
-    }
+        
 
-    )
+  })
   }
 
   

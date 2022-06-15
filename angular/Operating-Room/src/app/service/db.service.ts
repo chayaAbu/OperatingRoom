@@ -14,6 +14,8 @@ export class DbService {
 
   constructor(private http: HttpClient) { }
   //SURGERY
+  surgeryKod?: number;
+
   getSurgeryFromCurrentDate() {
     return this.http.get<Surgery[]>('http://localhost:63703/api/Surgery/GetSurgeryFromCurrentDate');
   }
@@ -27,25 +29,27 @@ export class DbService {
   getClearRoom() {
     return this.http.get<Room[]>("http://localhost:63703/api/Room/GetClearRoom")
   }
-  addNewRoom(room:Room) {
+  addNewRoom(room: Room) {
     return this.http.post<Room>('http://localhost:63703/api/Room/AddRoom', room);
   }
-  
-  
+
+
   //REGISTER
   registerNewUser(register: Register): Observable<Register> {
     return this.http.post<Register>("http://localhost:63703/api/User/RegisterUser", register)
 
   }
   //LOGIN
+  logUserName?: string;
+
   loginUser(login: Login): Observable<Login> {
     return this.http.post<Login>("http://localhost:63703/api/User/LoginUser", login)
   }
   //DEVICE
-  addNewDevice( device:Device){
+  addNewDevice(device: Device) {
     return this.http.post<Device>("http://localhost:63703/api/SpecialDevice/AddSpecialDevice", device)
   }
-  addNewRequestDevice(device:Device){
+  addNewRequestDevice(device: Device) {
     return this.http.post<Device>("http://localhost:63703/api/DeviceForSurgery/AddRequest", device)
   }
 }
