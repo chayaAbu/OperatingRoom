@@ -26,5 +26,15 @@ namespace BL
             return CreateSchedulingDtoList;
 
         }
+
+        public static SchedulingDTO GetLast(int ToSched)
+        {
+            List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList();
+            if (schedFromTable.Count > 0)
+            {
+                return SchedulingDTO.CreateSchedulingDtoList(schedFromTable).Where(S => S.idRoom == ToSched).Last();
+            }
+            return null;
+        }
     }
 }

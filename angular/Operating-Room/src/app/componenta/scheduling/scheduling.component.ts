@@ -20,25 +20,42 @@ export class SchedulingComponent implements OnInit {
   }
 
   events: CalendarEvent[] = [
-    {
-      start: startOfDay(new Date()),
-      title: 'First event',
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'Second event',
-    }
+    // {
+    //   start: startOfDay(new Date()),
+    //   title: 'First event',
+    // },
+    // {
+    //   start: startOfDay(new Date()),
+    //   title: 'Second event',
+    // }
   ]
   constructor(private db: DbService) { }
 
   ngOnInit(): void {
   }
 
+  ngOnChange(): void {
+
+  }
+
 
   sched() {
     this.db.doSched().subscribe(res => {
       this.schedu = res;
-    })
+      this.schedu.forEach(s => {
+        this.events.push(
+          {
+            start: startOfDay(s.schedulingDate),
+            title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
+          }
+        )
+      });
+      console.log("events:" + this.events);
+    },
+      err => {
+        console.log("error:" + err.message);
+      }
+    )
   }
 
 

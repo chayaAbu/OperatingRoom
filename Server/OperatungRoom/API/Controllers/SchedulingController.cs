@@ -33,8 +33,10 @@ namespace API.Controllers
         }
 
         // POST: api/Scheduling
-        public void Post([FromBody]string value)
+        public SchedulingDTO GetLast(int ToSched)
         {
+            SchedulingDTO s = BL.SchedulingManager.GetLast(ToSched);
+            return s;
         }
 
         // PUT: api/Scheduling/5

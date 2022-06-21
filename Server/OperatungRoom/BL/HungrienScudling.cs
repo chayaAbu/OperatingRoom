@@ -136,6 +136,8 @@ namespace BL
                 SchedulingDTO schedulingDTO = new SchedulingDTO();
                 schedulingDTO.idRoom = agentsTasks.Values.ToArray()[i].idRoom;
                 schedulingDTO.surgeryCode = agentsTasks.Keys.ToArray()[i].surgeryCode;
+                //schedulingDTO.schedulingHour = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingHour;
+                schedulingDTO.schedulingDate = DateTime.Today;
                 SchedulingManager.AddScheduling(schedulingDTO);
 
             }
