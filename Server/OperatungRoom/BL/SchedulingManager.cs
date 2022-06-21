@@ -19,5 +19,12 @@ namespace BL
 
 
         }
+        public static List<SchedulingDTO> GetAllSched()
+        {
+            List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList();
+            List<SchedulingDTO> CreateSchedulingDtoList = SchedulingDTO.CreateSchedulingDtoList(schedFromTable);
+            return CreateSchedulingDtoList;
+
+        }
     }
 }
