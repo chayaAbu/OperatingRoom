@@ -13,7 +13,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DeviceForSurgeryController : ApiController
     {
-        OpreatingRoomEntities db = new OpreatingRoomEntities();
+        OpreatingRoomEntities1 db = new OpreatingRoomEntities1();
         // get all device request
         [Route("api/DeviceForSurgery/GetAllRequest")]
         public List<DeviceForSurgeryDTO> GetAllRequest()

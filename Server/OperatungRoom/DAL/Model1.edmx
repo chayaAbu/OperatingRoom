@@ -50,6 +50,7 @@
           <Property Name="schedulingHour" Type="time" Precision="7" Nullable="false" />
           <Property Name="idRoom" Type="int" Nullable="false" />
           <Property Name="surgeryCode" Type="int" Nullable="false" />
+          <Property Name="duringSurg" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="specialDevice">
           <Key>
@@ -71,6 +72,8 @@
           <Property Name="dangerLevel" Type="int" Nullable="false" />
           <Property Name="idDoctor" Type="int" Nullable="false" />
           <Property Name="surgeryDate" Type="datetime" Nullable="false" />
+          <Property Name="duringSurg" Type="time" Precision="7" Nullable="false" />
+          <Property Name="hasSches" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -260,6 +263,7 @@
           <Property Name="schedulingHour" Type="Time" Nullable="false" Precision="7" />
           <Property Name="idRoom" Type="Int32" Nullable="false" />
           <Property Name="surgeryCode" Type="Int32" Nullable="false" />
+          <Property Name="duringSurg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="room" Relationship="Self.FK_scheduling_room" FromRole="scheduling" ToRole="room" />
           <NavigationProperty Name="surgery" Relationship="Self.FK_scheduling_surgery" FromRole="scheduling" ToRole="surgery" />
         </EntityType>
@@ -284,6 +288,8 @@
           <Property Name="dangerLevel" Type="Int32" Nullable="false" />
           <Property Name="idDoctor" Type="Int32" Nullable="false" />
           <Property Name="surgeryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="duringSurg" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="hasSches" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="classes" Relationship="Self.FK_surgery_class" FromRole="surgery" ToRole="classes" />
           <NavigationProperty Name="deviceForSurgery" Relationship="Self.FK_deviceForSurgery_surgery" FromRole="surgery" ToRole="deviceForSurgery" />
           <NavigationProperty Name="doctor" Relationship="Self.FK_surgery_doctor" FromRole="surgery" ToRole="doctor" />
@@ -382,7 +388,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OpreatingRoomEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OpreatingRoomEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="classes" EntityType="Self.classes" />
           <EntitySet Name="deviceForSurgery" EntityType="Self.deviceForSurgery" />
           <EntitySet Name="doctor" EntityType="Self.doctor" />
@@ -425,7 +431,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OpreatingRoomModelStoreContainer" CdmEntityContainer="OpreatingRoomEntities">
+        <EntityContainerMapping StorageEntityContainer="OpreatingRoomModelStoreContainer" CdmEntityContainer="OpreatingRoomEntities1">
           <EntitySetMapping Name="classes">
             <EntityTypeMapping TypeName="OpreatingRoomModel.classes">
               <MappingFragment StoreEntitySet="classes">
@@ -474,6 +480,7 @@
                 <ScalarProperty Name="schedulingHour" ColumnName="schedulingHour" />
                 <ScalarProperty Name="idRoom" ColumnName="idRoom" />
                 <ScalarProperty Name="surgeryCode" ColumnName="surgeryCode" />
+                <ScalarProperty Name="duringSurg" ColumnName="duringSurg" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -497,6 +504,8 @@
                 <ScalarProperty Name="dangerLevel" ColumnName="dangerLevel" />
                 <ScalarProperty Name="idDoctor" ColumnName="idDoctor" />
                 <ScalarProperty Name="surgeryDate" ColumnName="surgeryDate" />
+                <ScalarProperty Name="duringSurg" ColumnName="duringSurg" />
+                <ScalarProperty Name="hasSches" ColumnName="hasSches" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,7 +13,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class RoomController : ApiController
     {
-        OpreatingRoomEntities db = new OpreatingRoomEntities();
+        OpreatingRoomEntities1 db = new OpreatingRoomEntities1();
         // clear room
         [Route("api/Room/GetClearRoom")]
         public List<RoomDTO> GetClearRoom()

@@ -13,7 +13,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SpecialDeviceController : ApiController
     {
-        OpreatingRoomEntities db = new OpreatingRoomEntities();
+        OpreatingRoomEntities1 db = new OpreatingRoomEntities1();
         // get all  special device
         [Route("api/SpecialDevice/GetClearRoom")]
         public List<SpecialDeviceDTO> GetAllSpecialDevice()

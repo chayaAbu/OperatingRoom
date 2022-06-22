@@ -14,7 +14,7 @@ namespace DAL
         public DBConection() { }
         public List<T> GetDbSet<T>() where T : class
         {
-            using (OpreatingRoomEntities db = new OpreatingRoomEntities())
+            using (OpreatingRoomEntities1 db = new OpreatingRoomEntities1())
             {
                 return db.GetDbSet<T>().ToList();
             }
@@ -27,7 +27,7 @@ namespace DAL
         }
         public void Execute<T>(T entity, ExecuteActions exAction) where T : class
         {
-            using (OpreatingRoomEntities db = new OpreatingRoomEntities())
+            using (OpreatingRoomEntities1 db = new OpreatingRoomEntities1())
             {
                 var model = db.Set<T>();
                 switch (exAction)

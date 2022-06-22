@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c231723dfc674159b4c180d4647a9f5c" Name="Diagram1">
+      <Diagram DiagramId="459bd8ec881c4b6aa777823ac3548535" Name="Diagram1">
         <EntityTypeShape EntityType="OpreatingRoomModel.classes" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="OpreatingRoomModel.deviceForSurgery" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OpreatingRoomModel.doctor" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OpreatingRoomModel.room" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OpreatingRoomModel.scheduling" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OpreatingRoomModel.specialDevice" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OpreatingRoomModel.surgery" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OpreatingRoomModel.user" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.surgery" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpreatingRoomModel.user" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <AssociationConnector Association="OpreatingRoomModel.FK_doctor_class" ManuallyRouted="false" />
         <AssociationConnector Association="OpreatingRoomModel.FK_surgery_class" ManuallyRouted="false" />
         <AssociationConnector Association="OpreatingRoomModel.FK_deviceForSurgery_specialDevice" ManuallyRouted="false" />

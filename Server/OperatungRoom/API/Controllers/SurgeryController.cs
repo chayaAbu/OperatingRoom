@@ -14,7 +14,7 @@ namespace API.Controllers
     public class SurgeryController : ApiController
     {
 
-        OpreatingRoomEntities db = new OpreatingRoomEntities();
+        OpreatingRoomEntities1 db = new OpreatingRoomEntities1();
         // get surgery from current date
         [Route("api/Surgery/GetSurgeryFromCurrentDate")]
         public List<SurgeryDTO> GetSurgeryFromCurrentDate()
@@ -36,6 +36,14 @@ namespace API.Controllers
         public List<SurgeryDTO> GetAllSurgery()
         {
             List<SurgeryDTO> s = BL.SurgeryManager.GetAllSurgery();
+            return s;
+        }
+
+        // get sched surgery
+        [Route("api/Surgery/GetSchedSurgery")]
+        public List<SurgeryDTO> GetSchedSurgery()
+        {
+            List<SurgeryDTO> s = BL.SurgeryManager.GetSchedSurgery();
             return s;
         }
 

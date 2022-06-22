@@ -40,6 +40,7 @@ namespace BL
 
             return surgeryMatrix;
         }
+        //לשנות עדיפות שתתקדם אם לא שובץ
         public IDictionary<double,SurgeryDTO> CalculatePriority(List<SurgeryDTO> listOfSurgery)
         {
             IDictionary<double,SurgeryDTO> priorityList=new Dictionary<double,SurgeryDTO>();
@@ -52,7 +53,7 @@ namespace BL
          
             return priorityList;
         }
-
+        //לשנות פה
         public double MatchRoom(SurgeryDTO S, RoomDTO R)
         {
             if (S.idClass == R.idClass)

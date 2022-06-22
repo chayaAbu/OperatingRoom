@@ -14,6 +14,8 @@ namespace DTO
         public int dangerLevel { get; set; }
         public int idDoctor { get; set; }
         public DateTime surgeryDate { get; set; }
+        public System.TimeSpan duringSurg { get; set; }
+        public bool hasSches { get; set; }
 
         public SurgeryDTO()
         {
@@ -28,6 +30,8 @@ namespace DTO
             this.dangerLevel = s.dangerLevel;
             this.idDoctor = s.idDoctor;
             this.surgeryDate = s.surgeryDate;
+            this.duringSurg = s.duringSurg;
+            this.hasSches = s.hasSches;
 
         }
         public static List<SurgeryDTO> CreateSurgeryDtoList(List<surgery> surgeryList)
@@ -49,6 +53,8 @@ namespace DTO
             s.dangerLevel = dangerLevel;
             s.idDoctor = idDoctor;
             s.surgeryDate = surgeryDate;
+            s.duringSurg = duringSurg;
+            s.hasSches = hasSches;
             return s;
         }
 

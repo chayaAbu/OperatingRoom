@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export interface Surgery {
     surgeryCode: number;
     idClass: number;
@@ -5,4 +7,7 @@ export interface Surgery {
     dangerLevel: number;
     idDoctor: number;
     surgeryDate: Date;
+    duringSurg: Time;
+    hasSches: boolean
+
 }

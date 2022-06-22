@@ -34,7 +34,19 @@ namespace BL
             {
                 return SchedulingDTO.CreateSchedulingDtoList(schedFromTable).Where(S => S.idRoom == ToSched).Last();
             }
-            return null;
+            else
+            {
+                SchedulingDTO schedulingDTO = new SchedulingDTO();
+                schedulingDTO.idRoom = 0;
+                schedulingDTO.surgeryCode = 0;
+                schedulingDTO.duringSurg = TimeSpan.FromHours(0);
+                schedulingDTO.schedulingHour =  TimeSpan.FromHours(24); 
+                schedulingDTO.schedulingDate = DateTime.Today;
+                SchedulingManager.AddScheduling(schedulingDTO);
+                return schedulingDTO;
+
+            }
+            
         }
     }
 }

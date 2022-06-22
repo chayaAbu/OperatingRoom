@@ -14,6 +14,7 @@ namespace DTO
         public System.TimeSpan schedulingHour { get; set; }
         public int idRoom { get; set; }
         public int surgeryCode { get; set; }
+        public System.TimeSpan duringSurg { get; set; }
 
         public SchedulingDTO()
         {
@@ -27,8 +28,12 @@ namespace DTO
             this.schedulingHour = s.schedulingHour;
             this.surgeryCode = s.surgeryCode;
             this.idRoom = s.idRoom;
+            this.duringSurg = s.duringSurg;
+            
         }
+
         
+
         public static List<SchedulingDTO> CreateSchedulingDtoList(List<scheduling> schedulingList)
         {
             List<SchedulingDTO> dtoSchedulindList = new List<SchedulingDTO>();
@@ -47,6 +52,7 @@ namespace DTO
             s.schedulingHour = schedulingHour;
             s.surgeryCode = surgeryCode;
             s.idRoom = idRoom;
+            s.duringSurg = duringSurg;
             return s;
         }
     }

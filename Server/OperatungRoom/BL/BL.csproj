@@ -55,6 +55,7 @@
     <Compile Include="DeviceForSurgeryManager.cs" />
     <Compile Include="DoctorManager.cs" />
     <Compile Include="HungrienScudling.cs" />
+    <Compile Include="Models\SchedulingDetails.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="PreHungrien.cs" />
     <Compile Include="RoomManager.cs" />

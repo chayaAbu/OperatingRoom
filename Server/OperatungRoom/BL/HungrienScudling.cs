@@ -10,11 +10,11 @@ namespace BL
 {
     public class HungrienScudling
     {
-        static OpreatingRoomEntities db = new OpreatingRoomEntities();
+        static OpreatingRoomEntities1 db = new OpreatingRoomEntities1();
 
         public static IDictionary<SurgeryDTO, RoomDTO> FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
         {
-            List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSurgeryFromCurrentDate();
+            List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSchedSurgery();
             List<RoomDTO> listOfRoom = RoomManager.GetClearRoom();
             List<DeviceForSurgeryDTO> D = DeviceForSurgeryManager.GetAllRequest();
             List<SpecialDeviceDTO> S = SpecialDeviceManager.GetAllSpecialDevice();
@@ -122,6 +122,7 @@ namespace BL
 
 
                         agentsTasks.Add(SortedSurgery.Values.First(), listOfRoom[j]);
+                        SortedSurgery.Values.First().hasSches = true;
                         listOfRoom[j].isFull = true;
                         listOfRoom[j].date = SortedSurgery.Values.First().surgeryDate;
                         SortedSurgery.Remove(SortedSurgery.First());
@@ -136,8 +137,10 @@ namespace BL
                 SchedulingDTO schedulingDTO = new SchedulingDTO();
                 schedulingDTO.idRoom = agentsTasks.Values.ToArray()[i].idRoom;
                 schedulingDTO.surgeryCode = agentsTasks.Keys.ToArray()[i].surgeryCode;
-                //schedulingDTO.schedulingHour = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingHour;
-                schedulingDTO.schedulingDate = DateTime.Today;
+                schedulingDTO.duringSurg = agentsTasks.Keys.ToArray()[i].duringSurg;
+                schedulingDTO.schedulingHour = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingHour+ SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).duringSurg;
+                //צריך לבדוק אם התאריך לא עובר יום
+                schedulingDTO.schedulingDate = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingDate;
                 SchedulingManager.AddScheduling(schedulingDTO);
 
             }

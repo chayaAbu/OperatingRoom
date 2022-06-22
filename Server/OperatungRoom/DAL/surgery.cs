@@ -27,6 +27,8 @@ namespace DAL
         public int dangerLevel { get; set; }
         public int idDoctor { get; set; }
         public System.DateTime surgeryDate { get; set; }
+        public System.TimeSpan duringSurg { get; set; }
+        public bool hasSches { get; set; }
     
         public virtual classes classes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

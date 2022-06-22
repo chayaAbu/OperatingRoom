@@ -19,7 +19,8 @@ namespace DAL
         public System.TimeSpan schedulingHour { get; set; }
         public int idRoom { get; set; }
         public int surgeryCode { get; set; }
-    
+        public System.TimeSpan duringSurg { get; set; }
+
         public virtual room room { get; set; }
         public virtual surgery surgery { get; set; }
     }

@@ -32,6 +32,16 @@ export class SchedulingComponent implements OnInit {
   constructor(private db: DbService) { }
 
   ngOnInit(): void {
+    this.schedu.forEach(s => {
+      this.events.push(
+        {
+          start: startOfDay(s.schedulingDate),
+          title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
+        }
+      )
+    });
+    console.log("events:" + this.events);
+
   }
 
   ngOnChange(): void {
@@ -50,7 +60,9 @@ export class SchedulingComponent implements OnInit {
           }
         )
       });
+      window.location.reload()
       console.log("events:" + this.events);
+
     },
       err => {
         console.log("error:" + err.message);
