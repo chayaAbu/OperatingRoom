@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { startOfDay } from 'date-fns';
+import { startOfDay, startOfHour, startOfToday } from 'date-fns';
 import { Scheduling } from 'src/app/model/Scheduling';
 import { DbService } from 'src/app/service/db.service';
 
@@ -56,13 +56,14 @@ export class SchedulingComponent implements OnInit {
     
       this.events.push(
         {
-          start: startOfDay(s.schedulingDate),
+          start: startOfHour(s.schedulingDate),
           title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
          }
        
       ); 
+      console.log("events:" + this.events);
     });
-    console.log("events:" + this.events);
+   
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Register } from 'src/app/model/Register';
 import { DbService } from 'src/app/service/db.service';
 import { LoginUserService } from 'src/app/service/login-user.service';
@@ -16,11 +16,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerUserForm = new FormGroup(
       {
-        tz: new FormControl(''),
-        name: new FormControl(''),
-        pass: new FormControl(''),
-        nochange: new FormControl(''),
-        change: new FormControl(''),
+        tz: new FormControl('', ),
+        name: new FormControl('',),
+        pass: new FormControl('', ),
+        nochange: new FormControl('', ),
+        change: new FormControl('', ),
 
 
 
@@ -51,3 +51,4 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+// [Validators.required, Validators.maxLength(9), Validators.minLength(9)]

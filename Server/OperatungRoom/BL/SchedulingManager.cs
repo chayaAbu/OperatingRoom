@@ -30,7 +30,7 @@ namespace BL
         public static SchedulingDTO GetLast(int ToSched)
         {
             List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList();
-            if (schedFromTable.Count >0&& schedFromTable.Last().idRoom==ToSched)
+            if (schedFromTable.Count > 0 && schedFromTable.Last().idRoom == ToSched)
             {
                 return SchedulingDTO.CreateSchedulingDtoList(schedFromTable).Where(S => S.idRoom == ToSched).Last();
             }
@@ -47,5 +47,11 @@ namespace BL
             }
 
         }
+        public SchedulingDTO EmergencyCase()
+        {
+            List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList().Where(s => s.schedulingHour.Add(s.duringSurg) < DateTime.Today.Hour);
+        }
     }
+
+
 }
