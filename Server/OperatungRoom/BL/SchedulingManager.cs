@@ -40,7 +40,7 @@ namespace BL
                 schedulingDTO.idRoom = 0;
                 schedulingDTO.surgeryCode = 0;
                 schedulingDTO.duringSurg = TimeSpan.FromHours(0);
-                schedulingDTO.schedulingHour =  TimeSpan.FromHours(24); 
+                schedulingDTO.schedulingHour =  TimeSpan.FromHours(0); 
                 schedulingDTO.schedulingDate = DateTime.Today;
                 SchedulingManager.AddScheduling(schedulingDTO);
                 return schedulingDTO;

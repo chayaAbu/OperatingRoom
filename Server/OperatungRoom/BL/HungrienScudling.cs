@@ -21,7 +21,7 @@ namespace BL
 
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
-            IDictionary<double, SurgeryDTO> SortedSurgery = preMat.CalculatePriority(listOfSurgery);
+            IDictionary<SurgeryDTO,double > SortedSurgery = preMat.CalculatePriority(listOfSurgery);
 
 
 
@@ -121,10 +121,10 @@ namespace BL
                     {
 
 
-                        agentsTasks.Add(SortedSurgery.Values.First(), listOfRoom[j]);
-                        SortedSurgery.Values.First().hasSches = true;
+                        agentsTasks.Add(SortedSurgery.Keys.First(), listOfRoom[j]);
+                        SortedSurgery.Keys.First().hasSches = true;
                         listOfRoom[j].isFull = true;
-                        listOfRoom[j].date = SortedSurgery.Values.First().surgeryDate;
+                        listOfRoom[j].date = SortedSurgery.Keys.First().surgeryDate;
                         SortedSurgery.Remove(SortedSurgery.First());
                       
                     }
@@ -138,7 +138,7 @@ namespace BL
                 schedulingDTO.idRoom = agentsTasks.Values.ToArray()[i].idRoom;
                 schedulingDTO.surgeryCode = agentsTasks.Keys.ToArray()[i].surgeryCode;
                 schedulingDTO.duringSurg = agentsTasks.Keys.ToArray()[i].duringSurg;
-                schedulingDTO.schedulingHour = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingHour+ SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).duringSurg;
+                schedulingDTO.schedulingHour = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingHour.Add(SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).duringSurg);
                 //צריך לבדוק אם התאריך לא עובר יום
                 schedulingDTO.schedulingDate = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingDate;
                 SchedulingManager.AddScheduling(schedulingDTO);

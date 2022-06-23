@@ -50,7 +50,7 @@
           <Property Name="schedulingHour" Type="time" Precision="7" Nullable="false" />
           <Property Name="idRoom" Type="int" Nullable="false" />
           <Property Name="surgeryCode" Type="int" Nullable="false" />
-          <Property Name="duringSurg" Type="text" Nullable="false" />
+          <Property Name="duringSurg" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="specialDevice">
           <Key>
@@ -263,7 +263,7 @@
           <Property Name="schedulingHour" Type="Time" Nullable="false" Precision="7" />
           <Property Name="idRoom" Type="Int32" Nullable="false" />
           <Property Name="surgeryCode" Type="Int32" Nullable="false" />
-          <Property Name="duringSurg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duringSurg" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="room" Relationship="Self.FK_scheduling_room" FromRole="scheduling" ToRole="room" />
           <NavigationProperty Name="surgery" Relationship="Self.FK_scheduling_surgery" FromRole="scheduling" ToRole="surgery" />
         </EntityType>
