@@ -34,5 +34,14 @@ namespace BL
 
 
         }
+        public static RoomDTO UpdateRoom(RoomDTO UPRoom)
+        {
+            room updRoom = UPRoom.RoomToTable();
+            db.Execute<room>(updRoom, DBConection.ExecuteActions.Update);
+            //AddRoom.surgeryCode = newRoom.surgeryCode;
+            return UPRoom;
+
+
+        }
     }
 }

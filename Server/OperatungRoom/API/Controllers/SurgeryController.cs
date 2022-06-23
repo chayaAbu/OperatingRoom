@@ -57,9 +57,13 @@ namespace API.Controllers
             return s;
         }
 
-        // POST: api/Surgery
-        public void Post([FromBody]string value)
+        // update surgery
+        [Route("api/Surgery/UpdateSurgery")]
+        [HttpPost]
+        public SurgeryDTO UpdateSurgery(SurgeryDTO upSurgery)
         {
+            SurgeryDTO s = BL.SurgeryManager.UpdateSurgery(upSurgery);
+            return s;
         }
 
         // PUT: api/Surgery/5

@@ -123,8 +123,11 @@ namespace BL
 
                         agentsTasks.Add(SortedSurgery.Keys.First(), listOfRoom[j]);
                         SortedSurgery.Keys.First().hasSches = true;
+                        SurgeryManager.UpdateSurgery(SortedSurgery.Keys.First());
+                        //להוסיף update
                         listOfRoom[j].isFull = true;
                         listOfRoom[j].date = SortedSurgery.Keys.First().surgeryDate;
+                        RoomManager.UpdateRoom(listOfRoom[j]);
                         SortedSurgery.Remove(SortedSurgery.First());
                       
                     }
@@ -145,6 +148,7 @@ namespace BL
 
             }
             return agentsTasks;
+            //לבדוק מדי פעם כדי למחוק בSCHEDULING 
         }
 
 

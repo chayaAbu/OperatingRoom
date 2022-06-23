@@ -39,9 +39,13 @@ namespace API.Controllers
             return "succes" + "" + r.idRoom;
         }
 
-        // PUT: api/Room/5
-        public void Put(int id, [FromBody]string value)
+        //update room
+        [Route("api/Room/AddRoom")]
+        [HttpPost]
+        public string UpdateRoom(RoomDTO upRoom)
         {
+            RoomDTO r = BL.RoomManager.UpdateRoom(upRoom);
+            return "succes" + "" + r.idRoom;
         }
 
         // DELETE: api/Room/5

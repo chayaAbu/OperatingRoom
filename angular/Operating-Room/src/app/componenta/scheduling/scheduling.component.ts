@@ -32,41 +32,41 @@ export class SchedulingComponent implements OnInit {
   constructor(private db: DbService) { }
 
   ngOnInit(): void {
-    this.schedu.forEach(s => {
-      this.events.push(
-        {
-          start: startOfDay(s.schedulingDate),
-          title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
-        }
-      )
-    });
-    console.log("events:" + this.events);
-
+    // this.schedu.forEach(s => {
+    //   this.events.push(
+    //     {
+    //       start: startOfDay(s.schedulingDate),
+    //       title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
+    //     }
+    //   )
+    // });
+    // console.log("events:" + this.events);
+    
   }
 
-  ngOnChange(): void {
+  // ngOnChange(): void {
 
-  }
+  // }
 
 
   sched() {
     this.db.doSched().subscribe(res => {
       this.schedu = res;
-      this.schedu.forEach(s => {
-        this.events.push(
-          {
-            start: startOfDay(s.schedulingDate),
-            title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
-          }
-        )
-      });
-      window.location.reload()
-      console.log("events:" + this.events);
+      // this.schedu.forEach(s => {
+      //   this.events.push(
+      //     {
+      //       start: startOfDay(new Date(s.schedulingDate)),
+      //       title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
+      //     }
+      //   )
+      // });
+      // window.location.reload()
+      // console.log("events:" + this.events);
 
     },
-      err => {
-        console.log("error:" + err.message);
-      }
+      // err => {
+      //   console.log("error:" + err.message);
+      // }
     )
   }
 

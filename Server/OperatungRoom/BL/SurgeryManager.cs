@@ -50,6 +50,14 @@ namespace BL
         return AddSurgery;
 
         }
+        public static SurgeryDTO UpdateSurgery(SurgeryDTO UpSurgery)
+        {
+            surgery updSurgery = UpSurgery.SurgeryToTable();
+            db.Execute<surgery>(updSurgery, DBConection.ExecuteActions.Update);
+            UpSurgery.surgeryCode = updSurgery.surgeryCode;
+            return UpSurgery;
+
+        }
     }
     
 }
