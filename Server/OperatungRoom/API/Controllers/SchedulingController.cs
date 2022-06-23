@@ -40,11 +40,11 @@ namespace API.Controllers
         }
 
         // PUT: api/Scheduling/5
-        public SchedulingDTO EmergencyCase()
-        {
-            SchedulingDTO s = BL.SchedulingManager.EmergencyCase();
-            return s;
-        }
+        //public SchedulingDTO EmergencyCase()
+        //{
+        //    SchedulingDTO s = BL.SchedulingManager.EmergencyCase();
+        //    return s;
+        //}
         // DELETE: api/Scheduling/5
         public void Delete(int id)
         {

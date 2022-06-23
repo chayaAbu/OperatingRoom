@@ -47,10 +47,10 @@ namespace BL
             }
 
         }
-        public SchedulingDTO EmergencyCase()
-        {
-            List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList().Where(s => s.schedulingHour.Add(s.duringSurg) < DateTime.Today.Hour);
-        }
+        //public SchedulingDTO EmergencyCase()
+        //{
+        //    List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList().Where(s => s.schedulingHour.Add(s.duringSurg) < DateTime.Today.Hour);
+        //}
     }
 
 
