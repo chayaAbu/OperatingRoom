@@ -29,45 +29,40 @@ export class SchedulingComponent implements OnInit {
     //   title: 'Second event',
     // }
   ]
-  constructor(private db: DbService) { }
-
-  ngOnInit(): void {
-    // this.schedu.forEach(s => {
-    //   this.events.push(
-    //     {
-    //       start: startOfDay(s.schedulingDate),
-    //       title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
-    //     }
-    //   )
-    // });
-    // console.log("events:" + this.events);
-    
+  constructor(private db: DbService) {  
   }
 
-  // ngOnChange(): void {
+  ngOnInit(): void {
 
-  // }
+    this.db.doSched().subscribe(res => {
+      
+           this.schedu = res;
+           this.sched();
+    },) 
+
+
+
+  }
+
+  ngOnChange(): void {
+
+  }
 
 
   sched() {
-    this.db.doSched().subscribe(res => {
-      this.schedu = res;
-      // this.schedu.forEach(s => {
-      //   this.events.push(
-      //     {
-      //       start: startOfDay(new Date(s.schedulingDate)),
-      //       title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
-      //     }
-      //   )
-      // });
-      // window.location.reload()
-      // console.log("events:" + this.events);
 
-    },
-      // err => {
-      //   console.log("error:" + err.message);
-      // }
-    )
+    console.log(this.schedu)
+    this.schedu.forEach(s => {
+    
+      this.events.push(
+        {
+          start: startOfDay(s.schedulingDate),
+          title: 'surgery:' + s.surgeryCode + '\nroom:' + s.idRoom
+         }
+       
+      ); 
+    });
+    console.log("events:" + this.events);
   }
 
 
@@ -76,3 +71,5 @@ export class SchedulingComponent implements OnInit {
     //this.openAppointmentList(date)
   }
 }
+
+
