@@ -12,16 +12,17 @@ namespace BL
     {
         static OpreatingRoomEntities1 db = new OpreatingRoomEntities1();
 
-        public static IDictionary<SurgeryDTO, RoomDTO> FillMatrix(/*List<SurgeryDTO> listOfSurgery, List<RoomDTO> listOfRoom, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S*/)
+        public static IDictionary<SurgeryDTO, RoomDTO> FillMatrix()
         {
+
             List<SurgeryDTO> listOfSurgery = SurgeryManager.GetSchedSurgery();
-            List<RoomDTO> listOfRoom = RoomManager.GetClearRoom();
+            List<RoomDTO> listOfRoom = RoomManager.GetAllRoom();
             List<DeviceForSurgeryDTO> D = DeviceForSurgeryManager.GetAllRequest();
             List<SpecialDeviceDTO> S = SpecialDeviceManager.GetAllSpecialDevice();
 
             PreHungrien preMat = new PreHungrien();
             double[,] gradeMat = preMat.CalculateScore(listOfSurgery, listOfRoom, D, S);
-            IDictionary<SurgeryDTO,double > SortedSurgery = preMat.CalculatePriority(listOfSurgery);
+            IDictionary<SurgeryDTO, double> SortedSurgery = preMat.CalculatePriority(listOfSurgery);
 
 
 
@@ -125,16 +126,16 @@ namespace BL
                         SortedSurgery.Keys.First().hasSches = true;
                         SurgeryManager.UpdateSurgery(SortedSurgery.Keys.First());
                         //להוסיף update
-                        listOfRoom[j].isFull = true;
+                   
                         listOfRoom[j].date = SortedSurgery.Keys.First().surgeryDate;
-                        RoomManager.UpdateRoom(listOfRoom[j]);
+             
                         SortedSurgery.Remove(SortedSurgery.First());
-                      
+
                     }
                 }
 
             }
-          
+
             for (int i = 0; i < agentsTasks.Count; i++)
             {
                 SchedulingDTO schedulingDTO = new SchedulingDTO();
@@ -143,8 +144,20 @@ namespace BL
                 schedulingDTO.duringSurg = agentsTasks.Keys.ToArray()[i].duringSurg;
                 schedulingDTO.schedulingHour = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingHour.Add(SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).duringSurg);
                 //צריך לבדוק אם התאריך לא עובר יום
-                schedulingDTO.schedulingDate = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingDate;
+                if (schedulingDTO.schedulingHour < TimeSpan.FromHours(24))
+                    schedulingDTO.schedulingDate = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingDate;
+                else
+                {
+                    schedulingDTO.schedulingDate = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingDate.Add(TimeSpan.FromDays(1));
+                    schedulingDTO.schedulingHour -= schedulingDTO.schedulingHour.Subtract(TimeSpan.FromHours(24));
+                }
+                if (schedulingDTO.schedulingDate > DateTime.Today)
+                {
+                    agentsTasks.Keys.ToArray()[i].priorityLevel++;
+                    SurgeryManager.UpdateSurgery(agentsTasks.Keys.ToArray()[i]);
+}
                 SchedulingManager.AddScheduling(schedulingDTO);
+
 
             }
             return agentsTasks;

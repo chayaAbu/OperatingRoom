@@ -26,6 +26,13 @@ namespace BL
             return CreateDeviceForSurgeryDtoList;
 
         }
+        public static List<DeviceForSurgeryDTO> GetAllSpecialDeviceAccordingCode(int code)
+        {
+            List<deviceForSurgery> deviceFromTable = db.GetDbSet<deviceForSurgery>().Where(sd=>sd.surgeryCode==code).ToList();
+            List<DeviceForSurgeryDTO> CreateDeviceForSurgeryDtoList = DeviceForSurgeryDTO.CreateDeviceForSurgeryDtoList(deviceFromTable);
+            return CreateDeviceForSurgeryDtoList;
+
+        }
 
     }
 }

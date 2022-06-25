@@ -27,5 +27,19 @@ namespace BL
             return CreateSpecialDeviceDtoList;
 
         }
+        public static SpecialDeviceDTO GetAllSpecialDeviceAccordingName(string  name)
+        {
+           specialDevice SpecialDeviceFromTable = db.GetDbSet<specialDevice>().Where(sd=>sd.deviceName==name).Single();
+            SpecialDeviceDTO CreateSpecialDeviceDtoList = new SpecialDeviceDTO(SpecialDeviceFromTable);
+            return CreateSpecialDeviceDtoList;
+
+        }
+        public static SpecialDeviceDTO UpdateDevice(SpecialDeviceDTO UpDevice)
+        {
+            specialDevice updDevice = UpDevice.SpecialDeviceToTable();
+            db.Execute<specialDevice>(updDevice, DBConection.ExecuteActions.Update);
+            return UpDevice;
+
+        }
     }
 }

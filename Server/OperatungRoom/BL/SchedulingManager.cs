@@ -19,6 +19,14 @@ namespace BL
 
 
         }
+        public static SchedulingDTO DeleteScheduling(SchedulingDTO DeleteScheduling)
+        {
+            scheduling execScheduling = DeleteScheduling.SchedulingToTable();
+            db.Execute<scheduling>(execScheduling, DBConection.ExecuteActions.Delete);
+            return DeleteScheduling;
+
+
+        }
         public static List<SchedulingDTO> GetAllSched()
         {
             List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList();
@@ -26,7 +34,7 @@ namespace BL
             return CreateSchedulingDtoList;
 
         }
-
+    
         public static SchedulingDTO GetLast(int ToSched)
         {
             List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList();
@@ -47,9 +55,29 @@ namespace BL
             }
 
         }
-        public SchedulingDTO EmergencyCase()
+        public static void EmergencyCase()
         {
-            List<scheduling> schedFromTable = db.GetDbSet<scheduling>().Where(S => S.schedulingDate == DateTime.Today&&S.schedulingHour<=TimeSpan.).ToList();
+            List<scheduling> schedFromTable = db.GetDbSet<scheduling>().Where(S => S.schedulingDate != DateTime.Today|| (S.schedulingDate != DateTime.Today && S.schedulingHour.Hours <= DateTime.Now.Hour)).ToList();
+            List<SchedulingDTO> CreateSchedulingDtoList = SchedulingDTO.CreateSchedulingDtoList(schedFromTable);
+            foreach (var s in CreateSchedulingDtoList)
+            {
+                SurgeryDTO SurgeryEmergency = SurgeryManager.GetSurgeryAccordingCode(s.surgeryCode);
+                SurgeryEmergency.hasSches = false;
+                SurgeryManager.UpdateSurgery(SurgeryEmergency);
+                List<DeviceForSurgeryDTO> FreeDevice = DeviceForSurgeryManager.GetAllSpecialDeviceAccordingCode(s.surgeryCode);
+                foreach(var D in FreeDevice)
+                {
+                    SpecialDeviceDTO toChange = SpecialDeviceManager.GetAllSpecialDeviceAccordingName(D.deviceName);
+                    if (toChange.isAvailable == true)
+                        toChange.isAvailable = false;
+                    toChange.amount += D.amount;
+                    SpecialDeviceManager.UpdateDevice(toChange);
+             
+
+                }
+                DeleteScheduling(s);
+            }
+
         }
     }
 

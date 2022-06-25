@@ -24,6 +24,7 @@ namespace DAL
         public bool isFull { get; set; }
         public System.DateTime date { get; set; }
         public int idClass { get; set; }
+        public int counts { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<scheduling> scheduling { get; set; }

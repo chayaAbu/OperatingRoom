@@ -19,6 +19,7 @@ namespace API.Controllers
         [HttpGet]
         public List<SchedulingDTO> GetSchedulng()
         {
+            SurgeryManager.GetSurgeryToDelate();
            HungrienScudling.FillMatrix();
             return BL.SchedulingManager.GetAllSched();
         }
@@ -32,19 +33,20 @@ namespace API.Controllers
             return s;
         }
 
-        // POST: api/Scheduling
+        // POST: get the last scheduling
         public SchedulingDTO GetLast(int ToSched)
         {
             SchedulingDTO s = BL.SchedulingManager.GetLast(ToSched);
             return s;
         }
 
-        // PUT: api/Scheduling/5
-        //public SchedulingDTO EmergencyCase()
-        //{
-        //    SchedulingDTO s = BL.SchedulingManager.EmergencyCase();
-        //    return s;
-        //}
+       // emergency case
+        public void EmergencyCase()
+        {
+            BL.SchedulingManager.EmergencyCase();
+            GetSchedulng();
+            
+        }
         // DELETE: api/Scheduling/5
         public void Delete(int id)
         {

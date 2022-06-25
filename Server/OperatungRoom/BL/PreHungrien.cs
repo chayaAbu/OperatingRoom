@@ -29,7 +29,9 @@ namespace BL
                
                 for(int j=0; j < listOfRoom.Count();j++)
                 {
-                    double squereGrade=Grade(item, listOfRoom[j], D, S);
+                    double squereGrade = Grade(item, listOfRoom[j], D, S);
+                    if (squereGrade == 0)
+                        break;
                     surgeryMatrix[i,j] = squereGrade;
                   
 
@@ -70,13 +72,17 @@ namespace BL
             {
                 foreach(var y in S)
                 {
-                    if ((x.deviceName == y.deviceName) &&( y.isAvailable == false) && (y.amount>x.amount))
+                    if ((x.deviceName == y.deviceName) && (y.isAvailable == false) && (y.amount > x.amount))
                     {
                         y.date = surg.surgeryDate;
-                        y.isAvailable = true;
                         y.amount -= x.amount;
+                        if (y.amount == 0)
+                            y.isAvailable = true;
+                        SpecialDeviceManager.UpdateDevice(y);
                         sumMatchDavice += 2;
                     }
+                    else;
+                    return 0;
                 }
             }
             return sumMatchDavice;
@@ -85,7 +91,12 @@ namespace BL
         public double Grade(KeyValuePair<SurgeryDTO, double >surgery, RoomDTO Room, List<DeviceForSurgeryDTO> D, List<SpecialDeviceDTO> S)
         {
             double grade;
-            grade = surgery.Value + MatchRoom(surgery.Key, Room)+MatchDevice(D,S,surgery.Key);
+            grade = surgery.Value + MatchRoom(surgery.Key, Room) ;
+            if (MatchDevice(D, S, surgery.Key) == 0)
+                return 0;
+            else
+                grade += MatchDevice(D, S, surgery.Key);
+
             return int.MaxValue -  grade;
         }
     

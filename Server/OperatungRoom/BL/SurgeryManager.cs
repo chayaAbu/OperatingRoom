@@ -28,6 +28,17 @@ namespace BL
             return CreateSurgeryDtoList;
 
         }
+        public static List<SurgeryDTO> GetSurgeryToDelate()
+        {
+            List<surgery> surgeriesFromTable = db.GetDbSet<surgery>().Where(S => S.surgeryDate < DateTime.Today).ToList();
+            List<SurgeryDTO> CreateSurgeryDtoList = SurgeryDTO.CreateSurgeryDtoList(surgeriesFromTable);
+            foreach(var del in CreateSurgeryDtoList)
+            {
+                DelateSurgery(del);
+            }
+            return CreateSurgeryDtoList;
+
+        }
         public static List<SurgeryDTO> GetAllSurgery()
         {
             List<surgery> surgeriesFromTable = db.GetDbSet<surgery>().ToList();
@@ -44,10 +55,10 @@ namespace BL
         }
         public static SurgeryDTO AddNewSurgery(SurgeryDTO AddSurgery)
         {
-        surgery newSurgery = AddSurgery.SurgeryToTable();
-        db.Execute<surgery>(newSurgery, DBConection.ExecuteActions.Insert);
-        AddSurgery.surgeryCode = newSurgery.surgeryCode;
-        return AddSurgery;
+            surgery newSurgery = AddSurgery.SurgeryToTable();
+            db.Execute<surgery>(newSurgery, DBConection.ExecuteActions.Insert);
+            AddSurgery.surgeryCode = newSurgery.surgeryCode;
+            return AddSurgery;
 
         }
         public static SurgeryDTO UpdateSurgery(SurgeryDTO UpSurgery)
@@ -58,6 +69,22 @@ namespace BL
             return UpSurgery;
 
         }
+        public static SurgeryDTO DelateSurgery(SurgeryDTO DelSurgery)
+        {
+            surgery delSurgery = DelSurgery.SurgeryToTable();
+            db.Execute<surgery>(delSurgery, DBConection.ExecuteActions.Delete);
+            return DelSurgery;
+
+        }
+        public static SurgeryDTO GetSurgeryAccordingCode(int code)
+        {
+            surgery surgeriesFromTable = db.GetDbSet<surgery>().Where(S => S.surgeryCode == code).Single();
+            SurgeryDTO CreateSurgeryDtoList = new SurgeryDTO(surgeriesFromTable);
+            return CreateSurgeryDtoList;
+
+
+
+        }
+
     }
-    
 }

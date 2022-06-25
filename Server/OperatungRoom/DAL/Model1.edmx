@@ -40,6 +40,7 @@
           <Property Name="isFull" Type="bit" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
           <Property Name="idClass" Type="int" Nullable="false" />
+          <Property Name="counts" Type="int" />
         </EntityType>
         <EntityType Name="scheduling">
           <Key>
@@ -252,6 +253,7 @@
           <Property Name="isFull" Type="Boolean" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idClass" Type="Int32" Nullable="false" />
+          <Property Name="counts" Type="Int32" />
           <NavigationProperty Name="scheduling" Relationship="Self.FK_scheduling_room" FromRole="room" ToRole="scheduling" />
         </EntityType>
         <EntityType Name="scheduling">
@@ -469,6 +471,7 @@
                 <ScalarProperty Name="isFull" ColumnName="isFull" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="counts" ColumnName="counts" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

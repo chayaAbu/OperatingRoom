@@ -13,6 +13,7 @@ namespace DTO
         public bool isFull { get; set; }
         public System.DateTime date { get; set; }
         public int idClass { get; set; }
+        public int counts { get; set; }
 
         public RoomDTO()
         {
@@ -25,6 +26,7 @@ namespace DTO
             this.idClass = r.idClass;
             this.isFull = r.isFull;
             this.date = r.date;
+            this.counts = r.counts;
             
         }
         public static List<RoomDTO> CreateRoomDtoList(List<room> roomList)
@@ -44,6 +46,7 @@ namespace DTO
             r.idClass = idClass;
             r.isFull = isFull;
             r.date = date;
+            r.counts = counts;
             return r;
         }
     }
