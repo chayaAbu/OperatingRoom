@@ -149,7 +149,7 @@ namespace BL
                 else
                 {
                     schedulingDTO.schedulingDate = SchedulingManager.GetLast(agentsTasks.Values.ToArray()[i].idRoom).schedulingDate.Add(TimeSpan.FromDays(1));
-                    schedulingDTO.schedulingHour -= schedulingDTO.schedulingHour.Subtract(TimeSpan.FromHours(24));
+                    schedulingDTO.schedulingHour = schedulingDTO.schedulingHour.Subtract(TimeSpan.FromHours(24));
                 }
                 if (schedulingDTO.schedulingDate > DateTime.Today)
                 {
@@ -159,7 +159,7 @@ namespace BL
                 if (agentsTasks.Keys.ToArray()[i].dangerLevel == 10)
                 {
                     schedulingDTO.schedulingDate = DateTime.Today;
-                    schedulingDTO.schedulingHour = TimeSpan.FromHours(DateTime.Today.Hour);
+                    schedulingDTO.schedulingHour = TimeSpan.FromHours(DateTime.Now.Hour+1);
                 }
                 
                 SchedulingManager.AddScheduling(schedulingDTO);
