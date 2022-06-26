@@ -32,7 +32,7 @@ disableSelect = new FormControl(false);
       surgeryDate: this.addSurgeryForm.controls.date.value,
       idClass: this.disableSelect.value,
       priorityLevel:0,
-      dangerLevel: this.addSurgeryForm.controls.danger.value,
+      dangerLevel: 10,
       idDoctor: 213256685,
       surgeryCode: 18,
       duringSurg:this.addSurgeryForm.controls.sTime.value,
@@ -47,8 +47,14 @@ disableSelect = new FormControl(false);
         alert("שגיאת שרת")
       else
         alert(res.surgeryCode+" נוסף בהצלחה")
-        this.route.navigate(['scheduling'])
+        this.moveToRequest(res.surgeryCode)
     })
 
   }
+  moveToRequest(sCode:Number){
+    this.route.navigate(['device'],{state:{sCode}})
+    // this.route.navigate(['scheduling'])
+   }
+
+  
 }

@@ -43,12 +43,12 @@ namespace API.Controllers
         // emergency case
         [Route("api/Scheduling/EmergencyCase")]
         [HttpPost]
-        public void EmergencyCase(SurgeryDTO surg)
+        public SurgeryDTO EmergencyCase(SurgeryDTO surg)
         {
             BL.SchedulingManager.EmergencyCase();
-            SurgeryManager.AddNewSurgery(surg);
-            GetSchedulng();
-            
+           SurgeryDTO s= SurgeryManager.AddNewSurgery(surg);
+            //GetSchedulng();
+            return s;
         }
         // DELETE: api/Scheduling/5
         public void Delete(int id)

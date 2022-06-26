@@ -56,7 +56,7 @@ namespace BL
                 schedulingDTO.surgeryCode = 0;
                 schedulingDTO.duringSurg = TimeSpan.FromHours(0);
                 schedulingDTO.schedulingHour = TimeSpan.FromHours(0);
-                schedulingDTO.schedulingDate = DateTime.Today;
+                schedulingDTO.schedulingDate = DateTime.Today.AddDays(1);
                 return schedulingDTO;
 
             }

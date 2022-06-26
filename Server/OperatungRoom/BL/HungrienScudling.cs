@@ -155,7 +155,13 @@ namespace BL
                 {
                     agentsTasks.Keys.ToArray()[i].priorityLevel++;
                     SurgeryManager.UpdateSurgery(agentsTasks.Keys.ToArray()[i]);
-}
+                }
+                if (agentsTasks.Keys.ToArray()[i].dangerLevel == 10)
+                {
+                    schedulingDTO.schedulingDate = DateTime.Today;
+                    schedulingDTO.schedulingHour = TimeSpan.FromHours(DateTime.Today.Hour);
+                }
+                
                 SchedulingManager.AddScheduling(schedulingDTO);
 
 
