@@ -34,6 +34,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { DbService } from './service/db.service';
 import { LoginUserService } from './service/login-user.service';
+import { EmergencyComponent } from './componenta/emergency/emergency.component';
 
 
 
@@ -47,7 +48,8 @@ import { LoginUserService } from './service/login-user.service';
     DeviceComponent,
     HoomComponent,
     SchedulingComponent,
-    NavComponent
+    NavComponent,
+    EmergencyComponent
   
   ],
   imports: [

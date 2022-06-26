@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DeviceComponent } from './componenta/device/device.component';
+import { EmergencyComponent } from './componenta/emergency/emergency.component';
 import { HoomComponent } from './componenta/hoom/hoom.component';
 import { LoginComponent } from './componenta/login/login.component';
 import { RegisterComponent } from './componenta/register/register.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'room', component: RoomComponent },
   { path: 'hoom', component: HoomComponent },
   { path: 'scheduling', component: SchedulingComponent },
-  { path: 'device', component: DeviceComponent }
+  { path: 'device', component: DeviceComponent },
+  {path:'emergency',component:EmergencyComponent}
 ];
 
 @NgModule({

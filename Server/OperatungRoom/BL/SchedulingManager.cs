@@ -34,11 +34,18 @@ namespace BL
             return CreateSchedulingDtoList;
 
         }
+        public static SchedulingDTO GetAccordingSched(int code)
+        {
+            scheduling schedFromTable = db.GetDbSet<scheduling>().Where(s=>s.surgeryCode==code).Single();
+            SchedulingDTO CreateSchedulingDtoList =new SchedulingDTO(schedFromTable);
+            return CreateSchedulingDtoList;
+
+        }
     
         public static SchedulingDTO GetLast(int ToSched)
         {
             List<scheduling> schedFromTable = db.GetDbSet<scheduling>().ToList();
-            if (schedFromTable.Count > 0 && schedFromTable.Last().idRoom == ToSched)
+            if ( schedFromTable.Where(s => s.idRoom == ToSched).ToList().Count>0)
             {
                 return SchedulingDTO.CreateSchedulingDtoList(schedFromTable).Where(S => S.idRoom == ToSched).Last();
             }

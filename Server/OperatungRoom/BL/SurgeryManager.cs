@@ -71,6 +71,20 @@ namespace BL
         }
         public static SurgeryDTO DelateSurgery(SurgeryDTO DelSurgery)
         {
+            List<DeviceForSurgeryDTO> FreeDevice = DeviceForSurgeryManager.GetAllSpecialDeviceAccordingCode(DelSurgery.surgeryCode);
+            foreach (var D in FreeDevice)
+            {
+                SpecialDeviceDTO toChange = SpecialDeviceManager.GetAllSpecialDeviceAccordingName(D.deviceName);
+                if (toChange.isAvailable == true)
+                    toChange.isAvailable = false;
+                toChange.amount += D.amount;
+                SpecialDeviceManager.UpdateDevice(toChange);
+                DeviceForSurgeryManager.DelateDeviceRequest(D);
+
+
+            }
+            SchedulingDTO s = SchedulingManager.GetAccordingSched(DelSurgery.surgeryCode);
+            SchedulingManager.DeleteScheduling(s);
             surgery delSurgery = DelSurgery.SurgeryToTable();
             db.Execute<surgery>(delSurgery, DBConection.ExecuteActions.Delete);
             return DelSurgery;

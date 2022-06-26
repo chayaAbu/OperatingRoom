@@ -26,7 +26,7 @@ namespace DTO
             this.idClass = r.idClass;
             this.isFull = r.isFull;
             this.date = r.date;
-            this.counts = r.counts;
+            this.counts = 0;
             
         }
         public static List<RoomDTO> CreateRoomDtoList(List<room> roomList)

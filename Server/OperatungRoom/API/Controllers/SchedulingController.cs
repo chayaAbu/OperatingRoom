@@ -40,10 +40,13 @@ namespace API.Controllers
             return s;
         }
 
-       // emergency case
-        public void EmergencyCase()
+        // emergency case
+        [Route("api/Scheduling/EmergencyCase")]
+        [HttpPost]
+        public void EmergencyCase(SurgeryDTO surg)
         {
             BL.SchedulingManager.EmergencyCase();
+            SurgeryManager.AddNewSurgery(surg);
             GetSchedulng();
             
         }

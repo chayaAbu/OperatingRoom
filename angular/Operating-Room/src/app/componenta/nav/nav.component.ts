@@ -33,7 +33,12 @@ addSurgery(){
   else{
  this.route.navigate(['surg'])
 }}
-
+addEmergency(){
+  if(this.db.logUserName==null)
+  alert("youre not logged to the system")
+  else{
+ this.route.navigate(['emergency'])
+}}
 
 addRoom(){
   if(this.db.logUserName==null)

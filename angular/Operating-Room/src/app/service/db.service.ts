@@ -59,4 +59,7 @@ export class DbService {
   doSched(){
     return this.http.get<Scheduling[]>("http://localhost:63703/api/Scheduling/GetSchedulng");
   }
+  emergency(surgery:Surgery){
+    return this.http.post<Surgery>("http://localhost:63703/api/Scheduling/EmergencyCase",surgery)
+  }
 }

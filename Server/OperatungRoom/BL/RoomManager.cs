@@ -20,7 +20,7 @@ namespace BL
         }
         public static List<RoomDTO> GetAllRoom()
         {
-            List<room> roomsFromTable = db.GetDbSet<room>().Where(R => R.date !=DateTime.Today).ToList();
+            List<room> roomsFromTable = db.GetDbSet<room>().ToList();
             List<RoomDTO> CreateRoomDtoList = RoomDTO.CreateRoomDtoList(roomsFromTable);
             return CreateRoomDtoList;
 

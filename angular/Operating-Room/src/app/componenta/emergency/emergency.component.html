@@ -1,0 +1,47 @@
+<div class="col-md-6 mx-auto d-flex justify-content-center">
+    <form [formGroup]="addSurgeryForm" class="text-center border border-light p-5 ">
+        <p class="h4 mb-4">Add surgery</p>
+        <div class="form-row mb-4">
+            <div class="col mb-3">
+
+                <input formControlName="date" type="date" id="date" class="form-control" placeholder="">
+            </div>
+            <div class="col mb-3 ">
+                <!-- Last name -->
+                <mat-form-field appearance="fill"> 
+                   
+                   <label>Choose an class 🔽</label>
+                    <select matNativeControl required [disabled]="disableSelect.value" class="form-control" id="class" formControlName="class">
+                        <option value="11">orthopedics</option>
+                        <option value="12">neurology</option>
+                        <option value="13">cardiology</option>
+                        <option value="14">oncology</option>
+                    </select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col mb-3 form-control">
+            <label>during surgery</label>
+           
+                <!-- Password -->
+                <input formControlName="sTime" type="time" id="sTime" class="form-control" placeholder="">
+            
+        </div>
+        <div class="col mb-3 form-control">
+            <label>danger</label>
+            <mdb-range [min]="0" [max]="10" formControlName="danger">
+
+                <input type="range" id="danger" class="form-control" placeholder="">
+            </mdb-range>
+        </div>
+
+
+
+        <!-- Sign up button -->
+
+        <button type="button" (click)="addEmergency()" class="btn btn-outline-dark">Add</button>
+
+
+    </form>
+
+</div>
